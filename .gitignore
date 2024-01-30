@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+VieLocaLure/client/node_modules
+VieLocaLure/client/.pnp
+VieLocaLure/client.pnp.js
+
+# testing
+VieLocaLure/client/coverage
+
+# production
+VieLocaLure/client/build
+
+# misc
+VieLocaLure/client.DS_Store
+VieLocaLure/client.env.local
+VieLocaLure/client.env.development.local
+VieLocaLure/client.env.test.local
+VieLocaLure/client.env.production.local
+
+VieLocaLure/client/npm-debug.log*
+VieLocaLure/client/yarn-debug.log*
+VieLocaLure/client/yarn-error.log*
