@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+html, body {
+    padding: 0;
+    margin: 0;
+  }
+
+:root {
+    --main-blue: rgb(17,106,252);
+    --light-blue: rgb(71, 137, 244);
+    --alpha-blue: rgba(17,106,252,0.4);
+    --alpha-blue-8: rgba(17,106,252,0.8);
+    --main-red: rgb(233, 73, 24);
+    --alpha-red: rgba(233, 73, 24, 0.5);
+}

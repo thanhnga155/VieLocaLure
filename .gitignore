@@ -21,3 +21,5 @@ VieLocaLure/client.env.production.local
 VieLocaLure/client/npm-debug.log*
 VieLocaLure/client/yarn-debug.log*
 VieLocaLure/client/yarn-error.log*
+
+.vs
