@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\Desktop\\Dot Net\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj": {}
+    "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\Desktop\\Dot Net\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\Dot Net\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj",
         "projectName": "VieLocaLure",
-        "projectPath": "C:\\Users\\ADMIN\\Desktop\\Dot Net\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\VieLocaLure.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\Desktop\\Dot Net\\VieLocaLure\\VieLocaLure\\obj\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,22 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
