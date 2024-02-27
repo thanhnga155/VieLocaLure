@@ -15,47 +15,47 @@ const divStyle = {
     backgroundColor: "rgba(0,0,0, 0.3)",
 };
 
-const data = 
-[
-    {
-        id: 0,
-        caption1_en: "special value tour",
-        caption1_vi: "gói tour đặc biệt",
-        caption2_en: "panorama of vietnam",
-        caption2_vi: "toàn cảnh việt nam",
-        caption3_en: "Departing on Apr 5, 2024",
-        caption3_vi: "khởi hành 05/04/2024",
-        image: "https://zoomtravel.vn/upload/images/samten-hills-0.jpg",
-        tour_id: 0,
-    },
-    {
-        id: 1,
-        caption1_en: "once upon an old time",
-        caption1_vi: "vang bóng một thời",
-        caption2_en: "Hue Historic Citadel",
-        caption2_vi: "Kinh thành Huế",
-        caption3_en: "Departing on Mar 20, 2024",
-        caption3_vi: "khởi hành 20/03/2024",
-        image: "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg",
-        tour_id: 1,
-    }
-];
+// const data = 
+// [
+//     {
+//         id: 0,
+//         caption1_en: "special value tour",
+//         caption1_vi: "gói tour đặc biệt",
+//         caption2_en: "panorama of vietnam",
+//         caption2_vi: "toàn cảnh việt nam",
+//         caption3_en: "Departing on Apr 5, 2024",
+//         caption3_vi: "khởi hành 05/04/2024",
+//         image: "https://zoomtravel.vn/upload/images/samten-hills-0.jpg",
+//         tour_id: 0,
+//     },
+//     {
+//         id: 1,
+//         caption1_en: "once upon an old time",
+//         caption1_vi: "vang bóng một thời",
+//         caption2_en: "Hue Historic Citadel",
+//         caption2_vi: "Kinh thành Huế",
+//         caption3_en: "Departing on Mar 20, 2024",
+//         caption3_vi: "khởi hành 20/03/2024",
+//         image: "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg",
+//         tour_id: 1,
+//     }
+// ];
 
 
 const Banner = () => {
 
-    // const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             setData(await GetBanner());
-    //         } catch (error) {
-    //             console.error('Error fetching banner data:', error);
-    //         }
-    //     };
-    //     fetchData();
-    //   }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setData(await GetBanner());
+            } catch (error) {
+                console.error('Error fetching banner data:', error);
+            }
+        };
+        fetchData();
+      }, []);
 
     const { t } = useTranslation();
 
