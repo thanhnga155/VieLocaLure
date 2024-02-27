@@ -1,5 +1,100 @@
 .top-tours {
     h2 {
         color: var(--main-blue);
+        text-transform: uppercase;
     }
 }
+
+.top-tour-card {
+    // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.top-tour-figure {
+    position: relative;
+    overflow: hidden;
+
+    .price-tour {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        background: var(--main-red);
+        line-height: 30px;
+        max-width: 80%;
+    
+        &:after {
+            left: calc(100% - 15px);
+            top: 50%;
+            border: solid var(--main-red);
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: var(--main-red);
+            border-right-color: transparent;
+            border-width: 15px;
+            margin-top: -15px;
+        }
+
+        .text-price-tour {
+            position: relative;
+            padding: 0 25px 0 15px;
+            font-size: 13px;
+            color: #fff;
+            font-weight: 600;
+            line-height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+    }
+}
+
+.top-details {
+    min-height: 30px;
+
+    .tag-detail, .number-detail {
+        font-size: 13px;
+        color: #555;
+        line-height: 22px;
+    }
+
+    .number-detail {
+        font-style: italic;
+    }
+
+}
+
+.name-tour-detail {
+    text-decoration: none;
+    color: var(--main-blue);
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    line-height: 25px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-line-clamp: 2;
+    -moz-box-orient: vertical;
+}
+
+.action-tour {
+    width: 120px;
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: 0;
+    transform: translateY(50%);
+    background-color: var(--main-yellow) !important;
+    border-color: var(--main-yellow) !important;
+}
+

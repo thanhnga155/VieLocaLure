@@ -43,6 +43,13 @@
             },
             "social": "Social media"
         },
-        "top-tour": "Top tours"
+        "top-tour": {
+            "title": "Top tours",
+            "tourist": "tourist",
+            "book": "Book tour"
+        },
+        "destination": {
+            "title": "Popular destinations"
+        }
     }
 }
