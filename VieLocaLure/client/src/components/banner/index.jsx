@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import './styles.scss';
 import { useTranslation } from "react-i18next";
+import { GetBanner } from "../../services/BannerApi";
 
 
 const divStyle = {
@@ -42,6 +43,19 @@ const data =
 
 
 const Banner = () => {
+
+    // const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             setData(await GetBanner());
+    //         } catch (error) {
+    //             console.error('Error fetching banner data:', error);
+    //         }
+    //     };
+    //     fetchData();
+    //   }, []);
 
     const { t } = useTranslation();
 

@@ -5,6 +5,7 @@ import HomePage from './pages/homepage';
 import Footer from './components/footer';
 
 localStorage.setItem('language', 'vi')
+// require('dotenv').config()
 
 function App() {
   return (
