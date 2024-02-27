@@ -1,0 +1,47 @@
+{
+    "homepage": {
+        "header": {
+            "login": "Login",
+            "language": "Tiếng Việt",
+            "homepage": "Homepage",
+            "explore": "Explore",
+            "news": "News",
+            "contact": "Contact"
+        },
+        "banner": "Read more",
+        "search": "Search a place...",
+        "footer": {
+            "consultation": {
+                "title": "FREE CONSULTATION",
+                "description": "Free online consultation support."
+            },
+            "offer": {
+                "title": "GREAT PRICES & OFFERS",
+                "description": "Attractive deals and gifts when booking online."
+            },
+            "payment": {
+                "title": "SAFE PAYMENT",
+                "description": "Secured by the international organization Global Sign."
+            },
+            "reputation": {
+                "title": "REPUTABLE BRAND",
+                "description": "A leading travel brand in Vietnam."
+            },
+            "about": {
+                "title": "About us",
+                "description":"VieLocaLure - Bestowing upon you the most exquisite journeys in Vietnam."
+            },
+            "link": "Quick Links",
+            "support": {
+                "title": "Support",
+                "faq": "FAQ",
+                "term": "Terms & Conditions",
+                "report": "Report",
+                "documentation": "Documentation",
+                "policy": "Support policy",
+                "privacy": "Privacy"
+            },
+            "social": "Social media"
+        }
+    }
+}

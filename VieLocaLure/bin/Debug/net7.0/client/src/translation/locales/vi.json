@@ -1,0 +1,47 @@
+{
+    "homepage": {
+        "header": {
+            "login": "Đăng nhập",
+            "language": "English",
+            "homepage": "Trang chủ",
+            "explore": "Khám phá",
+            "news": "Tin tức",
+            "contact": "Liên hệ"
+        },
+        "banner": "Xem thêm",
+        "search": "Tìm kiếm một địa điểm...",
+        "footer": {
+            "consultation": {
+                "title": "TƯ VẤN MIỄN PHÍ",
+                "description": "Hỗ trợ tư vấn online miễn phí."
+            },
+            "offer": {
+                "title": "GIÁ TỐT - NHIỀU ƯU ĐÃI",
+                "description": "Ưu đãi và quà tặng hấp dẫn khi mua tour online."
+            },
+            "payment": {
+                "title": "THANH TOÁN AN TOÀN",
+                "description": "Được bảo mật bởi tổ chức quốc tế Global Sign."
+            },
+            "reputation": {
+                "title": "THƯƠNG HIỆU UY TÍN",
+                "description": "Thương hiệu lữ hành hàng đầu Việt Nam."
+            },
+            "about":{
+                "title": "Về chúng tôi",
+                "description": "VieLocaLure - Mang đến cho bạn những chuyến đi tốt nhất tại Việt Nam."
+            },
+            "link": "Liên kết nhanh",
+            "support": {
+                "title": "Hỗ trợ",
+                "faq": "Câu hỏi thường gặp",
+                "term": "Điều khoản",
+                "report": "Báo cáo",
+                "documentation": "Tài liệu",
+                "policy": "Chính sách hỗ trợ",
+                "privacy": "Quyền riêng tư"
+            },
+            "social": "Mạng xã hội"
+        }
+    }
+}
