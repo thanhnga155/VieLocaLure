@@ -96,5 +96,17 @@
     transform: translateY(50%);
     background-color: var(--main-yellow) !important;
     border-color: var(--main-yellow) !important;
+
+    &:hover {
+        background-color: var(--light-yellow) !important;   
+    }
+}
+
+.more-tour {
+    background-color: var(--main-yellow) !important;
+    border-color: var(--main-yellow) !important;
+    &:hover {
+        background-color: var(--light-yellow) !important;   
+    }
 }
 

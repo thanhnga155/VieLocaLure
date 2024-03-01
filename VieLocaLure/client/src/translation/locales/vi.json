@@ -43,10 +43,11 @@
             },
             "social": "Mạng xã hội"
         },
-        "top-tour": {
-            "title": "Những tour nổi bật",
+        "latest-tour": {
+            "title": "Những tour mới nhất",
             "tourist": "khách",
-            "book": "Đặt tour"
+            "book": "Đặt tour",
+            "see-all": "Xem thêm tours"
         },
         "destination": {
             "title": "Các điểm đến phổ biến"
