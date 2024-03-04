@@ -43,7 +43,7 @@ html, body {
   }
 
 :root {
-    --main-blue: rgb(17,106,252);
+    --main-blue: rgb(0, 94, 245);
     --light-blue: rgb(71, 137, 244);
     --alpha-blue: rgba(17,106,252,0.4);
     --alpha-blue-8: rgba(17,106,252,0.8);
@@ -60,4 +60,43 @@ html, body {
 .zoom-effect:hover img {
     transform: scale(1.1);
     filter: brightness(90%);
+}
+
+@keyframes zoomin {
+    0% {
+      background-size: auto 200%;
+    }
+    50% {
+      background-size: auto 250%;
+    }
+    100% {
+      background-size: auto 200%;
+    }
+}
+
+.leading-tight {
+    line-height: 1.25;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-28 {
+    font-size: 2.75rem;
+}
+
+.text-16 {
+    font-size: 1.5rem;
+}
+
+
+.main-box {
+    background-color: var(--main-yellow) !important;
+    border-color: var(--main-yellow) !important;
+    color: #fff !important;
+}
+
+.main-box:hover {
+    background-color: var(--light-yellow) !important;   
 }

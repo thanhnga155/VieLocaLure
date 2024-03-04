@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const serverApi = process.env.REACT_APP_SERVER_API;
 
-export const GetLatestTour = async (id, token) => {
+export const GetAllAreas = async (id, token) => {
     const config = {
         method: 'GET',
-        url: `${serverApi}/top-tours`,
+        url: `${serverApi}/areas`,
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
         }

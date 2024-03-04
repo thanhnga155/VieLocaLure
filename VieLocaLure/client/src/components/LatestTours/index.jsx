@@ -3,6 +3,7 @@ import './styles.scss';
 import { useTranslation } from "react-i18next";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { GetLatestTour } from "../../services/TourApi";
+import { useLanguage } from "../../LanguageContext";
 
 
 const sample = [
@@ -47,9 +48,11 @@ const sample = [
     }
 ];
 
+
+
 const TopTours = () => {
     const { t } = useTranslation();
-    const language = localStorage.getItem("language");
+    const { language, changeLanguage } = useLanguage();
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -69,7 +72,7 @@ const TopTours = () => {
     return (
       <div className="top-tours my-4">
         <center>
-          <h2>{t("homepage.latest-tour.title")}</h2>
+            <h2>{t("homepage.latest-tour.title")}</h2>
         </center>
         <section className="mt-5">
             <Container>
@@ -109,7 +112,7 @@ const TopTours = () => {
                                         <span className="name-tour-detail">
                                             {language === 'en' ? tour.tour_title_en : tour.tour_title_vi}
                                         </span>
-                                        <Button className="action-tour">{t('homepage.latest-tour.book')}</Button>
+                                        <Button className="action-tour main-box">{t('homepage.latest-tour.book')}</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -118,7 +121,7 @@ const TopTours = () => {
                 </Row>
                 <Row>
                     <Col className="d-flex justify-content-center mt-5">
-                        <Button className="more-tour">{t('homepage.latest-tour.see-all')}</Button>
+                        <Button className="main-box py-2 px-5">{t('homepage.latest-tour.see-all')}</Button>
                     </Col>
                 </Row>
             </Container>

@@ -4,6 +4,7 @@ import 'react-slideshow-image/dist/styles.css';
 import './styles.scss';
 import { useTranslation } from "react-i18next";
 import { GetBanner } from "../../services/BannerApi";
+import { useLanguage } from "../../LanguageContext";
 
 
 const divStyle = {
@@ -62,7 +63,7 @@ const Banner = () => {
 
     const { t } = useTranslation();
 
-    const language = localStorage.getItem("language");
+    const { language, changeLanguage } = useLanguage();
     
     return (
         <div className="slide-container">

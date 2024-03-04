@@ -7,13 +7,16 @@
         padding: 1px;
     }
 
-    .navbar-nav a:hover{
+    .navbar-nav .menu-item:hover{
         color: var(--main-red) !important;
         font-weight: bold;
     }
-    .navbar-nav > a {
+    .navbar-nav > .menu-item {
         color: black !important;
         border-bottom: 1.2px solid #ccc;
+        a.dropdown-toggle.nav-link {
+            color: black !important;
+        }
     }
 
     hr {
@@ -28,10 +31,13 @@
 }
 
 
-.navbar-nav a {
-    color: white;
-    padding: 0px !important;
-    margin: 15px;
+.navbar-nav .menu-item {
+    a.dropdown-toggle.nav-link {
+        color: white !important;
+    }
+    color: white !important;
+    // padding: 0px !important;
+    margin-right: 10px;
     border-bottom: 1.2px solid #fff;
     position: relative;
     transition: all 0.2s ease-in-out;

@@ -10,7 +10,7 @@ const SearchBar = () => {
             <Row>
                 <Col sm={{ span: 8, offset: 2 }} xs={12}>
                     <form>
-                        <input type="text" class="textbox" placeholder={t(('homepage.search'))} />
+                        <input type="text" className="textbox" placeholder={t(('homepage.search'))} />
                         <i className="search-button fa fa-search" />
                     </form>
                 </Col>
