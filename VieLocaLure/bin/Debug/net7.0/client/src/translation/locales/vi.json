@@ -4,8 +4,8 @@
             "login": "Đăng nhập",
             "language": "English",
             "homepage": "Trang chủ",
-            "explore": "Khám phá",
-            "news": "Tin tức",
+            "destination": "Điểm đến",
+            "tour": "Tour du lịch",
             "contact": "Liên hệ"
         },
         "banner": "Xem thêm",
@@ -43,6 +43,14 @@
             },
             "social": "Mạng xã hội"
         },
-        "top-tour": "Những tour nổi bật"
+        "latest-tour": {
+            "title": "Những tour mới nhất",
+            "tourist": "khách",
+            "book": "Đặt tour",
+            "see-all": "Xem thêm tours"
+        },
+        "destination": {
+            "title": "Các điểm đến phổ biến"
+        }
     }
 }

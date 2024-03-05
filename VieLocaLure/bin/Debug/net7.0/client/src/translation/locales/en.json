@@ -4,8 +4,8 @@
             "login": "Login",
             "language": "Tiếng Việt",
             "homepage": "Homepage",
-            "explore": "Explore",
-            "news": "News",
+            "destination": "Destination",
+            "tour": "Tour",
             "contact": "Contact"
         },
         "banner": "Read more",
@@ -43,6 +43,14 @@
             },
             "social": "Social media"
         },
-        "top-tour": "Top tours"
+        "latest-tour": {
+            "title": "Latest tours",
+            "tourist": "tourist",
+            "book": "Book tour",
+            "see-all": "See all tours"
+        },
+        "destination": {
+            "title": "Popular destinations"
+        }
     }
 }
