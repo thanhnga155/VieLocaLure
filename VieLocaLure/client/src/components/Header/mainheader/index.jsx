@@ -10,6 +10,7 @@ import {
 import './styles.scss';
 import { useTranslation } from 'react-i18next';
 import { GetAllAreas } from "../../../services/DestinationApi";
+import { useLanguage } from "../../../LanguageContext";
 
 const sampleMenu = [
     {
@@ -31,6 +32,7 @@ const sampleMenu = [
 
 const MainHeader = ({showTopHeader}) => {
     const { t } = useTranslation();
+    const { language, changeLanguage } = useLanguage();
 
     const [menuItems, setMenuItems] = useState([]);
     const [dropdownActive, setDropdownActive] = useState(false);
@@ -73,7 +75,7 @@ const MainHeader = ({showTopHeader}) => {
                             <Nav.Link className="menu-item" href="/">{t('homepage.header.homepage')} </Nav.Link>
                             <NavDropdown 
                                 className="menu-item" 
-                                title="Destination" 
+                                title={t("homepage.header.destination")}
                                 id="basic-nav-dropdown"
                                 show={dropdownActive}
                                 onMouseEnter={() => setDropdownActive(true)}
@@ -83,7 +85,7 @@ const MainHeader = ({showTopHeader}) => {
                                 {menuItems.map((menuItem, index) => (
                                     <Nav.Item className="menu-item" key={index}>
                                         <Nav.Link href={`/${menuItem.url}`}>
-                                            {menuItem.title_en}
+                                            {language == 'en' ? menuItem.title_en : menuItem.title_vi}
                                         </Nav.Link>
                                     </Nav.Item>
                                 ))}
