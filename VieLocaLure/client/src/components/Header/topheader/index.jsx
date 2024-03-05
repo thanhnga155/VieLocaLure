@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import en from '../../../images/en.png';
 import vi from '../../../images/vi.png';
 import { useLanguage } from '../../../LanguageContext';
+import { Link } from 'react-router-dom';
 
 const TopHeader = () => {
     
@@ -24,7 +25,7 @@ const TopHeader = () => {
                     </Col>
                     <Col>
                         <ul className='top-header--right-side'>
-                            <li><i className="me-2 fa fa-sign-in"></i> <span>{t('homepage.header.login')}</span></li>
+                            <li><Link to={'/login'}><i className="me-2 fa fa-sign-in"></i> <span>{t('homepage.header.login')}</span></Link></li>
                             <li>
                                 <img width={"20px"} height={"15px"} src={language === 'vi' ? en : vi} alt='Flag'/>
                                 <span className='ms-2' onClick={() => changeLanguage(language === 'en' ? 'vi' : 'en')}>{t('homepage.header.language')}</span></li>
