@@ -74,6 +74,11 @@ html, body {
     }
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
+
 .leading-tight {
     line-height: 1.25;
 }
@@ -97,6 +102,20 @@ html, body {
     color: #fff !important;
 }
 
+.main-box-light {
+    background-color: #fff !important;
+    border-color: #aaa !important;
+    color: #000 !important;
+}
+
 .main-box:hover {
     background-color: var(--light-yellow) !important;   
+}
+
+.hidden-cls {
+    display: none;
+}
+
+.btn-no-active:active {
+    border: none;
 }

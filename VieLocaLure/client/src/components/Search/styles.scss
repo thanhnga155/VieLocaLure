@@ -1,53 +1,261 @@
-form {
-    outline: 0;
-    float: left;
-    // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 4px;
-    width: 100%;
-    margin-top: -21px;
-    margin-bottom: 15px;
+.search-tour-section {
+    background: #e5e5e5;
     position: relative;
-    z-index: 99;
+    z-index: 100;
 
-    .textbox {
-        outline: 0;
-        height: 42px;
-        width: calc(100% - 42px);
-        line-height: 42px;
-        padding: 0 16px;
-        background-color: rgba(255, 255, 255, 0.9);
-        color: #212121;
-        border: 0;
-        float: left;
-        border-radius: 4px 0 0 4px;
+    .buttonCustomPrimary {
+        margin: 15px 0;
+        border-radius: 5px;
+        width: 100%;
+    }
 
-        &:focus {
-            outline: 0;
-            background-color: #FFF;
+    .searchFilterQuery {
+        background: #fff;
+        padding: 0 10px;
+        margin: 15px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+
+        & > input[type=text] {
+            color: #000 !important;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            height: 44px;
+            line-height: 44px;
+            float: left;
+            background: transparent;
+            border: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 0;
+            box-shadow: none !important;
+            display: table-cell;
+            width: 95%;
         }
     }
 
-    .search-button {
-        outline: 0;
-        background: none;
-        background-color: rgba(38, 50, 56, 0.9);
-        float: left;
-        height: 42px;
-        width: 42px;
-        text-align: center;
-        line-height: 42px;
-        border: 0;
-        color: #FFF;
-        font-size: 16px;
-        text-rendering: auto;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        transition: background-color .4s ease;
-        border-radius: 0 4px 4px 0;
+    .search-box-web-tour {
+        position: relative;
+        width: 100%;
 
-        &:hover {
-            background-color: var(--main-red)
+        .suggestions {
+            top: 45px;
+            left: 0;
+            position: absolute;
+            z-index: 9999;
+            background: #f1ec90;
+            width: 100%;
+
+            .ul-suggestion {
+                list-style: none;
+                float: left;
+                width: 100%;
+                padding-bottom: 10px;
+                max-height: 250px;
+                overflow-y: auto;
+            }
         }
     }
 
+    .ed-datepicker.filterDate {
+        background: #fff;
+        color: #000;
+        padding: 0 10px;
+        margin: 15px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+
+        & > input[type=text] {
+            font-size: 14px;
+        }
+
+        span {
+            margin: auto;
+        }
+    }
+
+    .form-control {
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+}
+
+.ed-datepicker {
+    height: 45px;
+    margin-top: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(222, 222, 222, 0.3);
+    padding: 0;
+    border-radius: 0;
+
+    &.filterDate {
+        border-color: #dedede;
+        margin-bottom: 20px;
+
+        .form-control {
+            color: #000;
+        }
+    }
+
+    .form-control {
+        background: transparent;
+        border: none;
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 4px 12px 4px 0;
+        box-shadow: none !important;
+    }
+}
+
+.searchFilterQuery {
+    border-color: #dedede;
+    margin-bottom: 20px;
+    height: 45px;
+    margin-top: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(222, 222, 222, 0.3);
+    padding: 0;
+    border-radius: 0;
+    display: table;
+
+    & > input[type=text] {
+        color: #969696 !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        height: 45px;
+        background: transparent;
+        border: none;
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 4px 12px 4px 0;
+        box-shadow: none !important;
+        display: table-cell;
+    }
+
+    .input-group-addon {
+        height: 45px;
+        background: transparent;
+        border: none;
+        padding-right: 0;
+        display: flex;
+    }
+}
+
+.input-group-addon {
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    border-radius: 4px;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: flex;
+
+    span.fa {
+        margin: auto;
+    }
+}
+
+.form-group.tour-type {
+    color: #000;
+    margin: 15px 0;
+
+    .bookingDrop {
+        .sbHolder {
+            height: 45px !important;
+            border: 1px solid #ccc;
+            border-radius: 0;
+        }
+
+        .sbToggle {
+            height: 45px;
+        }
+
+        .sbSelector {
+            height: 47px !important;
+            font-size: 14px;
+            text-transform: none;
+            color: #000 !important;
+        }
+    } 
+        
+}
+
+#searchFormKiritmWebTour .bookingDrop .sbHolder {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.bookingDrop {
+    .sbHolder {
+        margin: 0px 0 20px 0;
+        border-color: #e5e5e5;
+        background-color: #e0e0e0;
+        width: 100%;
+    }
+
+    .sbOptions {
+        width: 100% !important;
+        background-color: #ffffff;
+        border: 1px solid #e5e5e5;
+        right: 0 !important;
+        border-radius: 4px;
+        z-index: 100;
+
+        li {
+            padding: 4px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+    }
+} 
+
+.sbOptions {
+    width: 96px !important;
+    position: absolute;
+    right: -1px !important;
+    top: 32px;
+    padding: 0;
+    list-style: none;
+    z-index: 1;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #9c9c9c;
+    max-height: inherit !important;
+    margin-top: -1px;
+}
+
+.sbHolder {
+    width: 96px;
+    height: 33px;
+    float: left;
+    position: relative;
+    font-size: 14px;
+    color: #613c40 !important;
+    font-weight: normal;
+    background: #ffffff;
+    border: 1px solid #9c9c9c;
+    margin-right: 10px;
+}
+
+.bookingDrop .sbToggle {
+    background: rgba(0, 0, 0, 0) url('../../images/toggle.png') no-repeat scroll 0 0;
+    height: 45px;
+    right: 0px;
+    top: 0px;
+    width: 25px;
+}
+
+
+.buttonCustomPrimary {
+    line-height: normal;
+    background-color: var(--main-yellow);
+    text-transform: uppercase;
+    color: #ffffff !important;
+    font-size: 15px;
+    padding: 0;
+    margin-bottom: 5px;
+    height: 45px;
 }

@@ -9,7 +9,7 @@ const Header = () => {
         background-color: ${props => (props.showTopHeader ? 'transparent' : 'white')};
         padding: ${props => (!props.showTopHeader ? '10px 0px' : '')};
         width: 100%;
-        z-index: 100;
+        z-index: 1000;
         box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
     `;
 

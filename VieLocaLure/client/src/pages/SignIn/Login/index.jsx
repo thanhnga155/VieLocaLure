@@ -1,6 +1,6 @@
 import React from "react";
-import './styles.scss'
-import background from '../../images/background.jpg';
+import '../styles.scss'
+import background from '../../../images/background.jpg';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Col, Container, Row } from "react-bootstrap";

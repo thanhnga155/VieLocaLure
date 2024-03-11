@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const serverApi = process.env.REACT_APP_SERVER_API;
 
-export const GetBanner = async (id, token) => {
+export const GetSlider = async (id, token) => {
     const config = {
         method: 'GET',
         url: `${serverApi}/banner`,

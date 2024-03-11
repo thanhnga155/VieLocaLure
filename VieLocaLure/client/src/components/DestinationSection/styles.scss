@@ -1,0 +1,58 @@
+.area {
+    min-height: 80vh;
+
+    .title {
+        font-size: 3rem;
+    }
+}
+
+.location-item {
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    height: 12rem;
+    max-height: 12rem;
+    min-height: 12rem;
+    width: 100%;
+    overflow: hidden;
+
+    .thumbnail-location {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+
+        img {
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+            width: 100%;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .content-location {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        text-decoration: none;
+
+        .title-tours {
+            font-weight: 500;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px #666666;
+        }
+
+        .tour-infor {
+            background-color: var(--main-yellow);
+            padding: 2px 13px;
+            border-radius: 10px;
+            width: fit-content;
+            margin: auto;
+            cursor: pointer;
+        }
+    }
+}

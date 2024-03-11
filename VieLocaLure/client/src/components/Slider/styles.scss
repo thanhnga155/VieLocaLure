@@ -1,0 +1,54 @@
+button.default-nav {
+    opacity: 0.5;
+}
+
+.caption, .btn-readmore {
+    color: #fff !important;    
+    text-transform: uppercase !important;
+}
+
+.caption-1 {
+    font-size: 2vw;
+}
+
+.caption-2 {
+    font-size: 4vw;
+}
+
+.caption-3 {
+    font-size: 1.5vw;
+    text-transform: none !important;
+}
+
+.btn-readmore {
+    background-color: var(--main-red) !important;
+    margin-top: 4rem;
+}
+
+
+.banner-text-center {
+    text-align: center;
+    margin-top: 4rem;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+
+    &.caption-1 {
+        transition-delay: 0s;
+    }
+
+    &.caption-2 {
+        transition-delay: 1.5s;
+    }
+
+    &.caption-3 {
+        transition-delay: 2.5s;
+    }
+
+    &.btn-readmore {
+        transition-delay: 3.5s;
+    }
+
+    &.visible {
+        opacity: 1;
+    }
+}

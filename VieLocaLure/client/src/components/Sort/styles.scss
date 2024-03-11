@@ -1,0 +1,23 @@
+.sorting {
+    font-weight: 500;
+    margin: auto;
+}
+
+.sorting-option {
+    display: flex;
+    grid-gap: 0.625rem;
+    gap: 0.625rem;
+    margin-left: 0.625rem;
+    justify-content: left;
+
+    .option-items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.price-selection {
+    width: fit-content !important;
+    display: inline-block !important;
+}

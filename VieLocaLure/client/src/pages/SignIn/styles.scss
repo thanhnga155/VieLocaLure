@@ -1,6 +1,6 @@
 .login-page {
     a {
-        font-family: Poppins-Regular;
+        // font-family: Poppins-Regular;
         font-size: 14px;
         line-height: 1.7;
         color: #666666;
@@ -452,6 +452,13 @@
         .btn-face,
         .btn-google {
             width: 100%;
+        }
+    }
+
+    &.signup {
+        .input100 {
+            height: 45px;
+            font-size: 15px;
         }
     }
 }
