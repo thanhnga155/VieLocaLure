@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import scene from '../../images/scene.jpg';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const DestinationBanner = styled.section`
     background-image: url(${scene});
@@ -19,7 +20,7 @@ const DestinationBanner = styled.section`
 `;
 
 const LocalSupport = () => {
-
+    const { t } = useTranslation();
     return (
         <DestinationBanner>
             <Container>
@@ -32,7 +33,8 @@ const LocalSupport = () => {
                         </h2>
                         
                         <h3 class="font-semibold mb-6 text-16">
-                            <Link to="https://tailormade.roughguides.com/" target="_blank">
+                            {/* <Link to="https://tailormade.roughguides.com/" target="_blank"> */}
+                            <Link to="/support" target="_blank">
                                 <Button className="me-2 main-box text-16 font-semibold">Get support</Button>
                             </Link>
                             from our local experts for <br/> stress-free planning &amp; worry-free travels</h3>

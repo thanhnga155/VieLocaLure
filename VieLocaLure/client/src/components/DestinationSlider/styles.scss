@@ -79,6 +79,7 @@
     padding: clamp(1.5rem, 3vw, 3rem);
     position: relative;
     text-align: center;
+    z-index: 2;
   
     .slider {
         .slide:not(.active) {

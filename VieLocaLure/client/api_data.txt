@@ -1,0 +1,276 @@
+1. HOMEPAGE:
+	- area:
+		+ endpoint: /api/area
+		+ sample data:
+			[
+				{
+					'name_en': 'North Vietnam',
+					'name_vi': 'Miền Bắc',
+					'url': '/destination/north-vietnam'
+					'id': 0
+				},
+				{
+					'name_en': 'Central Vietnam',
+					'name_vi': 'Miền Trung',
+					'url': '/destination/central-vietnam',
+					'id': 1
+				},
+				{
+					'name_en': 'South Vietnam',
+					'name_vi': 'Miền Nam',
+					'url': '/destination/south-vietnam',
+					'id': 2
+				}
+			]
+	- slider: 
+		+ endpoint: /api/tour/filter?key=hottest&max=3
+		+ sample data:
+			[
+			    {
+				caption1_en: "special value tour kkk",
+				caption1_vi: "gói tour đặc biệt kkk",
+				caption2_en: "panorama of vietnam",
+				caption2_vi: "toàn cảnh việt nam",
+				caption3_en: "Departing on Apr 5, 2024",
+				caption3_vi: "khởi hành 05/04/2024",
+				image: "https://zoomtravel.vn/upload/images/samten-hills-0.jpg",
+				url: '/tour/panorama-of-vietnam',
+			    },
+			    {
+				caption1_en: "once upon an old time kkk",
+				caption1_vi: "vang bóng một thời kkk",
+				caption2_en: "Hue Historic Citadel",
+				caption2_vi: "Kinh thành Huế",
+				caption3_en: "Departing on Mar 20, 2024",
+				caption3_vi: "khởi hành 20/03/2024",
+				image: "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg",
+				url: '/tour/kinh-thanh-hue',
+			    }
+			]
+	
+	- latest tours (get the first 3 tours):
+		+ endpoint: /api/tour/filter?key=latest&max=3
+		+ sample data:
+			[
+			    {
+                    image: "https://upload.wikimedia.org/wikipedia/commons/9/91/Ben_Thanh_market_2.jpg",
+                    price_vi: 10000000,
+                    price_en: 405.93,
+                    province_vi: "TP Hồ Chí Minh",
+                    province_en: "Ho Chi Minh City",
+                    duration_en: '2 days',
+                    duration_vi: '2 ngày',
+                    tour_title_vi: "Du Lịch Bắc Âu [Đan Mạch - Nauy - Thụy Điển - Phần Lan]",
+                    tour_title_en: "Nordic Travel [Denmark - Norway - Sweden - Finland]",
+                    url: '/tour/nordic-travel-denmark-norway'
+			    },
+			    {
+                    image: "https://upload.wikimedia.org/wikipedia/commons/9/91/Ben_Thanh_market_2.jpg",
+                    price_vi: 10000000,
+                    price_en: 405.93,
+                    province_vi: "TP Hồ Chí Minh",
+                    province_en: "Ho Chi Minh City",
+                    duration_en: '2 days',
+                    duration_vi: '2 ngày',
+                    tour_title_vi: "Du Lịch Bắc Âu [Đan Mạch - Nauy - Thụy Điển - Phần Lan]",
+                    tour_title_en: "Nordic Travel [Denmark - Norway - Sweden - Finland]",
+                    url: '/tour/nordic-travel-denmark-norway'
+			    }
+			]
+	
+	- provinces:
+		+ endpoint: api/province
+		+ sample data:
+			[
+			    {
+				name_en: 'Ha Noi',
+				name_vi: 'Hà Nội'
+			    },
+			    {
+				name_en: 'Ha Noi',
+				name_vi: 'Hà Nội'
+			    },
+			    {
+				name_en: 'Ha Noi',
+				name_vi: 'Hà Nội'
+			    },
+			    {
+				name_en: 'Ha Noi',
+				name_vi: 'Hà Nội'
+			    }
+			]
+	
+	- destination slider:
+		+ endpoint: /api/destination
+		+ sample data:
+			[
+			    {
+				image: "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg",
+				title: "Landmark 81",
+				id: 0
+			    },
+			    {
+				image: "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
+				title: "Phong Nha - Ke Bang",
+				id: 1
+			    },
+			    {
+				image: "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675",
+				title: "Vinh Ha Long",
+				id: 2
+			    }
+			]
+	
+	- vietnam description:
+		+ endpoint: /api/description?q=homepage
+		+ sample data:
+			{
+			    'title': 'Vietnam, a top tourist destination',
+			    'content': ` 
+				<p>Let yourself be enchanted by Vietnam, a land of contrast with <strong>exceptional natural beauty and rich historical heritage!</strong> Despite years of war, the country has managed to recover and preserve its traditions, while being resolutely focused on the future. It has become a haven of peace, but full of life, and has opened up to tourism without losing its soul or authenticity.</p>
+				<p>Vietnam is also known as the “<strong>country of the dragon”</strong>. Its particular shape recalls that of this mythical animal, highly revered in Asia, symbol of luck and prosperity. Its vast territory stretches from north to south, over 1400 kilometres, between Cambodia, Laos and the South China Sea.</p>
+				<p>One of Vietnam’s strengths is the <strong>great diversity of its landscapes:</strong> mountains, highlands, lush jungles, rice fields and lagoons succeed each other to delight your eyes! Here, no monotony! Along its 3,200 kilometres of coastline, you’ll find bays dotted with jagged shapes, such as the <strong>famous Halong Bay,</strong> and <strong>dream beaches</strong> lined with coconut trees.</p>
+				<p>Vietnam is also a<strong> millennial culture,</strong> particularly rich and diverse. How can you not be dazzled by the splendour and elegance of the <strong>Hue Imperial Palace,</strong> by the <strong>old town of Hoi An</strong>, with its temples and pagodas, or by the<strong> sanctuary of My Son,</strong> surrounded by the jungle? Among the countries of South-East Asia, Vietnam is the one with the most <strong>sites listed in the UNESCO World Heritage!</strong></p>
+				<p>Discovering Vietnam also means taking the time to savour its <strong>refined cuisine</strong>, infused with exotic flavours that delight the palate! But the charm of this endearing country lies above all in the<strong> kindness and simplicity</strong> of its inhabitants. Indeed, despite their heavy past, the Vietnamese have kept their extraordinary <strong>love for life</strong> intact, to the delight of travellers!</p>t the charm of this endearing country lies above all in the<strong> kindness and simplicity</strong> of its inhabitants. Indeed, despite their heavy past, the Vietnamese have kept their extraordinary <strong>love for life</strong> intact, to the delight of travellers!</p>
+			    `
+			}
+
+
+2. DESTINATION
+	- description:
+		+ endpoint: /api/description?q=destination
+		+ sample data:
+			{
+				"content_en": "Embark on a journey with us and let Vietnam's beauty unfold before you. Your dream destination is just a click away, promising memories that will last a lifetime. Start exploring today!",
+				"content_vi": "......"
+			}
+	
+			
+	- destination:
+		+ endpoint: /api/destination/filter?area=0
+		+ sample data:
+			[
+			    {
+				'name': 'Hanoi',
+				'numTours': 8,
+				'image': 'https://ik.imagekit.io/tvlk/blog/2017/06/kham-pha-cac-dia-diem-du-lich-o-ha-noi-ma-ban-khong-the-bo-qua-3.jpg?tr=dpr-2,w-675',
+				'url': '/search?q=ha-noi'
+			    },
+			    {
+				'name': 'Halong Bay',
+				'numTours': 4,
+				'image': 'https://travelhalong.com.vn/UserFiles/images/halong-bay.jpg',
+				'url': '/search?q=ha-long'
+			    }
+			]
+			
+
+3. AREA
+	- description:
+		+ endpoint: /api/description?q=north
+		+ sample data:
+			{
+			    'title': 'North Vietnam',
+			    'image': 'https://asianwaytravel.com/wp-content/uploads/2018/12/ba-be-lake.jpg',
+			    'content': `
+				<p>Fascinating and stunning region of beauty, North Vietnam is a country of mountains, rice terraces and karst peaks.</p>
+
+				<p>Follow us in the region of Sapa, Moc Chau, Mai Chau and Mu Cang Chai, meeting ethnic minorities during hikes from villages to villages to admire the exceptional landscapes and discover the local traditions during a stay with the inhabitant. </p>
+
+				<p>Discover the local flora and fauna of Pu Luong National Park. Admire the incredible landscapes drawn by the many sugarloaves that emerge from the ocean and rice fields during a cruise in the famous Halong Bay and along the water in the Ninh Binh region. </p>
+
+				<p>Soak up the unique atmosphere of the administrative capital of Hanoi, a cultural city steeped in Vietnamese traditions and with a very rich gastronomy.</p>
+			    `
+			}
+	
+	- province:
+		+ endpoint: /api/province/filter?area=0
+		+ sample data: 
+			[
+				{
+					'province': 'Hanoi',
+					'num_tours': 8,
+					'id': 0
+				},
+				{
+					'province': 'Halong Bay',
+					'num_tours': 4,
+					'id': 1
+				}				
+			]
+	
+	- tour:
+		+ endpoint: /api/tour/filter?province=0
+		+ sample data:
+			[
+			    {
+				'title': 'Ho Hoan Kiem - Ho Tay',
+				'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
+				'duration': 'Half Day (Daily Departure)',
+				'transport': 'Van',
+				'description': 'As the most vibrant city in the country, Ho Chi Minh City is truly an electrifying metropolis that pulsates with life and energy. Formerly known as Saigon, this bustling urban center serves as the economic, cultural, and historical heart of Vietnam. With its bustling streets, modern skyscrapers, and rich cultural heritage, Ho Chi Minh City offers a captivating blend of old-world charm and contemporary dynamism.',
+				'price': '820,000',
+				'schedule': [
+				    '09/03/2024',
+				    '10/03/2024'
+				]
+			    },
+			    {
+				'title': 'Chua Tran Quoc',
+				'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
+				'duration': 'Half Day (Daily Departure)',
+				'transport': 'Van',
+				'description': 'As the most vibrant city in the country, Ho Chi Minh City is truly an electrifying metropolis that pulsates with life and energy. Formerly known as Saigon, this bustling urban center serves as the economic, cultural, and historical heart of Vietnam. With its bustling streets, modern skyscrapers, and rich cultural heritage, Ho Chi Minh City offers a captivating blend of old-world charm and contemporary dynamism.',
+				'price': '820,000',
+				'schedule': [
+				    '09/03/2024',
+				    '10/03/2024'
+				]
+			    },
+			]
+			
+4. TOUR
+	- tour:
+		+ endpoint: /api/tour
+		+ sample data:
+			[
+			    {
+				'title': 'Ho Chi Minh City Tour PM',
+				'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
+				'destination': 'Ho Chi Minh City',
+				'duration': 'Half Day (Daily Departure)',
+				'transport': 'Van',
+				'description': 'As the most vibrant city in the country, Ho Chi Minh City is truly an...',
+				'price': '820,000',
+				'schedule': [
+				    '09/03/2024',
+				    '10/03/2024'
+				]
+			    },
+			    {
+				'title': 'Ho Chi Minh City Tour PM',
+				'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
+				'destination': 'Ho Chi Minh City',
+				'duration': 'Half Day (Daily Departure)',
+				'transport': 'Van',
+				'description': 'As the most vibrant city in the country, Ho Chi Minh City is truly an...',
+				'price': '820,000',
+				'schedule': [
+				    '09/03/2024',
+				    '10/03/2024'
+				]
+			    },
+			    {
+				'title': 'Ho Chi Minh City Tour PM',
+				'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
+				'destination': 'Ho Chi Minh City',
+				'duration': 'Half Day (Daily Departure)',
+				'transport': 'Van',
+				'description': 'As the most vibrant city in the country, Ho Chi Minh City is truly an...',
+				'price': '820,000',
+				'schedule': [
+				    '09/03/2024',
+				    '10/03/2024'
+				]
+			    }
+			]

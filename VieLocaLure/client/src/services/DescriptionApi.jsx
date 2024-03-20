@@ -2,10 +2,11 @@ import axios from 'axios'
 
 const serverApi = process.env.REACT_APP_SERVER_API;
 
-export const GetSlider = async (id, token) => {
+export const GetDescription = async (id) => {
+    // /api/description?q=homepage
     const config = {
         method: 'GET',
-        url: `${serverApi}/banner`,
+        url: `${serverApi}/description?id=${id}`,
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
         }

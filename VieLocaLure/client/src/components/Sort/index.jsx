@@ -2,7 +2,12 @@ import React from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
 import './styles.scss';
 
-const Sort = () => {
+const Sort = ({ isResult, onSort, value }) => {
+    const handleSort = (sortBy) => {
+        onSort(sortBy);
+    };
+
+
     return (
         <section className='sort-section my-3'>
             <Container className='py-3'>
@@ -10,13 +15,9 @@ const Sort = () => {
                     <div className='sorting-option d-flex'>
                         <Col sm={1}><span className='sorting me-2'>Sort </span></Col>
                         <Col sm={11} className='option-items'>
-                            <button className='mx-1 btn main-box'>Newest first</button>
-                            <button className='mx-1 btn main-box-light'>Hotest first</button>
-                            <Form.Select className='mx-1 price-selection'>
-                                <option value={0}>Price</option>
-                                <option value={0}>Highest first</option>
-                                <option value={0}>Lowest first</option>
-                            </Form.Select>
+                            <button disabled={!isResult} onClick={() => handleSort('default')} className={`mx-1 btn ${!value || value === 'default' ? 'main-box' : 'main-box-light'}`}>Best match</button>
+                            <button onClick={() => handleSort('newest')} className={`mx-1 btn ${value && value === 'newest' ? 'main-box' : 'main-box-light'}`}>Newest</button>
+                            <button onClick={() => handleSort('hottest')} className={`mx-1 btn ${value && value === 'hottest' ? 'main-box' : 'main-box-light'}`}>Hottest</button>
                         </Col>
                     </div>
                 </Row>

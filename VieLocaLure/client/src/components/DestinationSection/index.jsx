@@ -16,11 +16,11 @@ export const DestinationSection = ({data}) => {
             { data.map((dataItem, index) => (
                 <Row className='area'>
                     <Col>
-                        <h2 className='my-5 title'> {dataItem.title} </h2>
+                        <h2 className='my-5 title'> {dataItem.area} </h2>
                         <Container>
                             <Row>
                                 {
-                                    dataItem.destinations.map((destination, index) => (
+                                    dataItem.provinces.map((destination, index) => (
                                         <Col lg={4} md={6} sm={1}>
                                             <div class="location-item zoom-effect">
                                                 <div class="thumbnail-location" >

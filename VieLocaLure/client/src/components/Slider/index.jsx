@@ -3,8 +3,8 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import './styles.scss';
 import { useTranslation } from "react-i18next";
-import { GetSlider } from "../../services/SliderApi";
 import { useLanguage } from "../../LanguageContext";
+import { GetTour } from "../../services/TourApi";
 
 
 const divStyle = {
@@ -18,7 +18,6 @@ const divStyle = {
 
 const sample = [
     {
-        id: 0,
         caption1_en: "special value tour kkk",
         caption1_vi: "gói tour đặc biệt kkk",
         caption2_en: "panorama of vietnam",
@@ -26,10 +25,9 @@ const sample = [
         caption3_en: "Departing on Apr 5, 2024",
         caption3_vi: "khởi hành 05/04/2024",
         image: "https://zoomtravel.vn/upload/images/samten-hills-0.jpg",
-        tour_id: 0,
+        url: '/tour/panorama-of-vietnam',
     },
     {
-        id: 1,
         caption1_en: "once upon an old time kkk",
         caption1_vi: "vang bóng một thời kkk",
         caption2_en: "Hue Historic Citadel",
@@ -37,7 +35,7 @@ const sample = [
         caption3_en: "Departing on Mar 20, 2024",
         caption3_vi: "khởi hành 20/03/2024",
         image: "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg",
-        tour_id: 1,
+        url: '/tour/panorama-of-vietnam',
     }
 ];
 
@@ -49,9 +47,9 @@ const Slider = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setData(await GetSlider());
+                setData(await GetTour({isFilter: true, key: 'hottest', max:3}));
             } catch (error) {
-                console.error('Error fetching banner data:', error);
+                console.error('Error fetching hottest tours:', error);
             }
         };
         fetchData();
@@ -64,6 +62,7 @@ const Slider = () => {
 
     const { language, changeLanguage } = useLanguage();
     
+    
     return (
         <div className="slide-container">
             <Slide>
@@ -74,7 +73,7 @@ const Slider = () => {
                                 <span className="caption caption-1">{language === 'en' ? tour.caption1_en : tour.caption1_vi}</span> <br />
                                 <p><b className="caption caption-2">{language === 'en' ? tour.caption2_en : tour.caption2_vi}</b></p> 
                                 <p className="caption caption-3"> {language === 'en' ? tour.caption3_en : tour.caption3_vi} </p>
-                                <button className="btn btn-readmore">{t('homepage.banner')}</button>
+                                <a className="btn btn-readmore" href={tour.url}>{t('homepage.banner')}</a>
                             </center>
                         </div>
                     </div>

@@ -9,24 +9,27 @@ import {
 } from "react-bootstrap";
 import './styles.scss';
 import { useTranslation } from 'react-i18next';
-import { GetAllAreas } from "../../../services/DestinationApi";
+import { GetArea } from "../../../services/AreaApi";
 import { useLanguage } from "../../../LanguageContext";
 
 const sampleMenu = [
     {
-        title_en: "North Vietnam",
-        title_vi: "Miền Bắc",
-        url: "north",
+        'name_en': 'North Vietnam',
+        'name_vi': 'Miền Bắc',
+        'url': '/destination/north-vietnam',
+        'id': 0
     },
     {
-        title_en: "Central Vietnam",
-        title_vi: "Miền Trung",
-        url: "north",
+        'name_en': 'Central Vietnam',
+        'name_vi': 'Miền Trung',
+        'url': '/destination/central-vietnam',
+        'id': 1
     },
     {
-        title_en: "South Vietnam",
-        title_vi: "Miền Nam",
-        url: "south",
+        'name_en': 'South Vietnam',
+        'name_vi': 'Miền Nam',
+        'url': '/destination/south-vietnam',
+        'id': 2
     }
 ]
 
@@ -40,7 +43,7 @@ const MainHeader = ({showTopHeader}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setMenuItems(await GetAllAreas());
+                setMenuItems(await GetArea());
             } catch (error) {
                 console.error('Error fetching all areas data:', error);
             }
@@ -64,7 +67,7 @@ const MainHeader = ({showTopHeader}) => {
             <Col>
                 <Navbar expand="md">
                 <Container fluid>
-                    <Navbar.Brand href="#">VieLocaLure</Navbar.Brand>
+                    <Navbar.Brand href="/">VieLocaLure</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -84,8 +87,8 @@ const MainHeader = ({showTopHeader}) => {
                             >
                                 {menuItems.map((menuItem, index) => (
                                     <Nav.Item className="menu-item" key={index}>
-                                        <Nav.Link href={`/${menuItem.url}`}>
-                                            {language == 'en' ? menuItem.title_en : menuItem.title_vi}
+                                        <Nav.Link href={`${menuItem.url}`}>
+                                            {language == 'en' ? menuItem.name_en : menuItem.name_vi}
                                         </Nav.Link>
                                     </Nav.Item>
                                 ))}

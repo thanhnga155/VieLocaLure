@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const serverApi = process.env.REACT_APP_SERVER_API;
 
-export const GetDestination = async ({ isFilter, key, value }) => {
-    // /api/destination/filter?area=0
+export const GetProvince = async ({ isFilter, key, value }) => {
+    // /api/province/filter?area=0
     
-    let url = `${serverApi}/destination`;
+    let url = `${serverApi}/province`;
     if (isFilter) {
         url += `/filter?${key}=${value}`;
     }
