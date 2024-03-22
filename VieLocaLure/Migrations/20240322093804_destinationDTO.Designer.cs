@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VieLocaLure.Data;
 
@@ -11,9 +12,11 @@ using VieLocaLure.Data;
 namespace VieLocaLure.Migrations
 {
     [DbContext(typeof(VieLocaLureDB))]
-    partial class VieLocaLureDBModelSnapshot : ModelSnapshot
+    [Migration("20240322093804_destinationDTO")]
+    partial class destinationDTO
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,7 +253,7 @@ namespace VieLocaLure.Migrations
                         {
                             Id = 1,
                             DestinationId = 4,
-                            url = "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg"
+                            url = "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg"
                         },
                         new
                         {
@@ -269,18 +272,6 @@ namespace VieLocaLure.Migrations
                             Id = 4,
                             DestinationId = 2,
                             url = "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DestinationId = 2,
-                            url = "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DestinationId = 4,
-                            url = "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595"
                         });
                 });
 

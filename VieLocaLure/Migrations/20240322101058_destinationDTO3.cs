@@ -5,7 +5,7 @@
 namespace VieLocaLure.Migrations
 {
     /// <inheritdoc />
-    public partial class _4 : Migration
+    public partial class destinationDTO3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

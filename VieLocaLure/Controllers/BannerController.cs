@@ -6,7 +6,7 @@ using VieLocaLure.Data;
 
 namespace VieLocaLure.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/banner")]
     [ApiController]
     public class BannerController : ControllerBase
     {

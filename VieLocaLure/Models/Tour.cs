@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VieLocaLure.Models
 {
@@ -7,16 +8,11 @@ namespace VieLocaLure.Models
     {
         [Key]
         public int Id { get; set; }
-        public string name_en { get; set; }
-        public string name_vi { get; set; }
-        public DateTime start_day { get; set; }
-        public DateTime end_day { get; set; }
-        public int tour_time { get; set; }
-        public double tour_price { get; set; }   
-        public int quantity { get; set; }
-        
-        [ForeignKey("Id_location")]
-        //sinh FK
-        public Location Location { get; set; }
+        public string title_en{ get; set; }
+        public string title_vi { get; set; }
+        public string duration_en { get; set; }
+        public string duration_vi { get; set; }
+        public string transport_en { get; set; }
+        public string transport_vi { get; set; }
     }
 }
