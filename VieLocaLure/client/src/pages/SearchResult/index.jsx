@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { SearchTour } from '../../services/TourApi';
 import Banner from '../../components/Banner';
-import tourImage from '../../images/tour.jpg';
 import SearchBar from '../../components/Search';
-import Sort from '../../components/Sort';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Pagination } from '@mui/material';
 import TourList from '../../components/TourList';
-import { GetTour } from '../../services/TourApi';
-
-const description = 'Book your tour today and let the magic of Vietnam unfold before you. Your adventure begins here, promising memories that will last a lifetime. Start planning your dream tour now!';
+import { Pagination } from '@mui/material';
+import tourImage from '../../images/tour.jpg';
+import Sort from '../../components/Sort';
 
 const sampleData = [
     {
-        'title': 'Visit of the Mekong 3 days from Ho Chi Minh',
+        'title': 'Ho Chi Minh City Tour PM',
         'image': 'https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg',
         'destination': 'Ho Chi Minh City',
         'duration': 'Half Day (Daily Departure)',
@@ -21,11 +19,8 @@ const sampleData = [
         'price': '820,000',
         'schedule': [
             '09/03/2024',
-            '09/15/2024',
             '10/03/2024'
-        ],
-        'id': 0,
-        'url': '/tour/visit-of-the-mekong-3-days-from-ho-chi-minh'
+        ]
     },
     {
         'title': 'Ho Chi Minh City Tour PM',
@@ -38,9 +33,7 @@ const sampleData = [
         'schedule': [
             '09/03/2024',
             '10/03/2024'
-        ],
-        'id': 1,
-        'url': '/tour/visit-of-the-mekong-4-days-from-ho-chi-minh'
+        ]
     },
     {
         'title': 'Ho Chi Minh City Tour PM',
@@ -53,41 +46,47 @@ const sampleData = [
         'schedule': [
             '09/03/2024',
             '10/03/2024'
-        ],
-        'id': 2,
-        'url': '/tour/visit-of-the-mekong-5-days-from-ho-chi-minh'
+        ]
     }
 ]
 
-const Tour = () => {
-    const [data, setData] = useState([]);
-
+const SearchResult = () => {
+    const [results, setResults] = useState([]);
+    const [query, setQuery] = useState({});
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchTours = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlParams.entries());
+
+            setQuery(params);
+            
             try {
-                setData(await GetTour({isFilter: true, filterKey: 'newest'}));
+                setResults(await SearchTour(params));
             } catch (error) {
-                console.error('Error fetching all areas data:', error);
+                console.error('Error fetching queried tour data:', error);
             }
-        };
-    
-        fetchData();
-        if (data.length == 0) {
-            setData(sampleData);
         }
-    }, [])
 
+        fetchTours();
+        // if (results.length == 0) {
+        //     setResults(sampleData);
+        // }
+        
+      }, []);
 
-    const [currentSort, setCurrentSort] = useState('newest');
+    const [currentSort, setCurrentSort] = useState('default');
 
     const handleSort = async (sortBy) => {
         if (sortBy !== currentSort) {
             setCurrentSort(sortBy);
+            if (sortBy !== 'default') {
+                query.sort = sortBy;
+            }
 
             try {
-                setData(await GetTour({isFilter: true, filterKey: sortBy}));
+                setResults(await SearchTour(query));
             } catch (error) {
-                console.error('Error fetching sort tour data:', error);
+                console.error('Error fetching queried tour data:', error);
             }
             
         }
@@ -95,29 +94,32 @@ const Tour = () => {
 
     return (
         <>
-            <Banner image={tourImage} title={"Our tours"} description={description}/>
-            <SearchBar />
-            <Sort onSort={handleSort} value={currentSort} />
-            <section className='tours'>
-                <Container>
-                    <Row>
-                        <Col>
-                            {
-                                data.map(tour => (
-                                    <TourList tour={tour} />
-                                ))
-                            }
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className='d-flex justify-content-center'>
-                            <Pagination count={10} variant="outlined" shape="rounded" />
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
+            <Banner image={tourImage} query={"Search results: " + query.keywords}/>
+            <SearchBar query={query} />
+            <Sort isResult={true} onSort={handleSort} value={currentSort} />
+            {
+                results.length > 0 &&
+                <section className='tours'>
+                    <Container>
+                        <Row>
+                            <Col>
+                                {
+                                    results.map(tour => (
+                                        <TourList tour={tour} />
+                                    ))
+                                }
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                <Pagination count={10} variant="outlined" shape="rounded" />
+                            </Col>
+                        </Row>
+                    </Container>
+                </section>
+            }
         </>
     )
 }
 
-export default Tour;
+export default SearchResult;

@@ -1,0 +1,19 @@
+1. AREA
+    /api/area
+
+2. PROVINCE
+    /api/province
+    /api/province/filter?area=0
+
+3. TOUR
+    /api/tour/filter?key=hottest&max=3
+    /api/tour/filter?key=latest&max=3
+    /api/tour/filter?key=latest
+    /api/tour/filter?key=province&id=0
+
+4. DESTINATION
+    /api/destination
+    /api/destination/filter?area=0
+
+5. DESCRIPTION
+    /api/description?id=0

@@ -1,5 +1,16 @@
 .banner-page {
-    min-height: 90vh;
+    // min-height: 70vh;
+
+    .query-result {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border-radius: 4px;
+        font-weight: 700;
+        padding: 10px 25px;
+        max-height: 140px;
+    }
 
     .description {
         margin: 2rem 15rem;

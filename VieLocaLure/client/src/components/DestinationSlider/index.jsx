@@ -4,63 +4,73 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'react-bootstrap';
 import vietnam from '../../images/vietnam.png';
 import { useLanguage } from '../../LanguageContext';
+import { GetProvince } from '../../services/ProvinceApi';
+import { GetDestination } from '../../services/DestinationApi';
 
 
 const sampleProvince = [
     {
-        id: 1,
-        english_name: 'Ha Noi',
-        vietnamese_name: 'Hà Nội'
+        name_en: 'Ha Noi',
+        name_vi: 'Hà Nội'
     },
     {
-        id: 2,
-        english_name: 'Ha Noi',
-        vietnamese_name: 'Hà Nội'
+        name_en: 'Ha Noi',
+        name_vi: 'Hà Nội'
     },
     {
-        id: 3,
-        english_name: 'Ha Noi',
-        vietnamese_name: 'Hà Nội'
+        name_en: 'Ha Noi',
+        name_vi: 'Hà Nội'
     },
     {
-        id: 4,
-        english_name: 'Ha Noi',
-        vietnamese_name: 'Hà Nội'
+        name_en: 'Ha Noi',
+        name_vi: 'Hà Nội'
     }
 ]
 
 const sampleDestinations = [
     {
-        source: "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg",
+        image: "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg",
         title: "Landmark 81",
+        id: 0
     },
     {
-        source: "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
+        image: "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
         title: "Phong Nha - Ke Bang",
+        id: 1
     },
     {
-        source: "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675",
+        image: "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675",
         title: "Vinh Ha Long",
+        id: 2
     },
     {
-        source: "https://statics.vinpearl.com/cho-noi-cai-rang-2_1624262882.jpg",
+        image: "https://statics.vinpearl.com/cho-noi-cai-rang-2_1624262882.jpg",
         title: "Cho Noi Cai Rang",
+        id: 3
     },
     {
-        source:"https://www.gotadi.com/tour/wp-content/uploads/2021/12/quang-truong-lam-vien-da-lat.png",
+        image:"https://www.gotadi.com/tour/wp-content/uploads/2021/12/quang-truong-lam-vien-da-lat.png",
         title: "Da Lat",
+        id: 4
     },
     {
+<<<<<<< HEAD:VieLocaLure/client/src/components/Destination/index.jsx
         source:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
         title: "Ho Hoan Kiem",
+=======
+        image:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
+        title: "Ha Noi",
+        id: 5
+>>>>>>> da55cf5c0c1edb7d19581a108017cffabfbac16f:VieLocaLure/client/src/components/DestinationSlider/index.jsx
     },
     {
-        source:"https://vcdn1-dulich.vnecdn.net/2022/04/18/dulichSaPa-1650268886-1480-1650277620.png?w=0&h=0&q=100&dpr=2&fit=crop&s=JTUw8njZ_Glkqf1itzjObg",
+        image:"https://vcdn1-dulich.vnecdn.net/2022/04/18/dulichSaPa-1650268886-1480-1650277620.png?w=0&h=0&q=100&dpr=2&fit=crop&s=JTUw8njZ_Glkqf1itzjObg",
         title:"Sapa",
+        id: 6
     },
 ];
 
-const Destination = () => {
+const DestinationSlider = () => {
 
     const { t } = useTranslation();
 
@@ -68,15 +78,44 @@ const Destination = () => {
     const [slides, setSlides] = useState([]);
 
     useEffect(() => {
+        const fetchProvinceData = async () => {
+            try {
+                setProvinces(await GetProvince());
+            } catch (error) {
+                console.error('Error fetching all areas data:', error);
+            }
+        };
+
+        fetchProvinceData();
         if (provinces.length === 0) {
             setProvinces(sampleProvince);
         }
+
+        const fetchDestinationData = async () => {
+            try {
+                let data = await GetDestination();
+                const uniqueMap = data.reduce((uniqueMap, item) => {
+                    uniqueMap[item.id] = item;
+                    return uniqueMap;
+                }, {});
+
+                const uniqueArray = Object.values(uniqueMap);
+
+                data = uniqueArray.slice(0, 8);
+                setProvinces(data);
+            } catch (error) {
+                console.error('Error fetching all areas data:', error);
+            }
+        };
+
+        fetchDestinationData();
+
         if (slides.length == 0) {
             setSlides(sampleDestinations);
         }
     }, []);
 
-    const { language, changeLanguage } = useLanguage();
+    const { language } = useLanguage();
 
     const [slideNumber, setSlideNumber] = useState(0);
     const sliderRef = useRef(null);
@@ -98,7 +137,7 @@ const Destination = () => {
         sliderRef.current.children[newSlideNumber].classList.add("active");
 
         // setting current slide's bg image as body background image
-        document.getElementsByClassName('destinations')[0].style.backgroundImage = `url(${slides[newSlideNumber].source})`;
+        document.getElementsByClassName('destinations')[0].style.backgroundImage = `url(${slides[newSlideNumber].image})`;
     };
 
     // autoplay
@@ -118,21 +157,21 @@ const Destination = () => {
 
             <Container className='mt-5'>
                 <Row>
-                    <Col md={4} sm={12} className='destination-category'>
+                    <Col lg={4} sm={12} className='destination-category'>
                         <img alt="Vietnam map" src={vietnam} />
                         <Container>
                             <Row>
                                 {
                                     provinces.map((province, index)=> (
                                         <Col className='destination-item' md={6} sm={12}> 
-                                            { language === 'en' ? province.english_name : province.vietnamese_name }
+                                            { language === 'en' ? province.name_en : province.name_vi }
                                         </Col>
                                     ))
                                 }                                
                             </Row>
                         </Container>
                     </Col>
-                    <Col md={8} sm={12} className='destination-slides'>
+                    <Col lg={8} sm={12} className='destination-slides'>
                         <div className="sliderWrapper">
                             {/* {title && <h3 className="sliderTitle">{title}</h3>} */}
                             
@@ -143,9 +182,9 @@ const Destination = () => {
                             <div className="slider" ref={sliderRef}>
                                 {slides.map((slide, index) => (
                                     <div className={`slide${index === 0 ? " active" : ""}`}>
-                                        {slide.source && (
+                                        {slide.image && (
                                         <img
-                                            src={slide.source}
+                                            src={slide.image}
                                             alt={slide.title}
                                             loading="lazy"
                                             draggable={false}
@@ -170,4 +209,4 @@ const Destination = () => {
     )
 }
 
-export default Destination;
+export default DestinationSlider;

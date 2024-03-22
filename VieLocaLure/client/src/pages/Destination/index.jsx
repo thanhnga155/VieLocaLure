@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Banner from '../../components/Banner'
 import destination from '../../images/scene.jpg'
 import { DestinationSection } from '../../components/DestinationSection'
+import { GetArea } from '../../services/AreaApi'
+import { GetProvince } from '../../services/ProvinceApi'
 
 const description = "Embark on a journey with us and let Vietnam's beauty unfold before you. Your dream destination is just a click away, promising memories that will last a lifetime. Start exploring today!"
 
-const data = [
+const sampleData = [
     {
-        'title': 'North Vietnam',
-        'destinations': [
+        'area': 'North Vietnam',
+        'provinces': [
             {
                 'name': 'Hanoi',
                 'numTours': 8,
@@ -22,8 +24,8 @@ const data = [
         ]
     },
     {
-        'title': 'Central Vietnam',
-        'destinations': [
+        'area': 'Central Vietnam',
+        'provinces': [
             {
                 'name': 'Phong Nha - Ke Bang',
                 'numTours': 2,
@@ -37,8 +39,8 @@ const data = [
         ]
     },
     {
-        'title': 'South Vietnam',
-        'destinations': [
+        'area': 'South Vietnam',
+        'provinces': [
             {
                 'name': 'Sala Park',
                 'numTours': 1,
@@ -49,6 +51,27 @@ const data = [
 ]
 
 const Destination = () => {
+    const [data, setData] = useState([]);
+
+    const fetchDestination = async () => {
+        try {
+            const areas = await GetArea();
+            areas.map(async (area) => {
+                const areaId = area.id;
+                const provinces = await GetProvince({isFilter: true, key: 'area', value: areaId});
+                area.provinces = provinces
+            })
+            setData(areas);
+        } catch (error) {
+            console.error('Error fetching description data:', error);
+        }
+    };
+
+    fetchDestination();
+    if (data.length == 0) {
+        setData(sampleData)
+    }
+
     return (
         <>
             <Banner image={destination} title={"Our destinations"} description={description}/>

@@ -51,7 +51,7 @@ namespace VieLocaLure.Controllers
                     name_vi = d.name_vi,
                     image = d.Image.Select(i => i.url).ToList(),
                     //.FirstOrDefault() // Lấy URL của hình ảnh đầu tiên
-                    url = $"/search?q={d.name_en.Replace(" ", "-").ToLower()}"
+                    url = $"/search?keywords={d.name_en.Replace(" ", "-").ToLower()}"
                 })
                 .ToListAsync();
 

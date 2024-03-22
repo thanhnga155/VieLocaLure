@@ -1,125 +1,90 @@
-.box-search-tour {
-    margin-bottom: 25px;
-    padding-bottom: 8px;
-    box-shadow: 0 2px 3px -2px grey;
-
-    .box-search-tour-image {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
+.top-tour-card {
+    // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.image-box-relative.image-box-3x2 {
-    padding-bottom: 66.66%;
-}
+.top-tour-figure {
+    position: relative;
+    overflow: hidden;
 
-.box-search-tour-info {
-    .title-tour > a {
-        color: var(--main-blue);
-        font-size: 18px;
-        font-weight: 600;
-        text-transform: uppercase;
-        padding: 10px 0;
+    .price-tour {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        background: var(--main-red);
         line-height: 30px;
-        float: left;
-        width: 100%;
-        text-decoration: none;
-    }
+        max-width: 80%;
+    
+        &:after {
+            left: calc(100% - 15px);
+            top: 50%;
+            border: solid var(--main-red);
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: var(--main-red);
+            border-right-color: transparent;
+            border-width: 15px;
+            margin-top: -15px;
+        }
 
-    .destination-tour {
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
-        padding: 6px 0 15px;
-        line-height: 22px;
-        float: left;
-        width: 100%;
-    }
-
-    .detail-tour {
-        font-size: 13px;
-        line-height: 22px;
-        text-align: left;
-        color: #333;
-    }
-
-    .row-box-price {
-        text-align: center;
-        padding-top: 15px;
-        display: flex;
-        align-items: center;
-
-        .box-price-tour {
-            padding: 0 15px;
-            margin: 0 auto;
-            display: table;
-            height: 40px;
-            line-height: 40px;
+        .text-price-tour {
+            position: relative;
+            padding: 0 25px 0 15px;
+            font-size: 13px;
+            color: #fff;
+            font-weight: 600;
+            line-height: 30px;
             overflow: hidden;
-            text-decoration: none;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
     }
+}
 
-    .row-box-views {
-        text-align: center;
-        padding-top: 15px;
+.top-details {
+    min-height: 30px;
 
-        .box-view-more {
-            padding: 0 15px;
-            display: table;
-            cursor: pointer;
-            margin: 0 auto;
-            text-decoration: none;
-            color: #333;
-            
-            .text {
-                font-size: 13px;
-                line-height: 24px;
-                border-bottom: 1px solid #ccc;
-                padding: 2px 0;
-            }
-        }
+    .tag-detail, .number-detail {
+        font-size: 13px;
+        color: #555;
+        line-height: 22px;
     }
 
-
-}
-
-.detailsBtn {
-    float: right;
-    margin-top: 5px;
-
-    li {
-        padding: 0;
-        display: inline-block;
+    .number-detail {
+        font-style: italic;
     }
+
 }
 
-.textInfo {
-    height: 35px;
-    line-height: 35px;
-    border-radius: 4px;
-    border: 1px solid #dedede;
-    padding: 0 15px;
-    color: #969696;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    font-size: 14px;
-    display: block;
+.name-tour-detail {
+    text-decoration: none;
+    color: var(--main-blue);
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    line-height: 25px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-line-clamp: 2;
+    -moz-box-orient: vertical;
 }
 
-.list-inline {
-    padding-left: 0;
-    margin-left: -5px;
-    list-style: none;
-
-    .textInfo {
-        width: 130px;
-    }
+.action-tour {
+    width: 120px;
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: 0;
+    transform: translateY(50%);
 }
-

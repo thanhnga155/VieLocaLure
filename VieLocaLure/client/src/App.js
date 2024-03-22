@@ -9,29 +9,94 @@ import SignUp from './pages/SignIn/SignUp';
 import Destination from './pages/Destination';
 import Tour from './pages/Tour';
 import Contact from './pages/Contact';
+import Area from './pages/Destination/DestinationArea';
+import SearchResult from './pages/SearchResult';
+import { GetArea } from './services/AreaApi';
+import { useEffect, useState } from 'react';
+import TourDetail from './pages/Tour/TourDetail';
 
-// localStorage.setItem('language', 'vi')
-// require('dotenv').config()
+const areaSample = [
+    {
+        'name_en': 'North Vietnam',
+        'name_vi': 'Miền Bắc',
+        'url': '/destination/north-vietnam',
+        'id': 0
+    },
+    {
+        'name_en': 'Central Vietnam',
+        'name_vi': 'Miền Trung',
+        'url': '/destination/central-vietnam',
+        'id': 1
+    },
+    {
+        'name_en': 'South Vietnam',
+        'name_vi': 'Miền Nam',
+        'url': '/destination/south-vietnam',
+        'id': 2
+    }
+];
 
 function App() {
-  return (
-    <LanguageProvider>
-        <div>
-            <BrowserRouter>
-                <Header/>
-                <Routes>
-                    <Route path='/' element={<HomePage/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                    <Route path='/register' element={<SignUp/>}/>
-                    <Route path='/destination' element={<Destination/>}></Route>
-                    <Route path='/tour' element={<Tour/>}></Route>
-                    <Route path='/contact' element={<Contact/>} />
-                </Routes>
-                <Footer/>
-            </BrowserRouter>
-        </div>
-    </LanguageProvider>
-  );
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const areas = await GetArea();
+                setData(areas.map(area => {
+                    const parts = area.url.split('/'); 
+                    return {
+                        url: parts.slice(2).join('/'),
+                        id: area.id
+                    }
+                }));
+            } catch (error) {
+                console.error('Error fetching all areas data:', error);
+            }
+        };
+    
+        fetchData();
+        if (data.length == 0) {
+            setData(areaSample.map(area => {
+                const parts = area.url.split('/'); 
+    
+                return {
+                    url: parts.slice(2).join('/'),
+                    id: area.id
+                }
+            }));
+        }
+    }, [])
+    return (
+        <LanguageProvider>
+            <div>
+                <BrowserRouter>
+                    <Header/>
+                    <Routes>
+                        <Route path='/' element={<HomePage/>}/>
+                        <Route path='/login' element={<Login/>}/>
+                        <Route path='/register' element={<SignUp/>}/>
+                        <Route path='/destination'>
+                            <Route index element={<Destination/>} />
+                            {
+                                data.map(d => (
+                                    <Route path={d.url} element={<Area id={d.id} />} />
+                                  ))
+                            }
+                        </Route>
+                        <Route path='/tour'>
+                            <Route index element={<Tour/>}/>
+                            <Route path=':id' element={<TourDetail />} />
+                        </Route>
+                        <Route path='/contact' element={<Contact/>} />
+                        <Route path='/search' element={<SearchResult/>} />
+                    </Routes>
+                    <Footer/>
+                </BrowserRouter>
+            </div>
+        </LanguageProvider>
+    );
 }
 
 export default App;

@@ -1,0 +1,135 @@
+.box-search-tour {
+    margin-bottom: 25px;
+    padding-bottom: 8px;
+    box-shadow: 0 2px 3px -2px grey;
+    cursor: pointer;
+
+    .box-search-tour-image {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.image-box-relative.image-box-3x2 {
+    padding-bottom: 66.66%;
+}
+
+.box-search-tour-info {
+    .title-tour > a {
+        color: var(--main-blue);
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 10px 0;
+        line-height: 30px;
+        float: left;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .destination-tour {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 6px 0 15px;
+        line-height: 22px;
+        float: left;
+        width: 100%;
+    }
+
+    .detail-tour {
+        font-size: 13px;
+        line-height: 22px;
+        text-align: left;
+        color: #333;
+
+        .tour-description {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            max-height: 3em;
+        }
+    }
+
+    .row-box-price {
+        text-align: center;
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+
+        .box-price-tour {
+            padding: 0 15px;
+            margin: 0 auto;
+            display: table;
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+            text-decoration: none;
+        }
+    }
+
+    .row-box-views {
+        text-align: center;
+        padding-top: 15px;
+
+        .box-view-more {
+            padding: 0 15px;
+            display: table;
+            cursor: pointer;
+            margin: 0 auto;
+            text-decoration: none;
+            color: #333;
+            
+            .text {
+                font-size: 13px;
+                line-height: 24px;
+                border-bottom: 1px solid #ccc;
+                padding: 2px 0;
+            }
+        }
+    }
+
+
+}
+
+.detailsBtn {
+    float: right;
+    margin-top: 5px;
+
+    li {
+        padding: 0;
+        display: inline-block;
+    }
+}
+
+.textInfo {
+    height: 35px;
+    line-height: 35px;
+    border-radius: 4px;
+    border: 1px solid #dedede;
+    padding: 0 15px;
+    color: #969696;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: block;
+}
+
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+
+    .textInfo {
+        width: 130px;
+    }
+}
+
