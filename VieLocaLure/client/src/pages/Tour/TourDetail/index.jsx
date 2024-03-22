@@ -71,101 +71,125 @@ const TourDetail = () => {
         }
 
         fetchData();
-        console.log(Object.keys(tourDetail).length)
         if (Object.keys(tourDetail).length == 0) {
             
             setTourDetail(sampleData)
         }
-    }, [tourDetail]);
+    }, []);
     return (
-        <section className='tour-detail-page'>
-            <Banner image={tourDetail.images[0]} tourDetail={tourDetail.tourName}/>
-            <Container className='my-5'>
-                <Row className='basic-info my-4'>
-                    <Col md={6} sm={12}>
-                        <span className='data-label'>duration: </span>
-                        <span className='data-value'> {tourDetail.duration}</span>
-                    </Col>
-                    <Col md={6} sm={12}>
-                        <span className='data-label'>transport: </span>
-                        <span className='data-value'> {tourDetail.transport}</span>
-                    </Col>
-                    <Col md={6} sm={12}>
-                        <span className='data-label'>departure: </span>
-                        <span className='data-value'> {tourDetail.departure}</span>
-                    </Col>
-                    <Col md={6} sm={12}>
-                        <span className='data-label'>destination: </span>
-                        <span className='data-value'> {tourDetail.destination}</span>
-                    </Col>
-                </Row>
+        <>
+            {
+                tourDetail && tourDetail.images && tourDetail.images.length > 0 && (
+                    <section className='tour-detail-page'>
+                        <Banner image={tourDetail.images[0]} tourDetail={tourDetail.tourName}/>
+                        <Container className='my-5'>
+                            <Row className='basic-info my-4'>
+                                <Col md={6} sm={12}>
+                                    <span className='data-label'>duration: </span>
+                                    <span className='data-value'> {tourDetail.duration}</span>
+                                </Col>
+                                <Col md={6} sm={12}>
+                                    <span className='data-label'>transport: </span>
+                                    <span className='data-value'> {tourDetail.transport}</span>
+                                </Col>
+                                <Col md={6} sm={12}>
+                                    <span className='data-label'>departure: </span>
+                                    <span className='data-value'> {tourDetail.departure}</span>
+                                </Col>
+                                <Col md={6} sm={12}>
+                                    <span className='data-label'>destination: </span>
+                                    <span className='data-value'> {tourDetail.destination}</span>
+                                </Col>
+                            </Row>
+            
+                            <Row className='list-tour-detail'>
+                                <Col md={12} xs={12} className="tour-detail-title-information tour-detail-header-col d-none d-md-block">
+                                    <Row class="row">
+                                        <Col md={2} sm={3} xs={12}>
+                                            Departure dates
+                                        </Col>
+                                        <Col md={2} sm={3} xs={12}>
+                                            Tour code
+                                        </Col>
+                                        <Col sm={2} xs={12}>
+                                            Adult price
+                                        </Col>
+                                        <Col sm={2} xs={12}>
+                                            Chilren price
+                                        </Col>
+                                        <Col sm={2} xs={12}>
+                                            Infant price
+                                        </Col>
+                                        <Col md={2} sm={12} xs={12}>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col md={12} sm={12} xs={12} className="tour-detail-content-col">
+                                <div class="list-inline">
+                                    {
+                                        tourDetail.details.map((tour, index) => (
+                                            <Row className='my-3'>
+                                                <Col xs={12}>
+                                                    <h5 className='d-block d-md-none'>Thông tin tour chi tiết thứ #{index + 1}</h5>
+                                                </Col>
+                                                <Col className='d-flex d-md-block flex-direction-column' md={2} sm={12} xs={12}>
+                                                    <label className='d-block d-md-none pe-3'>Ngày khởi hành</label>
+                                                    <strong>{tour.date}</strong>
+                                                </Col>
+                                                <Col className='d-flex d-md-block flex-direction-column' md={2} sm={12} xs={12}>
+                                                    <label className='d-block d-md-none pe-3'>Mã Tour</label>
+                                                    <strong>{tour.tourCode}</strong>
+                                                </Col>
+                                                <Col md={2} sm={12} xs={12} className="text-center d-flex d-md-block flex-direction-column">
+                                                    <label className='d-block d-md-none pe-3'>Giá</label>
+                                                    <strong className='price'>{tour.adultPrice}</strong>
+                                                </Col>
+                                                <Col md={2} sm={12} xs={12} className="text-center d-flex d-md-block flex-direction-column">
+                                                    <label className='d-block d-md-none pe-3'>Giá trẻ em</label>
+                                                    <strong className='price'>{tour.childrenPrice}</strong>
+                                                </Col>
+                                                <Col md={2} sm={12} xs={12} className="text-center d-flex d-md-block flex-direction-column">
+                                                    <label className='d-block d-md-none pe-3'>Giá trẻ sơ sinh</label>
+                                                    <strong className='price'>{tour.infantPrice}</strong>
+                                                </Col>
+                                                <Col md={2} sm={12} xs={12} className="packageInfo d-flex d-md-block flex-direction-column">
+                                                    <label className='d-block d-md-none pe-3'>Book tour online</label>
+                                                    <div class="action-book">
+                                                        <a class="btn btn-buy-tour main-box" href="/booking/book-tour/pax-no/27542?type=buy">
+                                                            Booking
+                                                        </a>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        ))
+                                    }
+                                </div>
+                                </Col>
+                            </Row>
 
-                <Row className='tour-details-info'>
-                    <Col md={12} xs={12} className="tour-detail-title-information tour-detail-header-col">
-                        <Row class="row">
-                            <Col md={2} sm={3} xs={12}>
-                                Departure 'date's
-                            </Col>
-                            <Col md={2} sm={3} xs={12}>
-                                Tour code
-                            </Col>
-                            <Col sm={2} xs={12}>
-                                Adult price
-                            </Col>
-                            <Col sm={2} xs={12}>
-                                Chilren price
-                            </Col>
-                            <Col sm={2} xs={12}>
-                                Infant price
-                            </Col>
-                            <Col md={2} sm={12} xs={12}>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col md={12} sm={12} xs={12} className="tour-detail-content-col">
-                    <div class="list-inline">
-                        {
-                            tourDetail.details.map((tour, index) => (
-                                <Row>
-                                    <Col xs={12}>
-                                        <h5>Thông tin tour chi tiết thứ #{index + 1}</h5>
-                                    </Col>
-                                    <Col md={2} sm={3} xs={12}>
-                                        <label>Ngày khởi hành</label>
-                                        <strong>03/04/2024</strong>
-                                    </Col>
-                                    <Col md={2} sm={3} xs={12}>
-                                        <label>Mã Tour</label>
-                                        <strong style={{"marginLeft": "-30px"}}>STN084-2024-01312</strong>
-                                    </Col>
-                                    <Col md={2} sm={2} xs={12} className="price">
-                                        <label>Giá</label>
-                                        <strong>4.879.000</strong>
-                                    </Col>
-                                    <Col md={2} sm={2} xs={12} className="price">
-                                        <label>Giá trẻ em</label>
-                                        <strong>2.440.000</strong>
-                                    </Col>
-                                    <Col md={2} sm={2} xs={12} className="price">
-                                        <label>Giá trẻ sơ sinh</label>
-                                        <strong>0</strong>
-                                    </Col>
-                                    <Col md={2} sm={12} xs={12} className="packageInfo">
-                                        <label>Đặt/Mua tour</label>
-                                        <div class="action-book">
-                                            <a class="btn btn-buy-tour" href="/booking/book-tour/pax-no/27542?type=buy">
-                                                Mua Online
-                                            </a>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            ))
-                        }
-                    </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+                            <Row>
+                                {
+                                    tourDetail.images.map(image => (
+                                        <Col md={4} sm={6} xs={12} class="zoom-effect" style={{"marginBottom": "25px"}}>
+                                            <img width="100%" height="200px" alt="image tour" src={image} />
+                                        </Col>
+                                    ))
+                                }
+                            </Row>
+
+                            <Row>
+                                <Col> 
+                                    <h2>Description</h2>
+                                    <div className='mt-4' dangerouslySetInnerHTML={{ __html: tourDetail.description }} />
+                                </Col>
+                            </Row>
+                        </Container>
+
+                    </section>
+                )
+                
+            }
+        </>
     )
 }
 

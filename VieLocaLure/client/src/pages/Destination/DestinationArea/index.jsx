@@ -119,7 +119,7 @@ const Area = ({id}) => {
     return (
         <>
             <Banner image={image} title={description.title}/>
-            <Container>
+            <Container className='my-4'>
                 <Row className='destination-area-intro'>
                     <Col md={6} sm={12}>
                         <h3>{description.title}</h3>

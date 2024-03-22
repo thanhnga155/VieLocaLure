@@ -53,8 +53,10 @@ table, th, td {
     --alpha-blue: rgba(17,106,252,0.4);
     --alpha-blue-8: rgba(17,106,252,0.8);
     --main-red: rgb(233, 73, 24);
+    --dark-yellow: rgb(255, 183, 0);
     --main-yellow: rgb(248, 192, 51);
     --light-yellow: rgb(248, 208, 108);
+    --lighter-yellow: rgb(252, 250, 244);
     --alpha-red: rgba(233, 73, 24, 0.5);
 }
 

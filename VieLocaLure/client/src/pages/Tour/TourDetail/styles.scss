@@ -13,4 +13,54 @@
             font-weight: bold;
         }
     } 
+
+    .list-tour-detail {
+        background: var(--lighter-yellow);
+        padding: 6px 10px;
+        margin-bottom: 15px;
+        overflow: hidden;
+
+        .tour-detail-header-col {
+            padding-top: 10px;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            border-bottom: 1px solid #333;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tour-detail-content-col {
+            .list-inline {
+                margin: 0;
+                line-height: 32px;
+                padding-left: 0;
+                margin-left: -5px;
+                list-style: none;
+                
+                h5 {
+                    font-weight: bold;
+                    display: block;
+                    text-align: left;
+                    color: var(--main-yellow);
+                    float: left;
+                    text-transform: uppercase;
+                    margin-bottom: 15px;
+                }
+
+                strong.price {
+                    color: var(--dark-yellow);
+                }
+            }
+
+        } 
+    }
+}
+
+.tour-detail-title-information {
+    text-align: left;
+    color: #262a2e;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    font-weight: bold;
 }
