@@ -10,60 +10,63 @@ import { GetDestination } from '../../services/DestinationApi';
 
 const sampleProvince = [
     {
-        name_en: 'Ha Noi',
-        name_vi: 'Hà Nội'
+      "id": 1,
+      "name_en": "Ha Noi",
+      "name_vi": "Hà Nội"
     },
     {
-        name_en: 'Ha Noi',
-        name_vi: 'Hà Nội'
+      "id": 2,
+      "name_en": "Ho Chi Minh City",
+      "name_vi": "Thành phố Hồ Chí Minh"
     },
     {
-        name_en: 'Ha Noi',
-        name_vi: 'Hà Nội'
+      "id": 3,
+      "name_en": "Quang Binh",
+      "name_vi": "Quảng Bình"
     },
     {
-        name_en: 'Ha Noi',
-        name_vi: 'Hà Nội'
+      "id": 4,
+      "name_en": "Ha Noi",
+      "name_vi": "Hà Nội"
     }
 ]
 
 const sampleDestinations = [
     {
-        image: "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg",
-        title: "Landmark 81",
-        id: 0
+      "id": 1,
+      "name_en": "Landmark 81",
+      "name_vi": "Tòa nhà Landmark 81",
+      "image": [
+        "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg"
+      ]
     },
     {
-        image: "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
-        title: "Phong Nha - Ke Bang",
-        id: 1
+      "id": 2,
+      "name_en": "Phong Nha - Ke Bang",
+      "name_vi": "Phong Nha - Kẻ Bàng",
+      "image": [
+        "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
+        "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg"
+      ]
     },
     {
-        image: "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675",
-        title: "Halong Bay",
-        id: 2
+      "id": 3,
+      "name_en": "One Pillar pagoda",
+      "name_vi": "Chùa Một Cột",
+      "image": [
+        "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg"
+      ]
     },
     {
-        image: "https://statics.vinpearl.com/cho-noi-cai-rang-2_1624262882.jpg",
-        title: "Cho Noi Cai Rang",
-        id: 3
-    },
-    {
-        image:"https://www.gotadi.com/tour/wp-content/uploads/2021/12/quang-truong-lam-vien-da-lat.png",
-        title: "Lam Vien Square",
-        id: 4
-    },
-    {
-        image:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
-        title: "Ho Guom",
-        id: 5
-    },
-    {
-        image:"https://vcdn1-dulich.vnecdn.net/2022/04/18/dulichSaPa-1650268886-1480-1650277620.png?w=0&h=0&q=100&dpr=2&fit=crop&s=JTUw8njZ_Glkqf1itzjObg",
-        title:"Sapa",
-        id: 6
-    },
-];
+      "id": 4,
+      "name_en": "Ho Chi Minh Mausoleum",
+      "name_vi": "Lăng Chủ Tịch Hồ Chí Minh",
+      "image": [
+        "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg",
+        "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595"
+      ]
+    }
+  ]
 
 const DestinationSlider = () => {
 
@@ -77,7 +80,7 @@ const DestinationSlider = () => {
             try {
                 setProvinces(await GetProvince());
             } catch (error) {
-                console.error('Error fetching all areas data:', error);
+                console.error('Error fetching provinces data:', error);
             }
         };
 
@@ -97,9 +100,15 @@ const DestinationSlider = () => {
                 const uniqueArray = Object.values(uniqueMap);
 
                 data = uniqueArray.slice(0, 8);
-                setProvinces(data);
+
+                data.map(d => {
+                    d.image = d.image[0];
+                })
+
+                console.log(data)
+                setSlides(data);
             } catch (error) {
-                console.error('Error fetching all areas data:', error);
+                console.error('Error fetching all destination data:', error);
             }
         };
 
@@ -127,7 +136,7 @@ const DestinationSlider = () => {
 
         // adding/removing active class from slides
         Array.from(sliderRef.current.children).forEach((slide) =>
-        slide.classList.remove("active")
+            slide.classList.remove("active")
         );
         sliderRef.current.children[newSlideNumber].classList.add("active");
 
@@ -185,7 +194,9 @@ const DestinationSlider = () => {
                                             draggable={false}
                                         />
                                         )}
-                                        {slide.title && <h3>{slide.title}</h3>}
+                                        <h3>
+                                            {language === 'en' ? slide.name_en : slide.name_vi}                                            
+                                        </h3>
                                     </div>
                                 ))}
                             </div>

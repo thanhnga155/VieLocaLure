@@ -18,13 +18,13 @@ namespace VieLocaLure.Controllers
         }
         //GET: api/area
         [HttpGet]
-        public ActionResult<IEnumerable<AreaDTO>> GetAreas()
+        public ActionResult<IEnumerable<Area>> GetAreas()
         {
-            var areas = _db.areas.Select(a => new AreaDTO
+            var areas = _db.areas.Select(a => new Area
             {
                 name_en = a.name_en,
                 name_vi = a.name_vi,
-                url = $"/search?q={a.name_en.Replace(" ", "-").ToLower()}",
+                url = a.url,
                 Id = a.Id
             }).ToList();
 

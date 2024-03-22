@@ -26,13 +26,13 @@ const LocalSupport = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h2 class="font-semibold leading-tight mb-5 text-28">
+                        <h2 className="font-semibold leading-tight mb-5 text-28">
                             Ready to travel and discover
                             <br/>
                             Vietnam?
                         </h2>
                         
-                        <h3 class="font-semibold mb-6 text-16">
+                        <h3 className="font-semibold mb-6 text-16">
                             {/* <Link to="https://tailormade.roughguides.com/" target="_blank"> */}
                             <Link to="/support" target="_blank">
                                 <Button className="me-2 main-box text-16 font-semibold">Get support</Button>

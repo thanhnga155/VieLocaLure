@@ -20,7 +20,7 @@ export const DestinationSection = ({data}) => {
                         <Container>
                             <Row>
                                 {
-                                    dataItem.provinces.map((destination, index) => (
+                                    dataItem.destinations.map((destination, index) => (
                                         <Col lg={4} md={6} sm={1}>
                                             <div class="location-item zoom-effect">
                                                 <div class="thumbnail-location" >

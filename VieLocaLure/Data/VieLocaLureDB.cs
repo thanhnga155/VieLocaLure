@@ -37,19 +37,21 @@ namespace VieLocaLure.Data
             modelBuilder.Entity<Banner>().HasData(new Banner { Id = 2, caption1_en = "once upon an old time", caption1_vi = "vang bóng một thời", caption2_en = "Hue Historic Citadel", caption2_vi = "Kinh thành Huế", caption3_en = "Departing on Mar 20, 2024", caption3_vi = "khởi hành 20/03/2024", image = "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg" });
             //mỗi lần thêm vào chạy add-migration 
 
-            modelBuilder.Entity<Area>().HasData(new Area { Id = 1, name_en = "North Vietnam", name_vi = "Miền Bắc" });
+            modelBuilder.Entity<Area>().HasData(new Area { Id = 1, name_en = "North Vietnam", name_vi = "Miền Bắc", url= "/destination/north-vietnam" });
             modelBuilder.Entity<Area>().HasData(new Area
             {
                 Id = 2,
                 name_en = "Central Vietnam",
                 name_vi = "Miền Trung",
+                url= "/destination/central-vietnam"
 
-            });
+            }) ;
             modelBuilder.Entity<Area>().HasData(new Area
             {
                 Id = 3,
                 name_en = "South Vietnam",
                 name_vi = "Miền Nam",
+                url= "/destination/south-vietnam"
             });
             modelBuilder.Entity<Province>().HasData(new Province
             {

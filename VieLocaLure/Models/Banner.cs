@@ -18,5 +18,9 @@ namespace VieLocaLure.Models
         //public int tour_id { get; set; }
 
     }
+    public class BannerDTO : Banner
+    {
+        public string url { get; set; }
+    }
 }
 

@@ -10,13 +10,14 @@ const description = "Embark on a journey with us and let Vietnam's beauty unfold
 const sampleData = [
     {
         'area': 'North Vietnam',
-        'provinces': [
+        'destinations': [
             {
                 'name': 'Hanoi',
                 'numTours': 8,
                 'image': 'https://ik.imagekit.io/tvlk/blog/2017/06/kham-pha-cac-dia-diem-du-lich-o-ha-noi-ma-ban-khong-the-bo-qua-3.jpg?tr=dpr-2,w-675'
             },
             {
+
                 'name': 'Halong Bay',
                 'numTours': 4,
                 'image': 'https://travelhalong.com.vn/UserFiles/images/halong-bay.jpg'
@@ -25,7 +26,7 @@ const sampleData = [
     },
     {
         'area': 'Central Vietnam',
-        'provinces': [
+        'destinations': [
             {
                 'name': 'Phong Nha - Ke Bang',
                 'numTours': 2,
@@ -40,7 +41,7 @@ const sampleData = [
     },
     {
         'area': 'South Vietnam',
-        'provinces': [
+        'destinations': [
             {
                 'name': 'Sala Park',
                 'numTours': 1,
@@ -71,6 +72,7 @@ const Destination = () => {
     if (data.length == 0) {
         setData(sampleData)
     }
+    console.log(data)
 
     return (
         <>

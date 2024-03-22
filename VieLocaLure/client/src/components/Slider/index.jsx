@@ -47,7 +47,7 @@ const Slider = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setData(await GetTour({isFilter: true, key: 'hottest', max:3}));
+                setData(await GetTour({isFilter: true, filterKey: 'hottest', key: 'max', value:3}));
             } catch (error) {
                 console.error('Error fetching hottest tours:', error);
             }

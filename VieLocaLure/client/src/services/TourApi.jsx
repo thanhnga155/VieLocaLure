@@ -3,7 +3,7 @@ import axios from 'axios'
 const serverApi = process.env.REACT_APP_SERVER_API;
 
 
-export const GetTour = async ({ isFilter, filterKey, key, value }) => {
+export const GetTour = async ({ isFilter, filterKey, key, value } = {}) => {
     // /api/tour/filter?key=hottest&max=3
 
     let url = `${serverApi}/tour`
