@@ -54,9 +54,14 @@ const sampleDestinations = [
         id: 4
     },
     {
+<<<<<<< HEAD:VieLocaLure/client/src/components/Destination/index.jsx
+        source:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
+        title: "Ho Hoan Kiem",
+=======
         image:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
         title: "Ho Guom",
         id: 5
+>>>>>>> da55cf5c0c1edb7d19581a108017cffabfbac16f:VieLocaLure/client/src/components/DestinationSlider/index.jsx
     },
     {
         image:"https://vcdn1-dulich.vnecdn.net/2022/04/18/dulichSaPa-1650268886-1480-1650277620.png?w=0&h=0&q=100&dpr=2&fit=crop&s=JTUw8njZ_Glkqf1itzjObg",
@@ -148,7 +153,7 @@ const DestinationSlider = () => {
 
     return (
         <div className='destinations my-4'>
-            <h2>Destinations</h2>
+            <h2>{t("homepage.destination.title")}</h2>
 
             <Container className='mt-5'>
                 <Row>

@@ -1,26 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace VieLocaLure.Models
 {
-    public class Province
+    public class Destination
     {
         [Key]
         public int Id { get; set; }
         public string name_en { get; set; }
         public string name_vi { get; set; }
-
         //sinh FK
         [Required]
         [JsonIgnore]
-        public int AreaId { get; set; }
+        public int ProvinceId { get; set; }
         [JsonIgnore]
-        public Area Area { get; set; }
+        public Province Province { get; set; }
+        [JsonIgnore]
+        //một destination có nhiều image (quan hệ 1-n)
+        public ICollection<Image> Image { get; set; }
+        //public ICollection<DestinationImage> DestinationImage { get; set; }
 
-        [JsonIgnore]
-        public ICollection<Destination> Destination { get; set; }
+
     }
 }

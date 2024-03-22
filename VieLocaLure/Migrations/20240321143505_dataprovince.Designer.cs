@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VieLocaLure.Data;
 
@@ -11,9 +12,11 @@ using VieLocaLure.Data;
 namespace VieLocaLure.Migrations
 {
     [DbContext(typeof(VieLocaLureDB))]
-    partial class VieLocaLureDBModelSnapshot : ModelSnapshot
+    [Migration("20240321143505_dataprovince")]
+    partial class dataprovince
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,9 +179,6 @@ namespace VieLocaLure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProvinceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("name_en")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -189,39 +189,7 @@ namespace VieLocaLure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProvinceId");
-
                     b.ToTable("destinations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ProvinceId = 2,
-                            name_en = "Landmark 81",
-                            name_vi = "Tòa nhà Landmark 81"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ProvinceId = 3,
-                            name_en = "Phong Nha - Ke Bang",
-                            name_vi = "Phong Nha - Kẻ Bàng"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ProvinceId = 1,
-                            name_en = "One Pillar pagoda",
-                            name_vi = "Chùa Một Cột"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ProvinceId = 1,
-                            name_en = "Ho Chi Minh Mausoleum",
-                            name_vi = "Lăng Chủ Tịch Hồ Chí Minh"
-                        });
                 });
 
             modelBuilder.Entity("VieLocaLure.Models.Image", b =>
@@ -232,16 +200,11 @@ namespace VieLocaLure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DestinationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.ToTable("images");
 
@@ -249,38 +212,22 @@ namespace VieLocaLure.Migrations
                         new
                         {
                             Id = 1,
-                            DestinationId = 4,
-                            url = "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg"
+                            url = "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg"
                         },
                         new
                         {
                             Id = 2,
-                            DestinationId = 3,
                             url = "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg"
                         },
                         new
                         {
                             Id = 3,
-                            DestinationId = 1,
                             url = "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg"
                         },
                         new
                         {
                             Id = 4,
-                            DestinationId = 2,
                             url = "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DestinationId = 2,
-                            url = "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DestinationId = 4,
-                            url = "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595"
                         });
                 });
 
@@ -406,43 +353,6 @@ namespace VieLocaLure.Migrations
                     b.ToTable("tourDetails");
                 });
 
-            modelBuilder.Entity("VieLocaLure.Models.TourImage", b =>
-                {
-                    b.Property<int>("TourId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TourId", "ImageId");
-
-                    b.HasIndex("ImageId");
-
-                    b.ToTable("tourImages");
-                });
-
-            modelBuilder.Entity("VieLocaLure.Models.Destination", b =>
-                {
-                    b.HasOne("VieLocaLure.Models.Province", "Province")
-                        .WithMany("Destination")
-                        .HasForeignKey("ProvinceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Province");
-                });
-
-            modelBuilder.Entity("VieLocaLure.Models.Image", b =>
-                {
-                    b.HasOne("VieLocaLure.Models.Destination", "Destination")
-                        .WithMany("Image")
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Destination");
-                });
-
             modelBuilder.Entity("VieLocaLure.Models.Province", b =>
                 {
                     b.HasOne("VieLocaLure.Models.Area", "Area")
@@ -454,43 +364,9 @@ namespace VieLocaLure.Migrations
                     b.Navigation("Area");
                 });
 
-            modelBuilder.Entity("VieLocaLure.Models.TourImage", b =>
-                {
-                    b.HasOne("VieLocaLure.Models.Image", "Image")
-                        .WithMany("TourImage")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VieLocaLure.Models.Tour", "Tour")
-                        .WithMany()
-                        .HasForeignKey("TourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-
-                    b.Navigation("Tour");
-                });
-
             modelBuilder.Entity("VieLocaLure.Models.Area", b =>
                 {
                     b.Navigation("Province");
-                });
-
-            modelBuilder.Entity("VieLocaLure.Models.Destination", b =>
-                {
-                    b.Navigation("Image");
-                });
-
-            modelBuilder.Entity("VieLocaLure.Models.Image", b =>
-                {
-                    b.Navigation("TourImage");
-                });
-
-            modelBuilder.Entity("VieLocaLure.Models.Province", b =>
-                {
-                    b.Navigation("Destination");
                 });
 #pragma warning restore 612, 618
         }
