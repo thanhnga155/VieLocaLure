@@ -40,7 +40,7 @@ const sampleDestinations = [
     },
     {
         image: "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675",
-        title: "Vinh Ha Long",
+        title: "Halong Bay",
         id: 2
     },
     {
@@ -50,12 +50,12 @@ const sampleDestinations = [
     },
     {
         image:"https://www.gotadi.com/tour/wp-content/uploads/2021/12/quang-truong-lam-vien-da-lat.png",
-        title: "Da Lat",
+        title: "Lam Vien Square",
         id: 4
     },
     {
         image:"https://static.vinwonders.com/production/ho-hoan-kiem-2.jpg",
-        title: "Ha Noi",
+        title: "Ho Guom",
         id: 5
     },
     {
