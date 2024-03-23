@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO; 
+
 namespace VieLocaLure
 {
 
@@ -29,7 +32,14 @@ namespace VieLocaLure
                 // Use CORS policy
                 app.UseCors("React");
 
-                // Other middleware...
-            }
+            // Other middleware...
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                RequestPath = "/Uploads"
+            });
+
         }
+    }
 }

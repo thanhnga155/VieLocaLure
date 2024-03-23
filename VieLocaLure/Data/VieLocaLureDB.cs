@@ -38,8 +38,8 @@ namespace VieLocaLure.Data
                             .HasForeignKey(p => p.Id);*/
 
             //OnModelCreating bắt sự kiện tạo db, config ở đây 
-            modelBuilder.Entity<Banner>().HasData(new Banner { Id = 1, caption1_en = "special value tour", caption1_vi = "gói tour đặc biệt", caption2_en = "panorama of vietnam", caption2_vi = "toàn cảnh việt nam", caption3_en = "Departing on Apr 5, 2024", caption3_vi = "khởi hành 05/04/2024", image = "https://zoomtravel.vn/upload/images/samten-hills-0.jpg", url = "/tour/panorama-of-vietnam" });
-            modelBuilder.Entity<Banner>().HasData(new Banner { Id = 2, caption1_en = "once upon an old time", caption1_vi = "vang bóng một thời", caption2_en = "Hue Historic Citadel", caption2_vi = "Kinh thành Huế", caption3_en = "Departing on Mar 20, 2024", caption3_vi = "khởi hành 20/03/2024", image = "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg", url = "/tour/kinh-thanh-hue" });
+            modelBuilder.Entity<Banner>().HasData(new Banner { Id = 1, caption1_en = "special value tour", caption1_vi = "gói tour đặc biệt", caption2_en = "panorama of vietnam", caption2_vi = "toàn cảnh việt nam", caption3_en = "Departing on Apr 5, 2024", caption3_vi = "khởi hành 05/04/2024", image = "/Uploads/vang-bong-mot-thoi.jpg", url = "/tour/panorama-of-vietnam" });
+            modelBuilder.Entity<Banner>().HasData(new Banner { Id = 2, caption1_en = "once upon an old time", caption1_vi = "vang bóng một thời", caption2_en = "Hue Historic Citadel", caption2_vi = "Kinh thành Huế", caption3_en = "Departing on Mar 20, 2024", caption3_vi = "khởi hành 20/03/2024", image = "/Uploads/kinh-thanh-hue.jpg", url = "/tour/kinh-thanh-hue" });
             //mỗi lần thêm vào chạy add-migration 
 
             modelBuilder.Entity<Area>().HasData(new Area { Id = 1, name_en = "North Vietnam", name_vi = "Miền Bắc", url = "/destination/north-vietnam", content = "`\r\n        <p>Fascinating and stunning region of beauty, North Vietnam is a country of mountains, rice terraces and karst peaks.</p>\r\n\r\n        <p>Follow us in the region of Sapa, Moc Chau, Mai Chau and Mu Cang Chai, meeting ethnic minorities during hikes from villages to villages to admire the exceptional landscapes and discover the local traditions during a stay with the inhabitant. </p>\r\n\r\n        <p>Discover the local flora and fauna of Pu Luong National Park. Admire the incredible landscapes drawn by the many sugarloaves that emerge from the ocean and rice fields during a cruise in the famous Halong Bay and along the water in the Ninh Binh region. </p>\r\n\r\n        <p>Soak up the unique atmosphere of the administrative capital of Hanoi, a cultural city steeped in Vietnamese traditions and with a very rich gastronomy.</p>`" });
@@ -92,37 +92,37 @@ namespace VieLocaLure.Data
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 1,
-                url = "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg",
+                url = "/Uploads/lang-chu-tich-HCM.jpg",
                 DestinationId = 4,
             });
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 2,
-                url = "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg",
+                url = "/Uploads/canh-thanh-pho-HCM.jpg",
                 DestinationId = 3,
             });
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 3,
-                url = "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg",
+                url = "/Uploads/landmark81.jpeg",
                 DestinationId = 1,
             });
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 4,
-                url = "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg",
+                url = "/Uploads/dong-phong-nha-ke-bang.jpg",
                 DestinationId = 2,
             });
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 5,
-                url = "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg",
+                url = "/Uploads/phong-nha-ke-bang-2.jpg",
                 DestinationId = 2,
             });
             modelBuilder.Entity<Image>().HasData(new Image
             {
                 Id = 6,
-                url = "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595",
+                url = "/Uploads/lang-bac-ho.jpg",
                 DestinationId = 4,
             });
             /*
