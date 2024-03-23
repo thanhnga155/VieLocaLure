@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System.Text.Json.Serialization;
 
 namespace VieLocaLure.Models
 {
@@ -14,5 +15,12 @@ namespace VieLocaLure.Models
         public string duration_vi { get; set; }
         public string transport_en { get; set; }
         public string transport_vi { get; set; }
+        public string content_en { get; set; }
+        public string content_vi { get; set; }
+        public string url { get; set; }
+        //FK tourDetail: 1 tour có nhiều tourDetail
+        [JsonIgnore]
+        public ICollection<TourDetail> TourDetail { get; set; }
+        public ICollection<TourDestination> TourDestination { get; set; }
     }
 }

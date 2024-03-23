@@ -27,10 +27,10 @@ namespace VieLocaLure.Controllers
                 .Include(d => d.Image) //lấy hình ảnh
                 .Select(d => new DestinationListDTO
                 {
-                    id=d.Id,
+                    id = d.Id,
                     name_en = d.name_en,
                     name_vi = d.name_vi,
-                    image = d.Image.Select(i => i.url).ToList() 
+                    image = d.Image.Select(i => i.url).ToList()
                 })
                 .ToListAsync();
 
@@ -39,23 +39,23 @@ namespace VieLocaLure.Controllers
 
         // GET: api/destination/filter?area=0
         [HttpGet("filter")]
-        public async Task<ActionResult<IEnumerable<DestinationDTO>>> FilterDestinationsByArea(int area)
+        public async Task<ActionResult<IEnumerable<DestinationDTO>>> FilterDestinations([FromQuery] int area)
         {
-            var filterDestinations = await _db.destinations
+            var destinations = _db.destinations
                 .Where(d => d.Province.AreaId == area)
                 .Include(d => d.Image)
+                .Include(d => d.TourDestination)
                 .Select(d => new DestinationDTO
                 {
-                    id=d.Id,
+                    id = d.Id,
                     name_en = d.name_en,
                     name_vi = d.name_vi,
                     image = d.Image.Select(i => i.url).ToList(),
-                    //.FirstOrDefault() // Lấy URL của hình ảnh đầu tiên
-                    url = $"/search?keywords={d.name_en.Replace(" ", "-").ToLower()}"
+                    numTours = d.TourDestination.Count
                 })
-                .ToListAsync();
+                .ToList();
 
-            return filterDestinations;
+            return destinations;
         }
     }
-}
+ }

@@ -22,10 +22,11 @@ namespace VieLocaLure.Controllers
         {
             var areas = _db.areas.Select(a => new Area
             {
+                Id = a.Id,
                 name_en = a.name_en,
                 name_vi = a.name_vi,
                 url = a.url,
-                Id = a.Id
+                content = a.content
             }).ToList();
 
             return areas;

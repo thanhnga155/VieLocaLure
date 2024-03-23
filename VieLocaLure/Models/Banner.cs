@@ -14,13 +14,11 @@ namespace VieLocaLure.Models
         public string caption2_vi { get; set; }
         public string caption3_vi { get; set; }
         public string image { get; set; }
+        public string url { get; set; }
+
 
         //public int tour_id { get; set; }
 
-    }
-    public class BannerDTO : Banner
-    {
-        public string url { get; set; }
     }
 }
 

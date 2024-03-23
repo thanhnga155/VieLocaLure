@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace VieLocaLure.Models
 {
@@ -12,6 +13,10 @@ namespace VieLocaLure.Models
         public float adultPrice { get; set; }
         public float childPrice { get; set; }
         public float infantPrice { get; set; }
+        [JsonIgnore]
+        public int TourId { get; set; }
+        [JsonIgnore]
+        public Tour Tour { get; set; }
 
     }
 }

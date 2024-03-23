@@ -10,6 +10,7 @@ namespace VieLocaLure.Models
         public string name_en { get; set; }
         public string name_vi { get; set; }
         public string url { get; set; }
+        public string content { get; set; }
 
         [JsonIgnore]
         public ICollection<Province> Province { get; set; }

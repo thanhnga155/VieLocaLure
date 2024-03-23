@@ -1,16 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace VieLocaLure.Models
 {
-    public class TourImage
+    public class TourDestination
     {
         // FK- PK
-        //thử xóa 
+
         public int TourId { get; set; }
-        public int ImageId { get; set; }
+        public int DestinationId { get; set; }
+
+        [JsonIgnore]
 
         public Tour Tour { get; set; }
-        public Image Image { get; set; }
+
+        [JsonIgnore]
+        public Destination Destination { get; set; }
     }
 }

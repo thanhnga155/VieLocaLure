@@ -14,8 +14,8 @@ namespace VieLocaLure.Models
         [JsonIgnore]
         public Destination Destination { get; set; }
 
-        [JsonIgnore]
-        public ICollection<TourImage> TourImage { get; set; }
+        //[JsonIgnore]
+        //public ICollection<TourImage> TourImage { get; set; }
 
         //public ICollection<Tour> Tours { get; set; }
     }

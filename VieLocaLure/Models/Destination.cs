@@ -19,7 +19,7 @@ namespace VieLocaLure.Models
         [JsonIgnore]
         //một destination có nhiều image (quan hệ 1-n)
         public ICollection<Image> Image { get; set; }
-        //public ICollection<DestinationImage> DestinationImage { get; set; }
+        public ICollection<TourDestination> TourDestination { get; set; }
 
 
     }

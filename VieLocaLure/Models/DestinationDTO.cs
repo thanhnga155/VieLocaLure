@@ -13,6 +13,6 @@ namespace VieLocaLure.Models
     // Lớp DTO cho endpoint "/api/destination/filter?area=1"
     public class DestinationDTO : DestinationListDTO
     {
-        public string url { get; set; }
+        public int numTours { get; set; }
     }
 }
