@@ -33,12 +33,16 @@ namespace VieLocaLure
                 app.UseCors("React");
 
             // Other middleware...
+
+     
+
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
-                RequestPath = "/Uploads"
+                RequestPath = "\\Uploads"
             });
+           // app.UseDirectoryBrowser();
 
         }
     }

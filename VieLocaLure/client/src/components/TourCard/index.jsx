@@ -3,23 +3,27 @@ import { Card } from 'react-bootstrap';
 import { useLanguage } from '../../LanguageContext';
 import './styles.scss';
 import { useTranslation } from 'react-i18next';
+import { convertCurrency } from '../../utils/convertCurrency';
 
 const TourCard = ({tour}) => {
     const { language } = useLanguage();
     const { t } = useTranslation();
+    const handleClick = (url) => {
+        window.location.href = url;
+    }
     return (
-        <Card className="top-tour-card my-3 zoom-effect">
+        <Card className="top-tour-card my-3 zoom-effect" onClick={() => handleClick(tour.url)}>
             <figure className="top-tour-figure">
                 <Card.Img
                     className=""
                     variant="top"
+                    width="1000%"
+                    height="300px"
                     src={tour.image}
                 />
                 <div className="price-tour">
                     <span className="text-price-tour">
-                        { language === 'en' ? 
-                            `$ ${tour.price_vi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}` :
-                            `${tour.price_vi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')} VND`
+                        { convertCurrency(language, tour.adultPrice)
                         }/{t('homepage.latest-tour.tourist')}
                     </span>
                 </div>
@@ -38,7 +42,7 @@ const TourCard = ({tour}) => {
                     </div>
                 </div>
                 <span className="name-tour-detail">
-                    {language === 'en' ? tour.tour_title_en : tour.tour_title_vi}
+                    {language === 'en' ? tour.title_en : tour.title_vi}
                 </span>
                 {/* <Button className="action-tour main-box">{t('homepage.latest-tour.book')}</Button> */}
             </Card.Body>

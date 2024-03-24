@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\canh-thanh-pho-HCM.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\canh-thanh-pho-HCM.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\dong-phong-nha-ke-bang.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\dong-phong-nha-ke-bang.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\kinh-thanh-hue.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\kinh-thanh-hue.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\landmark81.jpeg",
+      "PackagePath": "staticwebassets\\Uploads\\landmark81.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\lang-bac-ho.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\lang-bac-ho.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\lang-chu-tich-HCM.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\lang-chu-tich-HCM.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\phong-nha-ke-bang-2.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\phong-nha-ke-bang-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\Uploads\\vang-bong-mot-thoi.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\vang-bong-mot-thoi.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.VieLocaLure.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.VieLocaLure.props",
+      "PackagePath": "build\\VieLocaLure.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.VieLocaLure.props",
+      "PackagePath": "buildMultiTargeting\\VieLocaLure.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.VieLocaLure.props",
+      "PackagePath": "buildTransitive\\VieLocaLure.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

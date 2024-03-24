@@ -10,6 +10,7 @@ export const GetTour = async ({ isFilter, filterKey, key, value } = {}) => {
     if (isFilter) {
         url += `/filter?key=${filterKey}${key ? `&${key}=${value}` : ''}`;
     }
+    
     const config = {
         method: 'GET',
         url: url,

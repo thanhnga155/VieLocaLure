@@ -5,6 +5,7 @@ import './styles.scss';
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../LanguageContext";
 import { GetTour } from "../../services/TourApi";
+import { GetImage } from "../../services/ImageApi";
 
 
 const divStyle = {
@@ -47,7 +48,20 @@ const Slider = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setData(await GetTour({isFilter: true, filterKey: 'hottest', key: 'max', value:3}));
+                const tours = await GetTour({isFilter: true, filterKey: 'hottest', key: 'max', value:3});
+                
+                const promises = [];
+                for (const tour of tours) {
+                    const img_response = await GetImage(tour.image);
+                    if (img_response.ok) {
+                        tour.image = URL.createObjectURL(await img_response.blob());
+                        tour.isLoaded = true;
+                        promises.push(Promise.resolve());
+                    } else {
+                        console.error(`Failed to fetch image. Status: ${img_response.status}`);
+                    }
+                }
+                setData(tours);
             } catch (error) {
                 console.error('Error fetching hottest tours:', error);
             }
@@ -60,7 +74,7 @@ const Slider = () => {
 
     const { t } = useTranslation();
 
-    const { language, changeLanguage } = useLanguage();
+    const { language } = useLanguage();
     
     
     return (

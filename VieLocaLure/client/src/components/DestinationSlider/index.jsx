@@ -6,6 +6,7 @@ import vietnam from '../../images/vietnam.png';
 import { useLanguage } from '../../LanguageContext';
 import { GetProvince } from '../../services/ProvinceApi';
 import { GetDestination } from '../../services/DestinationApi';
+import { GetImage } from '../../services/ImageApi';
 
 
 const sampleProvince = [
@@ -87,7 +88,7 @@ const DestinationSlider = () => {
         fetchProvinceData();
         if (provinces.length === 0) {
             setProvinces(sampleProvince);
-        }
+        }        
 
         const fetchDestinationData = async () => {
             try {
@@ -105,7 +106,18 @@ const DestinationSlider = () => {
                     d.image = d.image[0];
                 })
 
-                console.log(data)
+                const promises = [];
+                for (const tour of data) {
+                    const img_response = await GetImage(tour.image);
+                    if (img_response.ok) {
+                        tour.image = URL.createObjectURL(await img_response.blob());
+                        tour.isLoaded = true;
+                        promises.push(Promise.resolve());
+                    } else {
+                        console.error(`Failed to fetch image. Status: ${img_response.status}`);
+                    }
+                }
+
                 setSlides(data);
             } catch (error) {
                 console.error('Error fetching all destination data:', error);

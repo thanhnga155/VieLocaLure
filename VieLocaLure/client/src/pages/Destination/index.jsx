@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import destination from '../../images/scene.jpg'
 import { DestinationSection } from '../../components/DestinationSection'
 import { GetArea } from '../../services/AreaApi'
-import { GetProvince } from '../../services/ProvinceApi'
+import { Col, Container, Row } from 'react-bootstrap'
+import { useLanguage } from '../../LanguageContext'
 
 const description = "Embark on a journey with us and let Vietnam's beauty unfold before you. Your dream destination is just a click away, promising memories that will last a lifetime. Start exploring today!"
 
@@ -53,31 +54,58 @@ const sampleData = [
 
 const Destination = () => {
     const [data, setData] = useState([]);
+    const {language} = useLanguage();
 
-    const fetchDestination = async () => {
-        try {
-            const areas = await GetArea();
-            areas.map(async (area) => {
-                const areaId = area.id;
-                const provinces = await GetProvince({isFilter: true, key: 'area', value: areaId});
-                area.provinces = provinces
-            })
-            setData(areas);
-        } catch (error) {
-            console.error('Error fetching description data:', error);
-        }
-    };
+    useEffect(() => {
+        const fetchDestination = async () => {
+            try {
+                const areas = await GetArea();
+                setData(areas);
+                console.log(areas)
+            } catch (error) {
+                console.error('Error fetching area data:', error);
+            }
+        };
+    
+        fetchDestination();
+        // if (data.length == 0) {
+        //     setData(sampleData)
+        // }
+    }, []);
 
-    fetchDestination();
-    if (data.length == 0) {
-        setData(sampleData)
-    }
-    console.log(data)
 
     return (
         <>
             <Banner image={destination} title={"Our destinations"} description={description}/>
-            <DestinationSection data={data}/>
+            {
+                data && data.length > 0 && (
+                    <Container>
+                        { data.map((dataItem, index) => (
+                            <Row className='area'>
+                                <Col>
+                                    <h2 className='mt-5 mb-2 title'> {language == 'en' ? dataItem.name_en : dataItem.name_vi} </h2>
+                                    <Container>
+                                        <Row>
+                                            <Col className='px-3'>
+                                                <div dangerouslySetInnerHTML={{ __html: dataItem.content }} />
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <DestinationSection areaId = {dataItem.id}/>
+                                        </Row>
+                                        <Row>
+                                        <Col className='mt-4 d-flex justify-content-center'>
+                                            <a href={dataItem.url} className='btn main-box'>See all</a>
+                                        </Col>
+                                        </Row>
+                                    </Container>
+                                    <div className='mt-4'></div>
+                                </Col>
+                            </Row>
+                        )) }
+                    </Container>
+                )
+            }
         </>
     )
 }

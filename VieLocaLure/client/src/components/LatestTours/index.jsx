@@ -5,6 +5,7 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { GetTour } from "../../services/TourApi";
 import { useLanguage } from "../../LanguageContext";
 import TourCard from "../TourCard";
+import { GetImage } from "../../services/ImageApi";
 
 
 const sample = [
@@ -50,22 +51,35 @@ const sample = [
 
 const TopTours = () => {
     const { t } = useTranslation();
-    const { language, changeLanguage } = useLanguage();
-    const [data, setData] = useState([]);
+    const { language } = useLanguage();
+    const [latestTours, setLatestTours] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setData(await GetTour({isFilter: true, filterKey: 'lattest', key: 'max', value: 3}));
+                const tours = await GetTour({isFilter: true, filterKey: 'latest', key: 'max', value: 3});
+                const promises = [];
+                for (const tour of tours) {
+                    const img_response = await GetImage(tour.image);
+                    if (img_response.ok) {
+                        tour.image = URL.createObjectURL(await img_response.blob());
+                        tour.isLoaded = true;
+                        promises.push(Promise.resolve());
+                    } else {
+                        console.error(`Failed to fetch image. Status: ${img_response.status}`);
+                    }
+                }
+                setLatestTours(tours);
             } catch (error) {
                 console.error('Error fetching top tour data:', error);
             }
         };
         fetchData();
-        if (data.length === 0) {
-            setData(sample);
-        }
+        // if (latestTours.length === 0) {
+        //     setLatestTours(sample);
+        // }
     }, [])
+    
 
     return (
       <div className="top-tours my-4">
@@ -76,7 +90,7 @@ const TopTours = () => {
             <Container>
                 <Row>
                     {
-                        data.map((tour, index) => (
+                        latestTours && latestTours.length > 0 && latestTours.map((tour) => (
                             <Col lg={4} md={4}>
                                 <TourCard tour={tour}/>
                             </Col>

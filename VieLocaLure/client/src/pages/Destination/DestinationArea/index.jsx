@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Banner from '../../../components/Banner';
 import './styles.scss';
@@ -6,11 +6,14 @@ import TourCard from '../../../components/TourList';
 import { GetDescription } from '../../../services/DescriptionApi';
 import { GetProvince } from '../../../services/ProvinceApi';
 import { GetTour } from '../../../services/TourApi';
+import { GetArea } from '../../../services/AreaApi';
+import { useLanguage } from '../../../LanguageContext';
 
 const image = 'https://www.dulichrongachau.vn/image/cache/catalog/2019/Hinh%20danh%20muc%20tour/du%20lich%20sapa-cr-1920x500.jpg'
 
 const sampleDescription = {
-    'title': 'North Vietnam',
+    'name_en': 'North Vietnam',
+    'name_vi': 'Miền Bắc',
     'image': 'https://asianwaytravel.com/wp-content/uploads/2018/12/ba-be-lake.jpg',
     'content': `
         <p>Fascinating and stunning region of beauty, North Vietnam is a country of mountains, rice terraces and karst peaks.</p>
@@ -80,49 +83,67 @@ const Area = ({id}) => {
     const [description, setDescription] = useState({});
     const [destinations, setDestinations] = useState([]);
 
-    const fetchDescription = async () => {
-        try {
-            setDescription(await GetDescription(id));
-        } catch (error) {
-            console.error('Error fetching description data:', error);
+    const {language} = useLanguage();
+
+    useEffect(() => {
+        const fetchDescription = async () => {
+            try {
+                // setDescription(await GetDescription(id));
+                const areas = await GetArea();
+                const area = areas.find(item => item.id === id);
+                console.log(area)
+
+                setDescription({
+                    name_en: area.name_en,
+                    name_vi: area.name_vi,
+                    content: area.content,
+                    image: 'https://asianwaytravel.com/wp-content/uploads/2018/12/ba-be-lake.jpg'
+                });
+            } catch (error) {
+                console.error('Error fetching description data:', error);
+            }
+        };
+    
+        fetchDescription();
+    
+        if (Object.keys(description).length == 0) {
+            setDescription(sampleDescription);
         }
-    };
+    }, [])
 
-    fetchDescription();
-
-    if (Object.keys(description).length == 0) {
-        setDescription(sampleDescription);
-    }
 
     // ///////////////////////////////////////////
 
-    const fetchDestination = async () => {
-        try {
-            const provinces = await GetProvince({isFilter: true, key: 'area', value: id});
-            provinces.map(async (province) => {
-                const provinceId = province.id;
-                const tours = await GetTour({isFilter: true, filterKey: 'province', key: 'id', value: provinceId});
-                province.tours = tours
-            })
-            setDestinations(provinces);
-        } catch (error) {
-            console.error('Error fetching description data:', error);
+    useEffect(() => {
+        const fetchDestination = async () => {
+            try {
+                const provinces = await GetProvince({isFilter: true, key: 'area', value: id});
+                provinces.map(async (province) => {
+                    const provinceId = province.id;
+                    const tours = await GetTour({isFilter: true, filterKey: 'province', key: 'id', value: provinceId});
+                    province.tours = tours
+                })
+                setDestinations(provinces);
+            } catch (error) {
+                console.error('Error fetching description data:', error);
+            }
+        };
+    
+        // fetchDestination();
+    
+        if (destinations.length == 0) {
+            setDestinations(sampleDestination);
         }
-    };
+    }, [])
 
-    fetchDestination();
-
-    if (Object.keys(destinations).length == 0) {
-        setDestinations(sampleDestination);
-    }
 
     return (
         <>
-            <Banner image={image} title={description.title}/>
+            <Banner image={image} title={language == 'en' ? description.name_en : description.name_vi}/>
             <Container className='my-4'>
                 <Row className='destination-area-intro'>
                     <Col md={6} sm={12}>
-                        <h3>{description.title}</h3>
+                        <h3>{language == 'en' ? description.name_en : description.name_vi}</h3>
                         <div className='content' dangerouslySetInnerHTML={{ __html: description.content }} />
                     </Col>
                     <Col md={6} sm={12}>

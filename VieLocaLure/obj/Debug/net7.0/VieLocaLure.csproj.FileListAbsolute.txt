@@ -79,3 +79,4 @@ C:\Users\ADMIN\Desktop\VieLocaLure\VieLocaLure\bin\Debug\net7.0\Microsoft.Entity
 C:\Users\ADMIN\Desktop\VieLocaLure\VieLocaLure\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\ADMIN\Desktop\VieLocaLure\VieLocaLure\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\ADMIN\Desktop\VieLocaLure\VieLocaLure\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\ADMIN\Desktop\VieLocaLure\VieLocaLure\bin\Debug\net7.0\VieLocaLure.staticwebassets.runtime.json
