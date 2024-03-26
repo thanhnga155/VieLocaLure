@@ -18,8 +18,9 @@ namespace VieLocaLure.Controllers
         }
         //GET: api/area
         [HttpGet]
-        public ActionResult<IEnumerable<Area>> GetAreas()
+        public ActionResult<IEnumerable<Object>> GetProvinces()
         {
+
             var areas = _db.areas.Select(a => new Area
             {
                 Id = a.Id,
@@ -31,5 +32,20 @@ namespace VieLocaLure.Controllers
 
             return areas;
         }
-    };
+        [HttpGet("url")]
+        // Get: api/area/url?url=abc
+        public ActionResult<IEnumerable<Object>> GetAreaByUrl([FromQuery(Name = "url")] string url)
+        {
+            var area = _db.areas
+                .Where(a => a.url == url)
+                .Select(a => new AreaDTO
+                {
+                    ID = a.Id
+                })
+                .ToList();
+
+            return area;
+        }
+
+    }
 }

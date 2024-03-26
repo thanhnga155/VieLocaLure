@@ -14,6 +14,6 @@ namespace VieLocaLure.Models
 
         [JsonIgnore]
         public ICollection<Province> Province { get; set; }
-
     }
 }
+

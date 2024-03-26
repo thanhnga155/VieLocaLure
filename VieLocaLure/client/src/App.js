@@ -81,7 +81,7 @@ function App() {
                             <Route index element={<Destination/>} />
                             {
                                 data.map(d => (
-                                    <Route path={d.url} element={<Area id={d.id} />} />
+                                    <Route path={d.url} element={<Area/>} />
                                   ))
                             }
                         </Route>

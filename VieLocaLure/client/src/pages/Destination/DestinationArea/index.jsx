@@ -6,7 +6,7 @@ import TourCard from '../../../components/TourList';
 import { GetDescription } from '../../../services/DescriptionApi';
 import { GetProvince } from '../../../services/ProvinceApi';
 import { GetTour } from '../../../services/TourApi';
-import { GetArea } from '../../../services/AreaApi';
+import { GetArea, GetAreaIDByURL } from '../../../services/AreaApi';
 import { useLanguage } from '../../../LanguageContext';
 
 const image = 'https://www.dulichrongachau.vn/image/cache/catalog/2019/Hinh%20danh%20muc%20tour/du%20lich%20sapa-cr-1920x500.jpg'
@@ -78,10 +78,26 @@ const sampleDestination = [
 ]
 
 
-const Area = ({id}) => {
+const Area = () => {
 
     const [description, setDescription] = useState({});
     const [destinations, setDestinations] = useState([]);
+    const [id, setID] = useState();
+
+    useEffect(() => {
+        const fetchID = async () => {
+            try {
+                const url = window.location.pathname;
+                const result = await GetAreaIDByURL(url);
+                const id = result[0].id
+                setID(id);
+            } catch {
+                console.log('Error fetch area id')
+            }
+        }
+        fetchID();
+    }, [])
+
 
     const {language} = useLanguage();
 
@@ -109,7 +125,7 @@ const Area = ({id}) => {
         if (Object.keys(description).length == 0) {
             setDescription(sampleDescription);
         }
-    }, [])
+    }, [id])
 
 
     // ///////////////////////////////////////////
@@ -134,7 +150,7 @@ const Area = ({id}) => {
         if (destinations.length == 0) {
             setDestinations(sampleDestination);
         }
-    }, [])
+    }, [id])
 
 
     return (
