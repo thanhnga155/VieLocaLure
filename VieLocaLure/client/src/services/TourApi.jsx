@@ -23,13 +23,24 @@ export const GetTour = async ({ isFilter, filterKey, key, value } = {}) => {
 }
 
 export const SearchTour = async (params) => {
+    let p = ""
+    for (let key in params) {
+        let value = params[key];
+        if (value !== "") {
+            p += `${key}=${value}&`;
+        }
+    }
+
+    p = p.substring(0, p.length - 1);
+    
+    console.log(`/tour/search?${p}`)
+    
     const config = {
-        method: 'POST',
-        url: `${serverApi}/tour/search`,
+        method: 'GET',
+        url: `${serverApi}/tour/search?${p}`,
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
-        },
-        data: params
+        }
     }
 
     const { data } = await axios(config);

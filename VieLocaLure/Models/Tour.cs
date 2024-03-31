@@ -23,4 +23,12 @@ namespace VieLocaLure.Models
         public ICollection<TourDetail> TourDetail { get; set; }
         public ICollection<TourDestination> TourDestination { get; set; }
     }
+    public class SearchParameters
+    {
+        public string Keywords { get; set; }
+        public DateTime? From { get; set; }
+        public DateTime? To { get; set; }
+        public int? Area { get; set; }
+    }
+
 }
