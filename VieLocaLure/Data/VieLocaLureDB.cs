@@ -18,6 +18,7 @@ namespace VieLocaLure.Data
         public DbSet<TourDestination> tourDestinations { get; set; }
         public DbSet<Tour> tours { get; set; }
         public DbSet<TourDetail> tourDetails { get; set; }
+        public DbSet<MenuItem> menuItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,7 +42,38 @@ namespace VieLocaLure.Data
             modelBuilder.Entity<Banner>().HasData(new Banner { Id = 1, caption1_en = "special value tour", caption1_vi = "gói tour đặc biệt", caption2_en = "panorama of vietnam", caption2_vi = "toàn cảnh việt nam", caption3_en = "Departing on Apr 5, 2024", caption3_vi = "khởi hành 05/04/2024", image = "/Uploads/vang-bong-mot-thoi.jpg", url = "/tour/panorama-of-vietnam" });
             modelBuilder.Entity<Banner>().HasData(new Banner { Id = 2, caption1_en = "once upon an old time", caption1_vi = "vang bóng một thời", caption2_en = "Hue Historic Citadel", caption2_vi = "Kinh thành Huế", caption3_en = "Departing on Mar 20, 2024", caption3_vi = "khởi hành 20/03/2024", image = "/Uploads/kinh-thanh-hue.jpg", url = "/tour/kinh-thanh-hue" });
             //mỗi lần thêm vào chạy add-migration 
-
+            modelBuilder.Entity<MenuItem>().HasData(new MenuItem
+            {
+                Id = 1,
+                name_en = "Homepage",
+                name_vi = "Trang chủ",
+                level= 1,
+                url = "/",
+            });
+            modelBuilder.Entity<MenuItem>().HasData(new MenuItem
+            {
+                Id = 2,
+                name_en = "Destination",
+                name_vi = "Điểm đến",
+                level= 1,
+                url = "/destination",
+            });
+            modelBuilder.Entity<MenuItem>().HasData(new MenuItem
+            {
+                Id = 3,
+                name_en = "Tour",
+                name_vi = "Tour du lịch",
+                level=1,
+                url = "/tour",
+            });
+            modelBuilder.Entity<MenuItem>().HasData(new MenuItem
+            {
+                Id = 4,
+                name_en = "Contact",
+                name_vi = "Liên hệ",
+                level= 1,
+                url = "/contact",
+            });
             modelBuilder.Entity<Area>().HasData(new Area { Id = 1, name_en = "North Vietnam", name_vi = "Miền Bắc", url = "/destination/north-vietnam", content = "`\r\n        <p>Fascinating and stunning region of beauty, North Vietnam is a country of mountains, rice terraces and karst peaks.</p>\r\n\r\n        <p>Follow us in the region of Sapa, Moc Chau, Mai Chau and Mu Cang Chai, meeting ethnic minorities during hikes from villages to villages to admire the exceptional landscapes and discover the local traditions during a stay with the inhabitant. </p>\r\n\r\n        <p>Discover the local flora and fauna of Pu Luong National Park. Admire the incredible landscapes drawn by the many sugarloaves that emerge from the ocean and rice fields during a cruise in the famous Halong Bay and along the water in the Ninh Binh region. </p>\r\n\r\n        <p>Soak up the unique atmosphere of the administrative capital of Hanoi, a cultural city steeped in Vietnamese traditions and with a very rich gastronomy.</p>`" });
             modelBuilder.Entity<Area>().HasData(new Area
             {
@@ -84,10 +116,63 @@ namespace VieLocaLure.Data
             modelBuilder.Entity<Province>().HasData(new Province
             {
                 Id = 4,
-                name_en = "Ha Noi",
-                name_vi = "Hà Nội",
+                name_en = "Ninh Binh",
+                name_vi = "Ninh Bình",
                 AreaId = 1
             });
+            modelBuilder.Entity<Province>().HasData(
+            new Province
+            {
+                Id = 5,
+                name_en = "Hai Phong",
+                name_vi = "Hải Phòng",
+                AreaId = 1
+            },
+            new Province
+            {
+                Id = 6,
+                name_en = "Lao Cai",
+                name_vi = "Lào Cai",
+                AreaId = 1
+            },
+            new Province
+            {
+                Id = 7,
+                name_en = "Hue",
+                name_vi = "Huế",
+                AreaId = 2
+            }, new Province
+            {
+                Id = 8,
+                name_en = "Khanh Hoa",
+                name_vi = "Khánh Hòa",
+                AreaId = 2
+            }, new Province
+            {
+                Id = 9,
+                name_en = "Vung Tau",
+                name_vi = "Vũng Tàu",
+                AreaId = 3
+            }, new Province
+            {
+                Id = 10,
+                name_en = "Kien Giang",
+                name_vi = "Kiên Giang",
+                AreaId = 3
+            }, new Province
+            {
+                Id = 11,
+                name_en = "Ca Mau",
+                name_vi = "Cà Mau",
+                AreaId = 3
+            }, new Province
+            {
+                Id = 12,
+                name_en = "Ben Tre",
+                name_vi = "Bến Tre",
+                AreaId = 3
+            }
+            );
             //data image
             modelBuilder.Entity<Image>().HasData(new Image
             {
@@ -165,7 +250,130 @@ namespace VieLocaLure.Data
                 name_en = "Ho Chi Minh Mausoleum",
                 name_vi = "Lăng Chủ Tịch Hồ Chí Minh",
                 ProvinceId = 1
-            });
+            },
+            new Destination
+            {
+                Id = 5,
+                name_en = "Nhat Le Beach",
+                name_vi = "Biển Nhật Lệ",
+                ProvinceId = 3
+            },
+            new Destination
+            {
+                Id = 6,
+                name_en = "Hoa Lu ancient capital",
+                name_vi = "Cố đô Hoa Lư",
+                ProvinceId = 4
+            }, new Destination
+            {
+                Id = 7,
+                name_en = "Trang An scenic spot",
+                name_vi = "Danh thắng Tràng An",
+                ProvinceId = 4
+            }, new Destination
+            {
+                Id = 8,
+                name_en = "Cat Ba island",
+                name_vi = "Đảo Cát Bà",
+                ProvinceId = 5
+            }, new Destination
+            {
+                Id = 9,
+                name_en = "Do Son beach",
+                name_vi = "Bãi biển Đồ Sơn",
+                ProvinceId = 5
+            }, new Destination
+            {
+                Id = 10,
+                name_en = "Sapa",
+                name_vi = "Sapa",
+                ProvinceId = 6
+            }, new Destination
+            {
+                Id = 11,
+                name_en = "Co Tien mountain",
+                name_vi = "Núi cô Tiên",
+                ProvinceId = 6
+            }, new Destination
+            {
+                Id = 12,
+                name_en = "Hue Citadel - Imperial Citadel",
+                name_vi = "Kinh Thành Huế- Đại Nội",
+                ProvinceId = 7
+            }, new Destination
+            {
+                Id = 13,
+                name_en = "Huong river",
+                name_vi = "Sông Hương",
+                ProvinceId = 7
+            }, new Destination
+            {
+                Id = 14,
+                name_en = "Thiên Mụ pagoda",
+                name_vi = "Chùa Thiên Mụ",
+                ProvinceId = 7
+            }, new Destination
+            {
+                Id = 15,
+                name_en = "Hon Chong Hon Vo Nha Trang",
+                name_vi = "Hòn Chồng Hòn Vợ Nha Trang",
+                ProvinceId = 8
+            }, new Destination
+            {
+                Id = 16,
+                name_en = "Thap Ba Ponagar",
+                name_vi = "Tháp Bà",
+                ProvinceId = 8
+            }, new Destination
+            {
+                Id = 17,
+                name_en = "Ho Tram",
+                name_vi = "Hồ Tràm",
+                ProvinceId = 9
+            }, new Destination
+            {
+                Id = 18,
+                name_en = "Vung Tau beach",
+                name_vi = "Bãi biển Vũng Tàu",
+                ProvinceId = 9
+            }, new Destination
+            {
+                Id = 19,
+                name_en = "Phu Quoc island",
+                name_vi = "Đảo Phú Quốc",
+                ProvinceId = 10
+            }, new Destination
+            {
+                Id = 20,
+                name_en = "U Minh Thuong National Park",
+                name_vi = "Vườn quốc gia U Minh Thượng",
+                ProvinceId = 10
+            }, new Destination
+            {
+                Id = 21,
+                name_en = "Ca Mau floating market",
+                name_vi = "Chợ nổi Cà Mau",
+                ProvinceId = 11
+            }, new Destination
+            {
+                Id = 22,
+                name_en = "Ca Mau mangrove forest",
+                name_vi = "Rừng ngập mặn Cà Mau",
+                ProvinceId = 11
+            }, new Destination
+            {
+                Id = 23,
+                name_en = "Phu Da Island",
+                name_vi = "Cồn Phú Đa",
+                ProvinceId = 12
+            }, new Destination
+            {
+                Id = 24,
+                name_en = "Bach Van Pagoda",
+                name_vi = "Chùa Bạch Vân",
+                ProvinceId = 12
+            }
+            );
             //tour
             modelBuilder.Entity<Tour>().HasData(
             new Tour

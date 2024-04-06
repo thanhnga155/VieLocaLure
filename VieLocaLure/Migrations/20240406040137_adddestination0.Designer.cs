@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VieLocaLure.Data;
 
@@ -11,9 +12,11 @@ using VieLocaLure.Data;
 namespace VieLocaLure.Migrations
 {
     [DbContext(typeof(VieLocaLureDB))]
-    partial class VieLocaLureDBModelSnapshot : ModelSnapshot
+    [Migration("20240406040137_adddestination0")]
+    partial class adddestination0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,146 +237,6 @@ namespace VieLocaLure.Migrations
                             ProvinceId = 1,
                             name_en = "Ho Chi Minh Mausoleum",
                             name_vi = "Lăng Chủ Tịch Hồ Chí Minh"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ProvinceId = 3,
-                            name_en = "Nhat Le Beach",
-                            name_vi = "Biển Nhật Lệ"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ProvinceId = 4,
-                            name_en = "Hoa Lu ancient capital",
-                            name_vi = "Cố đô Hoa Lư"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ProvinceId = 4,
-                            name_en = "Trang An scenic spot",
-                            name_vi = "Danh thắng Tràng An"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ProvinceId = 5,
-                            name_en = "Cat Ba island",
-                            name_vi = "Đảo Cát Bà"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ProvinceId = 5,
-                            name_en = "Do Son beach",
-                            name_vi = "Bãi biển Đồ Sơn"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ProvinceId = 6,
-                            name_en = "Sapa",
-                            name_vi = "Sapa"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ProvinceId = 6,
-                            name_en = "Co Tien mountain",
-                            name_vi = "Núi cô Tiên"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ProvinceId = 7,
-                            name_en = "Hue Citadel - Imperial Citadel",
-                            name_vi = "Kinh Thành Huế- Đại Nội"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ProvinceId = 7,
-                            name_en = "Huong river",
-                            name_vi = "Sông Hương"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ProvinceId = 7,
-                            name_en = "Thiên Mụ pagoda",
-                            name_vi = "Chùa Thiên Mụ"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ProvinceId = 8,
-                            name_en = "Hon Chong Hon Vo Nha Trang",
-                            name_vi = "Hòn Chồng Hòn Vợ Nha Trang"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ProvinceId = 8,
-                            name_en = "Thap Ba Ponagar",
-                            name_vi = "Tháp Bà"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ProvinceId = 9,
-                            name_en = "Ho Tram",
-                            name_vi = "Hồ Tràm"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ProvinceId = 9,
-                            name_en = "Vung Tau beach",
-                            name_vi = "Bãi biển Vũng Tàu"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ProvinceId = 10,
-                            name_en = "Phu Quoc island",
-                            name_vi = "Đảo Phú Quốc"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ProvinceId = 10,
-                            name_en = "U Minh Thuong National Park",
-                            name_vi = "Vườn quốc gia U Minh Thượng"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ProvinceId = 11,
-                            name_en = "Ca Mau floating market",
-                            name_vi = "Chợ nổi Cà Mau"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ProvinceId = 11,
-                            name_en = "Ca Mau mangrove forest",
-                            name_vi = "Rừng ngập mặn Cà Mau"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ProvinceId = 12,
-                            name_en = "Phu Da Island",
-                            name_vi = "Cồn Phú Đa"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ProvinceId = 12,
-                            name_en = "Bach Van Pagoda",
-                            name_vi = "Chùa Bạch Vân"
                         });
                 });
 
