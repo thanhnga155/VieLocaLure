@@ -20,8 +20,9 @@ namespace VieLocaLure.Models
         public string url { get; set; }
         //FK tourDetail: 1 tour có nhiều tourDetail
         [JsonIgnore]
-        public ICollection<TourDetail> TourDetail { get; set; }
-        public ICollection<TourDestination> TourDestination { get; set; }
+        public ICollection<TourDetail>? TourDetail { get; set; }
+        [JsonIgnore]
+        public ICollection<TourDestination>? TourDestination { get; set; }
     }
     public class SearchParameters
     {

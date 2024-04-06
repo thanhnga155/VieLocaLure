@@ -9,10 +9,9 @@ namespace VieLocaLure.Models
         [Key]
         public int Id { get; set; }
         public string url { get; set; }
-        [JsonIgnore]
         public int DestinationId { get; set; }
         [JsonIgnore]
-        public Destination Destination { get; set; }
+        public Destination? Destination { get; set; }
 
         //[JsonIgnore]
         //public ICollection<TourImage> TourImage { get; set; }

@@ -187,6 +187,72 @@ namespace VieLocaLure.Controllers
 
             return Ok(tours);
         }
+        [HttpGet("listTours")]
+        public async Task<ActionResult<IEnumerable<Tour>>> GetListours()
+        {
+            var tours = await _db.tours.ToListAsync();
+            return Ok(tours);
+        }
 
+        // POST: api/tour
+        [HttpPost("add")]
+        public async Task<ActionResult<Tour>> AddTour(Tour tour)
+        {
+            _db.tours.Add(tour);
+            await _db.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetListours), new { id = tour.Id }, tour);
+        }
+
+        // PUT
+        [HttpPut("update/id= {id}")]
+        public async Task<IActionResult> UpdateTour(int id, Tour tour)
+        {
+            if (id != tour.Id)
+            {
+                return BadRequest("IDs do not match.");
+            }
+
+            _db.Entry(tour).State = EntityState.Modified;
+
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TourExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // DELETE
+        [HttpDelete("delete/id= {id}")]
+        public async Task<IActionResult> DeleteTour(int id)
+        {
+            var tour = await _db.tours.FindAsync(id);
+            if (tour == null)
+            {
+                return NotFound();
+            }
+
+            _db.tours.Remove(tour);
+            await _db.SaveChangesAsync();
+
+            return Ok(tour);
+        }
+
+        private bool TourExists(int id)
+        {
+            return _db.tours.Any(e => e.Id == id);
+        }
     }
 }

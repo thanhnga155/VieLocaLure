@@ -12,14 +12,14 @@ namespace VieLocaLure.Models
         public string name_vi { get; set; }
         //sinh FK
         [Required]
-        [JsonIgnore]
         public int ProvinceId { get; set; }
         [JsonIgnore]
-        public Province Province { get; set; }
+        public Province? Province { get; set; }
         [JsonIgnore]
         //một destination có nhiều image (quan hệ 1-n)
-        public ICollection<Image> Image { get; set; }
-        public ICollection<TourDestination> TourDestination { get; set; }
+        public ICollection<Image>? Image { get; set; }
+        [JsonIgnore]
+        public ICollection<TourDestination>? TourDestination { get; set; }
 
 
     }

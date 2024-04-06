@@ -15,12 +15,12 @@ namespace VieLocaLure.Models
 
         //sinh FK
         [Required]
-        [JsonIgnore]
         public int AreaId { get; set; }
         [JsonIgnore]
-        public Area Area { get; set; }
+
+        public Area? Area { get; set; }
 
         [JsonIgnore]
-        public ICollection<Destination> Destination { get; set; }
+        public ICollection<Destination>? Destination { get; set; }
     }
 }
