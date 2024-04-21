@@ -53,7 +53,7 @@ const HomePage = () => {
             </Container>
             <LatestTours/>
             <hr style={{"margin": "3rem 0"}}/>
-            <DestinationSlider/>
+            <DestinationSlider />
 
             <div className="homepage-description">
                 <h2 className="description-title">{data.title}</h2>

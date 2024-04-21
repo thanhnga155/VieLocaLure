@@ -27,3 +27,38 @@ export const GetAreaIDByURL = async (url) => {
     const { data } = await axios(config);
     return data
 }
+
+export const GetAreaById = async (id) => {
+    const config = {
+        method: 'GET',
+        url: `${serverApi}/area?id=` + id,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        }
+    }
+    const { data } = await axios(config);
+    return data
+}
+
+export const UpdateAreaById = async (id, data) => {
+    const { response } = await axios.post(`${serverApi}/area?id=${id}`, data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response
+}
+
+export const AddArea = async (data) => {
+    const { response } = await axios.post(`${serverApi}/area`, data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response
+}
+
+export const DeleteArea = async (id) => {
+    const { response } = await axios.delete(`${serverApi}/area?id=${id}`);
+    return response
+}

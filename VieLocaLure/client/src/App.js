@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/Homepage';
 import Footer from './components/Footer';
-import { LanguageProvider } from './LanguageContext';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Login from './pages/SignIn/Login';
 import SignUp from './pages/SignIn/SignUp';
 import Destination from './pages/Destination';
@@ -14,6 +14,8 @@ import SearchResult from './pages/SearchResult';
 import { GetArea } from './services/AreaApi';
 import { useEffect, useState } from 'react';
 import TourDetail from './pages/Tour/TourDetail';
+import AdminLayout from './pages/AdminLayout';
+import { useUser } from './contexts/UserContext';
 
 const areaSample = [
     {
@@ -39,6 +41,7 @@ const areaSample = [
 function App() {
 
     const [data, setData] = useState([]);
+    const { user } = useUser();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,17 +75,20 @@ function App() {
         <LanguageProvider>
             <div>
                 <BrowserRouter>
-                    <Header/>
+                    {
+                        user?.role === 'user' && 
+                        <Header/>
+                    }
                     <Routes>
                         <Route path='/' element={<HomePage/>}/>
                         <Route path='/login' element={<Login/>}/>
                         <Route path='/register' element={<SignUp/>}/>
-                        <Route path='/destination'>
+                        <Route path='/area'>
                             <Route index element={<Destination/>} />
                             {
                                 data.map(d => (
                                     <Route path={d.url} element={<Area/>} />
-                                  ))
+                                ))
                             }
                         </Route>
                         <Route path='/tour'>
@@ -91,8 +97,17 @@ function App() {
                         </Route>
                         <Route path='/contact' element={<Contact/>} />
                         <Route path='/search' element={<SearchResult/>} />
+                        {
+                            user?.role === 'admin' && (
+                                <Route path='/admin/*' element={<AdminLayout />}>
+                                </Route>
+                            )
+                        }
                     </Routes>
-                    <Footer/>
+                    {
+                        user?.role === 'user' && 
+                        <Footer/>
+                    }
                 </BrowserRouter>
             </div>
         </LanguageProvider>

@@ -3,7 +3,7 @@ import './styles.scss';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Row } from 'react-bootstrap';
 import vietnam from '../../images/vietnam.png';
-import { useLanguage } from '../../LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { GetProvince } from '../../services/ProvinceApi';
 import { GetDestination } from '../../services/DestinationApi';
 import { GetImage } from '../../services/ImageApi';

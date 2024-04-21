@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import { useTranslation } from 'react-i18next';
 import en from '../../../images/en.png';
 import vi from '../../../images/vi.png';
-import { useLanguage } from '../../../LanguageContext';
+import { useLanguage } from '../../../contexts/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const TopHeader = () => {

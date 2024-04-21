@@ -3,9 +3,8 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import './styles.scss';
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "../../LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 import { GetTour } from "../../services/TourApi";
-import { GetImage } from "../../services/ImageApi";
 
 
 const divStyle = {
@@ -48,20 +47,7 @@ const Slider = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const tours = await GetTour({isFilter: true, filterKey: 'hottest', key: 'max', value:3});
-                
-                const promises = [];
-                for (const tour of tours) {
-                    const img_response = await GetImage(tour.image);
-                    if (img_response.ok) {
-                        tour.image = URL.createObjectURL(await img_response.blob());
-                        tour.isLoaded = true;
-                        promises.push(Promise.resolve());
-                    } else {
-                        console.error(`Failed to fetch image. Status: ${img_response.status}`);
-                    }
-                }
-                setData(tours);
+                setData(await GetTour({isFilter: true, filterKey: 'hottest', key: 'max', value:3}));
             } catch (error) {
                 console.error('Error fetching hottest tours:', error);
             }
@@ -74,7 +60,7 @@ const Slider = () => {
 
     const { t } = useTranslation();
 
-    const { language } = useLanguage();
+    const { language, changeLanguage } = useLanguage();
     
     
     return (

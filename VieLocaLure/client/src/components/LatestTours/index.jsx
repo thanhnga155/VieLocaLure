@@ -3,7 +3,7 @@ import './styles.scss';
 import { useTranslation } from "react-i18next";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { GetTour } from "../../services/TourApi";
-import { useLanguage } from "../../LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 import TourCard from "../TourCard";
 import { GetImage } from "../../services/ImageApi";
 

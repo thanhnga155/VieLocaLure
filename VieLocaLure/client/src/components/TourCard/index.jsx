@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap';
-import { useLanguage } from '../../LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import './styles.scss';
 import { useTranslation } from 'react-i18next';
 import { convertCurrency } from '../../utils/convertCurrency';

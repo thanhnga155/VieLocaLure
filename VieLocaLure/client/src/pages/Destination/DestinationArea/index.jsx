@@ -7,7 +7,7 @@ import { GetDescription } from '../../../services/DescriptionApi';
 import { GetProvince } from '../../../services/ProvinceApi';
 import { GetTour } from '../../../services/TourApi';
 import { GetArea, GetAreaIDByURL } from '../../../services/AreaApi';
-import { useLanguage } from '../../../LanguageContext';
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 const image = 'https://www.dulichrongachau.vn/image/cache/catalog/2019/Hinh%20danh%20muc%20tour/du%20lich%20sapa-cr-1920x500.jpg'
 

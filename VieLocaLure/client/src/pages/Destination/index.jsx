@@ -4,7 +4,7 @@ import destination from '../../images/scene.jpg'
 import { DestinationSection } from '../../components/DestinationSection'
 import { GetArea } from '../../services/AreaApi'
 import { Col, Container, Row } from 'react-bootstrap'
-import { useLanguage } from '../../LanguageContext'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 const description = "Embark on a journey with us and let Vietnam's beauty unfold before you. Your dream destination is just a click away, promising memories that will last a lifetime. Start exploring today!"
 
@@ -57,7 +57,7 @@ const Destination = () => {
     const {language} = useLanguage();
 
     useEffect(() => {
-        const fetchDestination = async () => {
+        const fetchArea = async () => {
             try {
                 const areas = await GetArea();
                 setData(areas);
@@ -67,7 +67,7 @@ const Destination = () => {
             }
         };
     
-        fetchDestination();
+        fetchArea();
         // if (data.length == 0) {
         //     setData(sampleData)
         // }

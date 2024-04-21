@@ -3,7 +3,7 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import './styles.scss'
 import { useTranslation } from "react-i18next";
 import { GetArea } from "../../services/AreaApi";
-import { useLanguage } from "../../LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const sampleAreas = [
     {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import './styles.scss'
-import { useLanguage } from '../../LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { convertToMetaUrl } from '../../utils/convertMetaUrl';
 import { GetImage } from '../../services/ImageApi';
 import { GetDestination } from '../../services/DestinationApi';
