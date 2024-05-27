@@ -41,7 +41,7 @@ export const GetAreaById = async (id) => {
 }
 
 export const UpdateAreaById = async (id, data) => {
-    const { response } = await axios.post(`${serverApi}/area?id=${id}`, data, {
+    const { response } = await axios.put(`${serverApi}/area?id=${id}`, data, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },

@@ -82,7 +82,7 @@ const AddForm = ({addModal, setAddModal, toggleOpenAdd}) => {
             <MDBModalDialog size='fullscreen'>
                 <MDBModalContent>
                     <MDBModalHeader>
-                        <MDBModalTitle>Add a new nav bar</MDBModalTitle>
+                        <MDBModalTitle>Add a new area</MDBModalTitle>
                         <MDBBtn className='btn-close' color='none' onClick={toggleOpenAdd}></MDBBtn>
                     </MDBModalHeader>
 

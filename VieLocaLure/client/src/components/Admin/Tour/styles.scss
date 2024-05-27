@@ -1,0 +1,16 @@
+.departure-dates:hover .edit-departure {
+    display: inline-block !important;
+}
+
+.departure-dates:hover {
+    cursor: pointer;
+}
+
+.edit-departure {
+    display: none !important;
+}
+
+.departures-data {
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px;
+}

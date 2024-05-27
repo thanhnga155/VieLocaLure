@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -10,7 +10,9 @@ import {
     MDBModalFooter,
 } from 'mdb-react-ui-kit';
 import { Form } from 'react-bootstrap';
-import { AddProvince, GetProvince } from '../../../../services/ProvinceApi';
+import { GetProvince } from '../../../../services/ProvinceApi';
+import { AddDestination } from '../../../../services/DestinationApi';
+import { Typeahead } from 'react-bootstrap-typeahead';
 
 const provinceSample = [
     {
@@ -47,6 +49,10 @@ const AddForm = ({addModal, setAddModal, toggleOpenAdd}) => {
     const [navName_vi, setNavName_vi] = useState('');
     const [selectedProvince, setSelectedProvince] = useState();
     const [province, setProvince] = useState([]);
+    const [images, setImages] = useState([]);
+    const [imgSrcs, setImgSrcs] = useState([]);
+
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         const fetchProvince = async() => {
@@ -64,6 +70,29 @@ const AddForm = ({addModal, setAddModal, toggleOpenAdd}) => {
         }
     }, [province]);
 
+    const handleOnChangeImage = () => {
+        const files = fileInputRef.current.files;
+        const newImages = [...images];
+        const newImgSrcs = [...imgSrcs];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                newImgSrcs.push(reader.result);
+                setImgSrcs(newImgSrcs);
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+                newImages.push(file);
+            }
+        }
+
+        setImages(newImages);
+    };
+
     const updateProvince = (event) => {
         setSelectedProvince(event.target.value);
     }
@@ -78,30 +107,46 @@ const AddForm = ({addModal, setAddModal, toggleOpenAdd}) => {
     }
 
     const handleAdd = async() => {
-        const data = {
-            navName_en,
-            navName_vi,
-            province: selectedProvince
+        const data = new FormData();
+        data.append('navName_en', navName_en);
+        data.append('navName_vi', navName_vi);
+        data.append('province', selectedProvince);
+        
+        for (let i = 0; i < images.length; i++) {
+            data.append('image[]', images[i]);
         }
+
         try {
-            const response = await AddProvince(data);
+            const response = await AddDestination(data);
             if (response.ok) {
-                // setAddModal(false);
-                console.log('Successfully add new province');
+                setAddModal(false);
+                console.log('Successfully add new destination');
             }
         } catch (error) {
-            console.log('Error POSTING a new province:', error);
+            console.log('Error POSTING a new destination:', error);
         }
 
         setAddModal(false);
     }
 
+    
+    const handleDeleteImage = (index) => {
+        const newImages = [...images];
+        const newImgSrcs = [...imgSrcs];
+
+        newImages.splice(index, 1);
+        newImgSrcs.splice(index, 1);
+
+        setImages(newImages);
+        setImgSrcs(newImgSrcs);
+    };
+
     return (
         <MDBModal open={addModal} setOpen={setAddModal} tabIndex='-1'>
-            <MDBModalDialog>
+            <MDBModalDialog size='lg'>
                 <MDBModalContent>
                     <MDBModalHeader>
-                        <MDBModalTitle>Add a new nav bar</MDBModalTitle>
+                        <MDBModalTitle>Add a new destination</MDBModalTitle>
                         <MDBBtn className='btn-close' color='none' onClick={toggleOpenAdd}></MDBBtn>
                     </MDBModalHeader>
 
@@ -116,15 +161,52 @@ const AddForm = ({addModal, setAddModal, toggleOpenAdd}) => {
                                 <Form.Label>Name (vi):</Form.Label>
                                 <Form.Control onChange={updateNavNameVi} value={navName_vi} type="text" placeholder="Enter name in Vietnamese" />
                             </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="name_vi">
+                                <Form.Label>Images:</Form.Label>
+                                <div>
+                                    <input
+                                        ref={fileInputRef}
+                                        type="file"
+                                        name="upload"
+                                        multiple={true}
+                                        onChange={handleOnChangeImage}
+                                        accept='image/*'
+                                        hidden={true}
+                                        id="img-upload2"
+                                    />
+                                    {/* {imgSrc && <img width={"300px"} src={imgSrc} alt="Uploaded" />} */}
+                                    <div className="container">
+                                        <div className="row d-flex align-items-center">
+                                            {imgSrcs.map((src, index) => (
+                                                <div key={index} className="col-md-4 mb-3 position-relative">
+                                                    <img width={"100%"} height={"200px"} src={src} alt={`Uploaded ${index}`} />
+                                                    <button 
+                                                        className="btn btn-danger btn-sm position-absolute top-0 end-0 m-2" 
+                                                        onClick={() => handleDeleteImage(index)}
+                                                        type='button'>
+                                                        <i className="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            <label htmlFor="img-upload2" style={{borderRadius: "100px", height: "40px", width: "40px"}} className='main-box p-2 me-2 d-flex justify-content-center align-items-center'>
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Form.Group>
+
                             <Form.Group className="mb-3" controlId="nav_url">
                                 <Form.Label>Province:</Form.Label>
-                                <Form.Select onChange={updateProvince} value={selectedProvince}>
-                                    {
-                                        province.map(item => (
-                                            <option onSel={updateProvince} selected={selectedProvince === item.id} value={item.id}>{item.name_en}</option>
-                                        ))
-                                    }
-                                </Form.Select>
+                                <Typeahead
+                                    id="basic-typeahead-single"
+                                    labelKey="name_en"
+                                    onChange={setSelectedProvince}
+                                    options={province}
+                                    placeholder="Choose a province"
+                                    selected={selectedProvince}
+                                />
                             </Form.Group>
                         </Form>
                     </MDBModalBody>

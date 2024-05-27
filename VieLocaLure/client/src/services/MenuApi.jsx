@@ -28,7 +28,7 @@ export const GetMenuItemById = async (id) => {
 }
 
 export const UpdateMenuItemById = async (id, data) => {
-    const { response } = await axios.post(`${serverApi}/menuItems?id=${id}`, data);
+    const { response } = await axios.put(`${serverApi}/menuItems?id=${id}`, data);
     return response
 }
 

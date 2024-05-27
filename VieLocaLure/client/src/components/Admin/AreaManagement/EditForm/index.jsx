@@ -117,7 +117,7 @@ const EditForm = ({editModal, setEditModal, toggleOpen, id}) => {
             <MDBModalDialog size='fullscreen'>
                 <MDBModalContent className='px-5'>
                     <MDBModalHeader>
-                        <MDBModalTitle>Edit Navbar</MDBModalTitle>
+                        <MDBModalTitle>Edit area</MDBModalTitle>
                         <MDBBtn className='btn-close' color='none' onClick={toggleOpen}></MDBBtn>
                     </MDBModalHeader>
 

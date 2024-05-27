@@ -58,3 +58,18 @@ export const GetTourDetailByUrl = async (url) => {
     const { data } = await axios(config);
     return data
 }
+
+export const AddTour = async (data) => {
+    const { response } = await axios.post(`${serverApi}/tour`, data);
+    return response
+}
+
+export const DeleteTour = async (id) => {
+    const { response } = await axios.delete(`${serverApi}/tour?id=${id}`);
+    return response
+}
+
+export const UpdateTourById = async (id, data) => {
+    const { response } = await axios.put(`${serverApi}/tour?id=${id}`, data);
+    return response
+}

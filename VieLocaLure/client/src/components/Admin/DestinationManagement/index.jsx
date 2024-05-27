@@ -9,12 +9,17 @@ import AddIcon from '@mui/icons-material/Add';
 import { Alert } from 'react-bootstrap';
 import EditForm from './EditForm';
 import AddForm from './AddForm';
+import { MDBBtn, MDBIcon, MDBInput, MDBInputGroup } from 'mdb-react-ui-kit';
 
 const sampleDestination = [
     {
         id: 0,
         name_en: "Landmark 81",
         name_vi: "Landmark 81",
+        image: [
+            'https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg',
+            'https://ik.imagekit.io/tvlk/blog/2024/01/landmark-81-cover.jpg?tr=dpr-2.625,h-320,q-25,w-320',
+        ],
         province: {
             id: 0,
             name_en: "Ho Chi Minh City",
@@ -25,10 +30,14 @@ const sampleDestination = [
         id: 1,
         name_en: "Ha Long Bay",
         name_vi: "Vịnh Hạ Long",
+        image: [
+            'https://statics.vinpearl.com/du-lich-vinh-Ha-Long-hinh-anh1_1625911963.jpg',
+            'https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-vinh-ha-long-1.jpg?tr=dpr-2,w-675',
+        ],
         province: {
             id: 1,
             name_en: "Quang Ninh",
-            name_vi: "Quảng N"
+            name_vi: "Quảng Ninh"
         },
     }
 ]
@@ -49,7 +58,7 @@ const columns = [
     {
         field: 'name_en', 
         headerName: 'Name', 
-        width: 400, 
+        width: 350, 
         renderHeader: () => (
             <strong>
             {'Name '}
@@ -57,9 +66,22 @@ const columns = [
         ) 
     },
     {
+        field: 'image', 
+        headerName: 'Image', 
+        width: 300, 
+        renderHeader: () => (
+            <strong>
+            {'Image '}
+            </strong>
+        ),
+        renderCell: (params) => (
+            <img width={100} height={100} src={params.value[0]} alt="destination" />
+        )
+    },
+    {
         field: 'province', 
         headerName: 'Province', 
-        width: 400, 
+        width: 200, 
         renderHeader: () => (
             <strong>
             {'Province'}
@@ -79,6 +101,8 @@ const DestinationManagement = () => {
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [alert, setAlert] = useState({});
+    const [matchDestinations, setMatchDestinations] = useState();
+    const [query, setQuery] = useState('');
     
     const toggleOpen = () => setEditModal(!editModal);
     const toggleOpenAdd = () => setAddModal(!addModal);
@@ -110,6 +134,16 @@ const DestinationManagement = () => {
     const handleRowSelected = (ids) => {
         setNumSelected(ids.length);
         setRowIdSelected(ids);
+    }
+
+    const handleSearch = (e) => {
+        const query = e.target.value.toLowerCase();
+        setQuery(query);
+
+        const filterDestinations = destination.filter((item) => {
+            return item.name_en.toLowerCase().includes(query);
+        });
+        setMatchDestinations(filterDestinations);
     }
 
 
@@ -159,7 +193,7 @@ const DestinationManagement = () => {
 
     return (
         destination.length > 0 &&
-        <div style={{ height: 370, width: '100%', position: 'relative' }}>
+        <div style={{ marginBottom: '10px', width: '100%', position: 'relative' }}>
             <Toolbar
                 sx={{
                     pl: { sm: 2 },
@@ -196,23 +230,32 @@ const DestinationManagement = () => {
                 )}
 
                 {
-                    numSelected > 0 && 
-                    <>
-                        <Tooltip title="Edit">
-                            <IconButton className='me-3'>
-                                <EditIcon onClick={onEdit} />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Delete">
-                            <IconButton>
-                                <DeleteIcon onClick={onDelete}/>
-                            </IconButton>
-                        </Tooltip>
-                    </>
+                    numSelected > 0 ? 
+                        <>
+                            <Tooltip title="Edit">
+                                <IconButton className='me-3'>
+                                    <EditIcon onClick={onEdit} />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                                <IconButton>
+                                    <DeleteIcon onClick={onDelete}/>
+                                </IconButton>
+                            </Tooltip>
+                        </>
+                    :
+                        <MDBInputGroup className='justify-content-end'>
+                            <MDBInput placeholder='Search' onKeyUp={handleSearch}/>
+                            <MDBBtn rippleColor='dark' style={{"height": "fit-content"}}>
+                                <MDBIcon icon='search' />
+                            </MDBBtn>
+                        </MDBInputGroup>
                 }
             </Toolbar>
+         
             <DataGrid
-                rows={destination}
+                rows={query.length === 0 ? destination : matchDestinations}                        
+                rowHeight={150}
                 columns={columns}
                 initialState={{
                     pagination: {
@@ -223,6 +266,7 @@ const DestinationManagement = () => {
                 checkboxSelection
                 onRowSelectionModelChange={handleRowSelected}
             />
+            
             {
                 showAlert === true && alert.type &&
                     <Alert style={{position: 'absolute', top: '20%', right: '5%'}} variant={alert.type} onClose={() => setShowAlert(false)} dismissible>

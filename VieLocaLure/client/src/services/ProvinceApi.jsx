@@ -35,7 +35,7 @@ export const GetProvinceById = async (id) => {
 }
 
 export const UpdateProvinceById = async (id, data) => {
-    const { response } = await axios.post(`${serverApi}/province?id=${id}`, data);
+    const { response } = await axios.put(`${serverApi}/province?id=${id}`, data);
     return response
 }
 

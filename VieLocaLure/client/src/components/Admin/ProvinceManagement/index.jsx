@@ -9,6 +9,7 @@ import { Alert } from 'react-bootstrap';
 import EditForm from './EditForm';
 import AddForm from './AddForm';
 import { DeleteProvince, GetProvince } from '../../../services/ProvinceApi';
+import { MDBBtn, MDBIcon, MDBInput, MDBInputGroup } from 'mdb-react-ui-kit';
 
 const columns = [
     {
@@ -88,6 +89,9 @@ const ProvinceManagement = () => {
     const [editModal, setEditModal] = useState(false);
     const [addModal, setAddModal] = useState(false);
     const [alert, setAlert] = useState({});
+    const [query, setQuery] = useState('');
+    const [matchProvince, setMatchProvince] = useState([]);
+
     const toggleOpen = () => setEditModal(!editModal);
     const toggleOpenAdd = () => setAddModal(!addModal);
 
@@ -163,6 +167,16 @@ const ProvinceManagement = () => {
     const onAdd = () => {
         setAddModal(true);
     }
+
+    const handleSearch = (e) => {
+        const query = e.target.value.toLowerCase();
+        setQuery(query);
+
+        const filteredProvince = province.filter((item) => {
+            return item.name_en.toLowerCase().includes(query);
+        });
+        setMatchProvince(filteredProvince);
+    }
     
 
     return (
@@ -204,23 +218,30 @@ const ProvinceManagement = () => {
                 )}
 
                 {
-                    numSelected > 0 && 
-                    <>
-                        <Tooltip title="Edit">
-                            <IconButton className='me-3'>
-                                <EditIcon onClick={onEdit} />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Delete">
-                            <IconButton>
-                                <DeleteIcon onClick={onDelete}/>
-                            </IconButton>
-                        </Tooltip>
-                    </>
+                    numSelected > 0 ?
+                        <>
+                            <Tooltip title="Edit">
+                                <IconButton className='me-3'>
+                                    <EditIcon onClick={onEdit} />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                                <IconButton>
+                                    <DeleteIcon onClick={onDelete}/>
+                                </IconButton>
+                            </Tooltip>
+                        </>
+                    :
+                        <MDBInputGroup className='justify-content-end'>
+                            <MDBInput placeholder='Search' onKeyUp={handleSearch}/>
+                            <MDBBtn rippleColor='dark' style={{"height": "fit-content"}}>
+                                <MDBIcon icon='search' />
+                            </MDBBtn>
+                        </MDBInputGroup>
                 }
             </Toolbar>
             <DataGrid
-                rows={province}
+                rows={query.length === 0 ? province : matchProvince}
                 columns={columns}
                 initialState={{
                     pagination: {

@@ -22,12 +22,16 @@ export const GetDestination = async ({ isFilter, key, value } = {}) => {
 }
 
 export const UpdateDestinationById = async (id, data) => {
-    const { response } = await axios.post(`${serverApi}/destination?id=${id}`, data);
+    const { response } = await axios.put(`${serverApi}/destination?id=${id}`, data);
     return response
 }
 
 export const AddDestination = async (data) => {
-    const { response } = await axios.post(`${serverApi}/destination`, data);
+    const { response } = await axios.post(`${serverApi}/destination`, data, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
     return response
 }
 

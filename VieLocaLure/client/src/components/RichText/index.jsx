@@ -34,30 +34,30 @@ const RichText = ({ onTextChange, content }) => {
 
 
     return (
-        editorValue ?
-        <ReactQuill
-            ref={reactQuillRef}
-            style={{minHeight: '100px', marginBottom: '3rem'}}
-            value={editorValue}
-            onChange={handleChange}
-            modules={{
-                toolbar: {
-                    container: [
-                        [{ header: [1, 2, false] }, {size: []}],
-                        ['bold', 'italic', 'underline'],
-                        [{align: []},],
-                        [{"list": "order"}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-                        ['image', 'code-block', 'link'],
-                    ],
-                    handlers: {
-                        image: imageHandler,
-                    },
+        // editorValue ?
+        // <ReactQuill
+        //     ref={reactQuillRef}
+        //     style={{minHeight: '100px', marginBottom: '3rem'}}
+        //     value={editorValue}
+        //     onChange={handleChange}
+        //     modules={{
+        //         toolbar: {
+        //             container: [
+        //                 [{ header: [1, 2, false] }, {size: []}],
+        //                 ['bold', 'italic', 'underline'],
+        //                 [{align: []},],
+        //                 [{"list": "ordered"}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        //                 ['image', 'code-block', 'link'],
+        //             ],
+        //             handlers: {
+        //                 image: imageHandler,
+        //             },
 
-                } 
-            }}
-            theme="snow"
-        />
-        : 
+        //         } 
+        //     }}
+        //     theme="snow"
+        // />
+        // : 
         <ReactQuill
             ref={reactQuillRef}
             style={{minHeight: '100px', marginBottom: '3rem'}}
@@ -69,7 +69,7 @@ const RichText = ({ onTextChange, content }) => {
                         [{ header: [1, 2, false] }, {size: []}],
                         ['bold', 'italic', 'underline'],
                         [{align: []},],
-                        [{"list": "order"}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+                        [{"list": "ordered"}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
                         ['image', 'code-block', 'link'],
                     ],
                     handlers: {
