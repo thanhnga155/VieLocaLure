@@ -41,7 +41,17 @@ const areaSample = [
 function App() {
 
     const [data, setData] = useState([]);
-    const { user } = useUser();
+    const {user, changeUser, getUser} = useUser();
+
+    // if (getUser('user')) {
+    //     changeUser(getUser('user'));
+    // }
+
+    useEffect(() =>{
+        if (user) {
+            console.log(getUser('user'))
+        }
+    }, [user]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -75,10 +85,7 @@ function App() {
         <LanguageProvider>
             <div>
                 <BrowserRouter>
-                    {
-                        user?.role === 'user' && 
-                        <Header/>
-                    }
+                    <Header/>
                     <Routes>
                         <Route path='/' element={<HomePage/>}/>
                         <Route path='/login' element={<Login/>}/>
@@ -105,7 +112,7 @@ function App() {
                         }
                     </Routes>
                     {
-                        user?.role === 'user' && 
+                        user?.role === 'client' && 
                         <Footer/>
                     }
                 </BrowserRouter>
