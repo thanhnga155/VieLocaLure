@@ -6,7 +6,7 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({
-        role: 'admin',
+        role: 'user',
         accessToken: null
     });
 
