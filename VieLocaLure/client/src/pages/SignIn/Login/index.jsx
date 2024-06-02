@@ -1,17 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import '../styles.scss'
 import background from '../../../images/background.jpg';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Col, Container, Row } from "react-bootstrap";
+import { LoginAPI } from "../../../services/AuthApi";
+import { useUser } from "../../../contexts/UserContext";
 
 const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState('');
+
+    const { saveUser, changeUser } = useUser();
+
+    const updateUserName = (e) => {
+        setUsername(e.target.value)
+    }
+
+    const updatePassword = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const login = async () => {
+        const data = {username, password}
+
+        try {
+            const response = await LoginAPI(data);
+            if (response) {
+                const data = response.data;
+                changeUser(data)
+                if (data.accesstoken) {
+                    saveUser(data);
+                }
+                
+
+            }
+        } catch (error) {
+            const data = error.response.data
+            setLoginStatus(data);
+        }
+
+    }
+
     return (
         <div className="login-page">
             <div className="limiter">
                 <div className="container-login100" style={{"backgroundImage": `url(${background})`}}>
                     <div className="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                        <form className="login100-form validate-form flex-sb flex-w">
+                        <div className="login100-form validate-form flex-sb flex-w">
                             <span className="login100-form-title p-b-53">
                                 Sign In With
                             </span>
@@ -40,7 +77,7 @@ const Login = () => {
                                 </span>
                             </div>
                             <div className="wrap-input100 validate-input" data-validate = "Username is required">
-                                <input className="input100" type="text" name="username" />
+                                <input className="input100" type="text" name="username" value={username} onChange={updateUserName} />
                                 <span className="focus-input100"></span>
                             </div>
                             
@@ -54,12 +91,16 @@ const Login = () => {
                                 </a>
                             </div>
                             <div className="wrap-input100 validate-input" data-validate = "Password is required">
-                                <input className="input100" type="password" name="pass" />
+                                <input className="input100" type="password" name="pass" value={password} onChange={updatePassword} />
                                 <span className="focus-input100"></span>
+                            </div>
+                            
+                            <div className="mt-1">
+                                <span style={{color: 'red'}}>{loginStatus}</span>
                             </div>
 
                             <div className="container-login100-form-btn mt-4">
-                                <button className="login100-form-btn fw-bold">
+                                <button type="button" className="login100-form-btn fw-bold" onClick={login}>
                                     Sign In
                                 </button>
                             </div>
@@ -73,7 +114,7 @@ const Login = () => {
                                     Sign up now
                                 </a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
