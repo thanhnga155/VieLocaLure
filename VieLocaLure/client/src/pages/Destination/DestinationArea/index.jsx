@@ -155,7 +155,11 @@ const Area = () => {
 
     return (
         <>
+<<<<<<< Updated upstream
             <Banner image={image} title={language == 'en' ? description.name_en : description.name_vi}/>
+=======
+            <Banner image={image} title={description.title}/>
+>>>>>>> Stashed changes
             <Container className='my-4'>
                 <Row className='destination-area-intro'>
                     <Col md={6} sm={12}>
