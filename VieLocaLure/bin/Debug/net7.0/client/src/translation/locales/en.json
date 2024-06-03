@@ -2,6 +2,7 @@
     "homepage": {
         "header": {
             "login": "Login",
+            "logout": "Logout",
             "language": "Tiếng Việt",
             "homepage": "Homepage",
             "destination": "Area",
