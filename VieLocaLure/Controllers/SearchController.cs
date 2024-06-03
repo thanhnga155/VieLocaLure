@@ -79,6 +79,130 @@ namespace VieLocaLure.Controllers
 
             return Ok(tours);
         }
+        /*private readonly string _modelPath = "vgg16_v2.onnx";
+        private readonly string _featuresPath = "features.pkl";
 
+        [HttpPost("/search/image")]
+        public async Task<IActionResult> SearchImage([FromForm] IFormFile imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0)
+            {
+                return BadRequest("Please upload an image file.");
+            }
+
+            try
+            {
+                // Load model and features (assuming these are loaded once on application startup)
+                var session = CBIR.LoadModel(_modelPath);
+                var inputSize = (224, 224);
+                var features = CBIR.LoadFeatureVector();
+
+                // Preprocess uploaded image
+                using (var stream = imageFile.OpenReadStream())
+                {
+                    var image = await Cv2.ImReadAsync(stream);
+                    var preprocessedImage = CBIR.PreprocessImage(image, inputSize);
+
+                    // Extract features from the image
+                    var featureVector = CBIR.ExtractFeatures(session, preprocessedImage);
+
+                    // Find similar images
+                    var similarImages = CBIR.FindSimilarImages(featureVector, features, 5);
+
+                    // Prepare and return response data
+                    return Ok(similarImages.Select(result => new
+                    {
+                        Path = result.Item1,
+                        Similarity = result.Item2
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error searching image: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+    }
+    public static class CBIR
+    {
+        private const string ModelPath = "vgg16_v2.onnx";
+        private const string FeaturesPath = "features.pkl";
+
+        public static NDArrayView PreprocessImage(string imagePath, (int, int) inputSize)
+        {
+            using (var image = Cv2.ImRead(imagePath))
+            {
+                Cv2.Resize(image, image, new OpenCvSharp.Size(inputSize.Item1, inputSize.Item2));
+                image.ConvertTo(image, MatType.CV_32F, 1.0 / 255.0);
+                Cv2.Transpose(image, image);
+                return image.Reshape(1, 3, inputSize.Item1, inputSize.Item2);
+            }
+        }
+
+        public static float[] ExtractFeatures(InferenceSession session, NDArrayView image)
+        {
+            var inputMeta = session.InputMetadata;
+            var outputMeta = session.OutputMetadata;
+
+            var inputs = new List<NamedOnnxValue>
+        {
+            NamedOnnxValue.CreateFromTensor(inputMeta.Keys.First(), image)
+        };
+
+            using var results = session.Run(inputs);
+            var resultTensor = results.First().AsTensor<float>();
+            var featureVector = resultTensor.ToArray();
+            var norm = (float)Math.Sqrt(featureVector.Sum(x => x * x));
+
+            for (var i = 0; i < featureVector.Length; i++)
+            {
+                featureVector[i] /= norm;
+            }
+
+            return featureVector;
+        }
+
+        public static InferenceSession LoadModel(string modelPath)
+        {
+            return new InferenceSession(modelPath);
+        }
+
+        public static List<(string, float[])> LoadFeatureVector()
+        {
+            try
+            {
+                using var file = File.OpenRead(FeaturesPath);
+                var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                return (List<(string, float[])>)formatter.Deserialize(file);
+            }
+            catch (Exception)
+            {
+                return new List<(string, float[])>(); // Return empty list if features not found
+            }
+        }
+
+        public static float CosineSimilarity(float[] a, float[] b)
+        {
+            var dotProduct = a.Zip(b, (x, y) => x * y).Sum();
+            var normA = Math.Sqrt(a.Sum(x => x * x));
+            var normB = Math.Sqrt(b.Sum(y => y * y));
+            return (float)(dotProduct / (normA * normB));
+        }
+
+        public static List<(string, float)> FindSimilarImages(float[] queryVector, List<(string, float[])> featureVectors, int topK = 5)
+        {
+            var similarities = new List<(string, float)>();
+
+            foreach (var (imagePath, featureVector) in featureVectors)
+            {
+                var similarity = 100 * CosineSimilarity(queryVector, featureVector);
+                similarities.Add((imagePath, similarity));
+            }
+
+            similarities = similarities.OrderByDescending(s => s.Item2).ToList();
+            return similarities.Take(topK).ToList();
+        }
+    }*/
     }
 }

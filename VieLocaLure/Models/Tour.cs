@@ -9,7 +9,7 @@ namespace VieLocaLure.Models
     {
         [Key]
         public int Id { get; set; }
-        public string title_en{ get; set; }
+        public string title_en { get; set; }
         public string title_vi { get; set; }
         public string duration_en { get; set; }
         public string duration_vi { get; set; }
@@ -23,6 +23,10 @@ namespace VieLocaLure.Models
         public ICollection<TourDetail>? TourDetail { get; set; }
         [JsonIgnore]
         public ICollection<TourDestination>? TourDestination { get; set; }
+        //1 tour có nhiều booking
+        [JsonIgnore]
+        public ICollection<InvoiceDetail>? InvoiceDetail { get; set; }
+
     }
     public class SearchParameters
     {

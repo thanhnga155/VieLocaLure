@@ -12,7 +12,7 @@ using VieLocaLure.Data;
 namespace VieLocaLure.Migrations
 {
     [DbContext(typeof(VieLocaLureDB))]
-    [Migration("20240323094451_init")]
+    [Migration("20240603141624_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace VieLocaLure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("VieLocaLure.Models.Accounts", b =>
+            modelBuilder.Entity("VieLocaLure.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,15 @@ namespace VieLocaLure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("gmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -46,6 +54,10 @@ namespace VieLocaLure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("phone_number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -167,7 +179,7 @@ namespace VieLocaLure.Migrations
                             caption2_vi = "toàn cảnh việt nam",
                             caption3_en = "Departing on Apr 5, 2024",
                             caption3_vi = "khởi hành 05/04/2024",
-                            image = "https://zoomtravel.vn/upload/images/samten-hills-0.jpg",
+                            image = "/Uploads/vang-bong-mot-thoi.jpg",
                             url = "/tour/panorama-of-vietnam"
                         },
                         new
@@ -179,7 +191,7 @@ namespace VieLocaLure.Migrations
                             caption2_vi = "Kinh thành Huế",
                             caption3_en = "Departing on Mar 20, 2024",
                             caption3_vi = "khởi hành 20/03/2024",
-                            image = "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg",
+                            image = "/Uploads/kinh-thanh-hue.jpg",
                             url = "/tour/kinh-thanh-hue"
                         });
                 });
@@ -237,6 +249,146 @@ namespace VieLocaLure.Migrations
                             ProvinceId = 1,
                             name_en = "Ho Chi Minh Mausoleum",
                             name_vi = "Lăng Chủ Tịch Hồ Chí Minh"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ProvinceId = 3,
+                            name_en = "Nhat Le Beach",
+                            name_vi = "Biển Nhật Lệ"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ProvinceId = 4,
+                            name_en = "Hoa Lu ancient capital",
+                            name_vi = "Cố đô Hoa Lư"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ProvinceId = 4,
+                            name_en = "Trang An scenic spot",
+                            name_vi = "Danh thắng Tràng An"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ProvinceId = 5,
+                            name_en = "Cat Ba island",
+                            name_vi = "Đảo Cát Bà"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ProvinceId = 5,
+                            name_en = "Do Son beach",
+                            name_vi = "Bãi biển Đồ Sơn"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ProvinceId = 6,
+                            name_en = "Sapa",
+                            name_vi = "Sapa"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ProvinceId = 6,
+                            name_en = "Co Tien mountain",
+                            name_vi = "Núi cô Tiên"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ProvinceId = 7,
+                            name_en = "Hue Citadel - Imperial Citadel",
+                            name_vi = "Kinh Thành Huế- Đại Nội"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ProvinceId = 7,
+                            name_en = "Huong river",
+                            name_vi = "Sông Hương"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ProvinceId = 7,
+                            name_en = "Thiên Mụ pagoda",
+                            name_vi = "Chùa Thiên Mụ"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ProvinceId = 8,
+                            name_en = "Hon Chong Hon Vo Nha Trang",
+                            name_vi = "Hòn Chồng Hòn Vợ Nha Trang"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ProvinceId = 8,
+                            name_en = "Thap Ba Ponagar",
+                            name_vi = "Tháp Bà"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ProvinceId = 9,
+                            name_en = "Ho Tram",
+                            name_vi = "Hồ Tràm"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ProvinceId = 9,
+                            name_en = "Vung Tau beach",
+                            name_vi = "Bãi biển Vũng Tàu"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ProvinceId = 10,
+                            name_en = "Phu Quoc island",
+                            name_vi = "Đảo Phú Quốc"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ProvinceId = 10,
+                            name_en = "U Minh Thuong National Park",
+                            name_vi = "Vườn quốc gia U Minh Thượng"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ProvinceId = 11,
+                            name_en = "Ca Mau floating market",
+                            name_vi = "Chợ nổi Cà Mau"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ProvinceId = 11,
+                            name_en = "Ca Mau mangrove forest",
+                            name_vi = "Rừng ngập mặn Cà Mau"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ProvinceId = 12,
+                            name_en = "Phu Da Island",
+                            name_vi = "Cồn Phú Đa"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ProvinceId = 12,
+                            name_en = "Bach Van Pagoda",
+                            name_vi = "Chùa Bạch Vân"
                         });
                 });
 
@@ -266,37 +418,169 @@ namespace VieLocaLure.Migrations
                         {
                             Id = 1,
                             DestinationId = 4,
-                            url = "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg"
+                            url = "/Uploads/lang-chu-tich-HCM.jpg"
                         },
                         new
                         {
                             Id = 2,
                             DestinationId = 3,
-                            url = "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg"
+                            url = "/Uploads/canh-thanh-pho-HCM.jpg"
                         },
                         new
                         {
                             Id = 3,
                             DestinationId = 1,
-                            url = "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg"
+                            url = "/Uploads/landmark81.jpeg"
                         },
                         new
                         {
                             Id = 4,
                             DestinationId = 2,
-                            url = "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg"
+                            url = "/Uploads/dong-phong-nha-ke-bang.jpg"
                         },
                         new
                         {
                             Id = 5,
                             DestinationId = 2,
-                            url = "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg"
+                            url = "/Uploads/phong-nha-ke-bang-2.jpg"
                         },
                         new
                         {
                             Id = 6,
                             DestinationId = 4,
-                            url = "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595"
+                            url = "/Uploads/lang-bac-ho.jpg"
+                        });
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("InvoiceDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("amount")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("createdOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("payment_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceDetailId");
+
+                    b.ToTable("invoices");
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_adult")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_child")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_infant")
+                        .HasColumnType("int");
+
+                    b.Property<string>("payment_method")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("invoiceDetails");
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.MenuItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name_en")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name_vi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("menuItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            level = 1,
+                            name_en = "Homepage",
+                            name_vi = "Trang chủ",
+                            url = "/"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            level = 1,
+                            name_en = "Destination",
+                            name_vi = "Điểm đến",
+                            url = "/destination"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            level = 1,
+                            name_en = "Tour",
+                            name_vi = "Tour du lịch",
+                            url = "/tour"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            level = 1,
+                            name_en = "Contact",
+                            name_vi = "Liên hệ",
+                            url = "/contact"
                         });
                 });
 
@@ -351,8 +635,64 @@ namespace VieLocaLure.Migrations
                         {
                             Id = 4,
                             AreaId = 1,
-                            name_en = "Ha Noi",
-                            name_vi = "Hà Nội"
+                            name_en = "Ninh Binh",
+                            name_vi = "Ninh Bình"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AreaId = 1,
+                            name_en = "Hai Phong",
+                            name_vi = "Hải Phòng"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AreaId = 1,
+                            name_en = "Lao Cai",
+                            name_vi = "Lào Cai"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AreaId = 2,
+                            name_en = "Hue",
+                            name_vi = "Huế"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AreaId = 2,
+                            name_en = "Khanh Hoa",
+                            name_vi = "Khánh Hòa"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AreaId = 3,
+                            name_en = "Vung Tau",
+                            name_vi = "Vũng Tàu"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AreaId = 3,
+                            name_en = "Kien Giang",
+                            name_vi = "Kiên Giang"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AreaId = 3,
+                            name_en = "Ca Mau",
+                            name_vi = "Cà Mau"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AreaId = 3,
+                            name_en = "Ben Tre",
+                            name_vi = "Bến Tre"
                         });
                 });
 
@@ -553,6 +893,36 @@ namespace VieLocaLure.Migrations
                     b.Navigation("Destination");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.Invoice", b =>
+                {
+                    b.HasOne("VieLocaLure.Models.InvoiceDetail", "InvoiceDetail")
+                        .WithMany("Invoice")
+                        .HasForeignKey("InvoiceDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InvoiceDetail");
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.HasOne("VieLocaLure.Models.Account", "Account")
+                        .WithMany("InvoiceDetail")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VieLocaLure.Models.Tour", "Tour")
+                        .WithMany("InvoiceDetail")
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Tour");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Province", b =>
                 {
                     b.HasOne("VieLocaLure.Models.Area", "Area")
@@ -594,6 +964,11 @@ namespace VieLocaLure.Migrations
                     b.Navigation("Tour");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.Account", b =>
+                {
+                    b.Navigation("InvoiceDetail");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Area", b =>
                 {
                     b.Navigation("Province");
@@ -606,6 +981,11 @@ namespace VieLocaLure.Migrations
                     b.Navigation("TourDestination");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.Navigation("Invoice");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Province", b =>
                 {
                     b.Navigation("Destination");
@@ -613,6 +993,8 @@ namespace VieLocaLure.Migrations
 
             modelBuilder.Entity("VieLocaLure.Models.Tour", b =>
                 {
+                    b.Navigation("InvoiceDetail");
+
                     b.Navigation("TourDestination");
 
                     b.Navigation("TourDetail");

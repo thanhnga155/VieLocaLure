@@ -9,7 +9,7 @@ namespace VieLocaLure.Data
     {
         public VieLocaLureDB(DbContextOptions<VieLocaLureDB> options) : base(options) { }
         //mỗi lần add table thì DbSet thêm 1 lần
-        public DbSet<Accounts> accounts { get; set; }
+        public DbSet<Account> accounts { get; set; }
         public DbSet<Banner> banners { get; set; }
         public DbSet<Area> areas { get; set; }
         public DbSet<Image> images { get; set; }
@@ -19,13 +19,16 @@ namespace VieLocaLure.Data
         public DbSet<Tour> tours { get; set; }
         public DbSet<TourDetail> tourDetails { get; set; }
         public DbSet<MenuItem> menuItems { get; set; }
+        public DbSet<Invoice> invoices { get; set; }
+        public DbSet<InvoiceDetail> invoiceDetails { get; set; }
+        //public DbSet<Booking> bookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //quan hệ n-n Tour-Image
-/*            modelBuilder.Entity<TourImage>()
-                .HasKey(di => new { di.TourId, di.ImageId });*/
+            /*            modelBuilder.Entity<TourImage>()
+                            .HasKey(di => new { di.TourId, di.ImageId });*/
             //quan hệ n-n Tour-Destination
             modelBuilder.Entity<TourDestination>()
             .HasKey(di => new { di.TourId, di.DestinationId });
@@ -47,7 +50,7 @@ namespace VieLocaLure.Data
                 Id = 1,
                 name_en = "Homepage",
                 name_vi = "Trang chủ",
-                level= 1,
+                level = 1,
                 url = "/",
             });
             modelBuilder.Entity<MenuItem>().HasData(new MenuItem
@@ -55,7 +58,7 @@ namespace VieLocaLure.Data
                 Id = 2,
                 name_en = "Destination",
                 name_vi = "Điểm đến",
-                level= 1,
+                level = 1,
                 url = "/destination",
             });
             modelBuilder.Entity<MenuItem>().HasData(new MenuItem
@@ -63,7 +66,7 @@ namespace VieLocaLure.Data
                 Id = 3,
                 name_en = "Tour",
                 name_vi = "Tour du lịch",
-                level=1,
+                level = 1,
                 url = "/tour",
             });
             modelBuilder.Entity<MenuItem>().HasData(new MenuItem
@@ -71,7 +74,7 @@ namespace VieLocaLure.Data
                 Id = 4,
                 name_en = "Contact",
                 name_vi = "Liên hệ",
-                level= 1,
+                level = 1,
                 url = "/contact",
             });
             modelBuilder.Entity<Area>().HasData(new Area { Id = 1, name_en = "North Vietnam", name_vi = "Miền Bắc", url = "/destination/north-vietnam", content = "`\r\n        <p>Fascinating and stunning region of beauty, North Vietnam is a country of mountains, rice terraces and karst peaks.</p>\r\n\r\n        <p>Follow us in the region of Sapa, Moc Chau, Mai Chau and Mu Cang Chai, meeting ethnic minorities during hikes from villages to villages to admire the exceptional landscapes and discover the local traditions during a stay with the inhabitant. </p>\r\n\r\n        <p>Discover the local flora and fauna of Pu Luong National Park. Admire the incredible landscapes drawn by the many sugarloaves that emerge from the ocean and rice fields during a cruise in the famous Halong Bay and along the water in the Ninh Binh region. </p>\r\n\r\n        <p>Soak up the unique atmosphere of the administrative capital of Hanoi, a cultural city steeped in Vietnamese traditions and with a very rich gastronomy.</p>`" });
@@ -452,7 +455,6 @@ namespace VieLocaLure.Data
                 TourId = 2,
             }
             );
-
         }
     }
 }

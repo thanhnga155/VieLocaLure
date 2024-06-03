@@ -23,7 +23,10 @@ namespace VieLocaLure.Migrations
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     gmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    phone_number = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    phone_number = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    role = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,6 +67,22 @@ namespace VieLocaLure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_banners", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "menuItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name_en = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    name_vi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    level = table.Column<int>(type: "int", nullable: false),
+                    url = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_menuItems", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,6 +128,37 @@ namespace VieLocaLure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "invoiceDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    count_adult = table.Column<int>(type: "int", nullable: false),
+                    count_child = table.Column<int>(type: "int", nullable: false),
+                    count_infant = table.Column<int>(type: "int", nullable: false),
+                    payment_method = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    totalPrice = table.Column<float>(type: "real", nullable: false),
+                    AccountId = table.Column<int>(type: "int", nullable: false),
+                    TourId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_invoiceDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_invoiceDetails_accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_invoiceDetails_tours_TourId",
+                        column: x => x.TourId,
+                        principalTable: "tours",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tourDetails",
                 columns: table => new
                 {
@@ -149,6 +199,29 @@ namespace VieLocaLure.Migrations
                         name: "FK_destinations_provinces_ProvinceId",
                         column: x => x.ProvinceId,
                         principalTable: "provinces",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "invoices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    amount = table.Column<float>(type: "real", nullable: false),
+                    createdOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    payment_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InvoiceDetailId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_invoices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_invoices_invoiceDetails_InvoiceDetailId",
+                        column: x => x.InvoiceDetailId,
+                        principalTable: "invoiceDetails",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -212,8 +285,19 @@ namespace VieLocaLure.Migrations
                 columns: new[] { "Id", "caption1_en", "caption1_vi", "caption2_en", "caption2_vi", "caption3_en", "caption3_vi", "image", "url" },
                 values: new object[,]
                 {
-                    { 1, "special value tour", "gói tour đặc biệt", "panorama of vietnam", "toàn cảnh việt nam", "Departing on Apr 5, 2024", "khởi hành 05/04/2024", "https://zoomtravel.vn/upload/images/samten-hills-0.jpg", "/tour/panorama-of-vietnam" },
-                    { 2, "once upon an old time", "vang bóng một thời", "Hue Historic Citadel", "Kinh thành Huế", "Departing on Mar 20, 2024", "khởi hành 20/03/2024", "https://static.vinwonders.com/2023/02/dia-diem-du-lich-hue-01.jpg", "/tour/kinh-thanh-hue" }
+                    { 1, "special value tour", "gói tour đặc biệt", "panorama of vietnam", "toàn cảnh việt nam", "Departing on Apr 5, 2024", "khởi hành 05/04/2024", "/Uploads/vang-bong-mot-thoi.jpg", "/tour/panorama-of-vietnam" },
+                    { 2, "once upon an old time", "vang bóng một thời", "Hue Historic Citadel", "Kinh thành Huế", "Departing on Mar 20, 2024", "khởi hành 20/03/2024", "/Uploads/kinh-thanh-hue.jpg", "/tour/kinh-thanh-hue" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "menuItems",
+                columns: new[] { "Id", "level", "name_en", "name_vi", "url" },
+                values: new object[,]
+                {
+                    { 1, 1, "Homepage", "Trang chủ", "/" },
+                    { 2, 1, "Destination", "Điểm đến", "/destination" },
+                    { 3, 1, "Tour", "Tour du lịch", "/tour" },
+                    { 4, 1, "Contact", "Liên hệ", "/contact" }
                 });
 
             migrationBuilder.InsertData(
@@ -233,7 +317,15 @@ namespace VieLocaLure.Migrations
                     { 1, 1, "Ha Noi", "Hà Nội" },
                     { 2, 3, "Ho Chi Minh City", "Thành phố Hồ Chí Minh" },
                     { 3, 2, "Quang Binh", "Quảng Bình" },
-                    { 4, 1, "Ha Noi", "Hà Nội" }
+                    { 4, 1, "Ninh Binh", "Ninh Bình" },
+                    { 5, 1, "Hai Phong", "Hải Phòng" },
+                    { 6, 1, "Lao Cai", "Lào Cai" },
+                    { 7, 2, "Hue", "Huế" },
+                    { 8, 2, "Khanh Hoa", "Khánh Hòa" },
+                    { 9, 3, "Vung Tau", "Vũng Tàu" },
+                    { 10, 3, "Kien Giang", "Kiên Giang" },
+                    { 11, 3, "Ca Mau", "Cà Mau" },
+                    { 12, 3, "Ben Tre", "Bến Tre" }
                 });
 
             migrationBuilder.InsertData(
@@ -254,7 +346,27 @@ namespace VieLocaLure.Migrations
                     { 1, 2, "Landmark 81", "Tòa nhà Landmark 81" },
                     { 2, 3, "Phong Nha - Ke Bang", "Phong Nha - Kẻ Bàng" },
                     { 3, 1, "One Pillar pagoda", "Chùa Một Cột" },
-                    { 4, 1, "Ho Chi Minh Mausoleum", "Lăng Chủ Tịch Hồ Chí Minh" }
+                    { 4, 1, "Ho Chi Minh Mausoleum", "Lăng Chủ Tịch Hồ Chí Minh" },
+                    { 5, 3, "Nhat Le Beach", "Biển Nhật Lệ" },
+                    { 6, 4, "Hoa Lu ancient capital", "Cố đô Hoa Lư" },
+                    { 7, 4, "Trang An scenic spot", "Danh thắng Tràng An" },
+                    { 8, 5, "Cat Ba island", "Đảo Cát Bà" },
+                    { 9, 5, "Do Son beach", "Bãi biển Đồ Sơn" },
+                    { 10, 6, "Sapa", "Sapa" },
+                    { 11, 6, "Co Tien mountain", "Núi cô Tiên" },
+                    { 12, 7, "Hue Citadel - Imperial Citadel", "Kinh Thành Huế- Đại Nội" },
+                    { 13, 7, "Huong river", "Sông Hương" },
+                    { 14, 7, "Thiên Mụ pagoda", "Chùa Thiên Mụ" },
+                    { 15, 8, "Hon Chong Hon Vo Nha Trang", "Hòn Chồng Hòn Vợ Nha Trang" },
+                    { 16, 8, "Thap Ba Ponagar", "Tháp Bà" },
+                    { 17, 9, "Ho Tram", "Hồ Tràm" },
+                    { 18, 9, "Vung Tau beach", "Bãi biển Vũng Tàu" },
+                    { 19, 10, "Phu Quoc island", "Đảo Phú Quốc" },
+                    { 20, 10, "U Minh Thuong National Park", "Vườn quốc gia U Minh Thượng" },
+                    { 21, 11, "Ca Mau floating market", "Chợ nổi Cà Mau" },
+                    { 22, 11, "Ca Mau mangrove forest", "Rừng ngập mặn Cà Mau" },
+                    { 23, 12, "Phu Da Island", "Cồn Phú Đa" },
+                    { 24, 12, "Bach Van Pagoda", "Chùa Bạch Vân" }
                 });
 
             migrationBuilder.InsertData(
@@ -262,12 +374,12 @@ namespace VieLocaLure.Migrations
                 columns: new[] { "Id", "DestinationId", "url" },
                 values: new object[,]
                 {
-                    { 1, 4, "https://hochiminh.vn/Uploads/Images/2022/11/14/6/ttxvnlangc-1589207452-48.jpg" },
-                    { 2, 3, "https://images.ctfassets.net/bth3mlrehms2/6X0Vw0vJBPMbAvK8XZqJMV/65e38d3d02a8f23fcc090bb80d01744c/iStock-481711830.jpg?w=3593&h=2771&fl=progressive&q=50&fm=jpg" },
-                    { 3, 1, "https://www.vinhomescentralpark.co/wp-content/uploads/2021/04/landmark81-2.jpeg" },
-                    { 4, 2, "https://imagevietnam.vnanet.vn//MediaUpload/Org/2023/11/14/dong-phong-nha-ke-bang-dep-den-choang-ngop14-9-50-19.jpg" },
-                    { 5, 2, "https://cdn.tgdd.vn/Files/2021/07/05/1365760/kinh-nghiem-du-lich-kham-pha-dong-phong-nha-ke-bang-quang-binh-202107051210588725.jpg" },
-                    { 6, 4, "https://bizweb.dktcdn.net/100/366/377/files/lang-bac-ho.jpg?v=1699677034595" }
+                    { 1, 4, "/Uploads/lang-chu-tich-HCM.jpg" },
+                    { 2, 3, "/Uploads/canh-thanh-pho-HCM.jpg" },
+                    { 3, 1, "/Uploads/landmark81.jpeg" },
+                    { 4, 2, "/Uploads/dong-phong-nha-ke-bang.jpg" },
+                    { 5, 2, "/Uploads/phong-nha-ke-bang-2.jpg" },
+                    { 6, 4, "/Uploads/lang-bac-ho.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -291,6 +403,21 @@ namespace VieLocaLure.Migrations
                 column: "DestinationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_invoiceDetails_AccountId",
+                table: "invoiceDetails",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_invoiceDetails_TourId",
+                table: "invoiceDetails",
+                column: "TourId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_invoices_InvoiceDetailId",
+                table: "invoices",
+                column: "InvoiceDetailId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_provinces_AreaId",
                 table: "provinces",
                 column: "AreaId");
@@ -310,13 +437,16 @@ namespace VieLocaLure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "accounts");
-
-            migrationBuilder.DropTable(
                 name: "banners");
 
             migrationBuilder.DropTable(
                 name: "images");
+
+            migrationBuilder.DropTable(
+                name: "invoices");
+
+            migrationBuilder.DropTable(
+                name: "menuItems");
 
             migrationBuilder.DropTable(
                 name: "tourDestinations");
@@ -325,7 +455,13 @@ namespace VieLocaLure.Migrations
                 name: "tourDetails");
 
             migrationBuilder.DropTable(
+                name: "invoiceDetails");
+
+            migrationBuilder.DropTable(
                 name: "destinations");
+
+            migrationBuilder.DropTable(
+                name: "accounts");
 
             migrationBuilder.DropTable(
                 name: "tours");

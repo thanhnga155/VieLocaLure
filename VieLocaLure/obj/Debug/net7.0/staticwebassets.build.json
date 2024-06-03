@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vmEm9SfdGZ+X0gCmnExq/CcbZYGu4mF5mr9yqPPa65U=",
+  "Hash": "kSPQPKLXEp/KlOg9RXDHeKp3h5ZsAgWsbS6KBUd7a88=",
   "Source": "VieLocaLure",
   "BasePath": "_content/VieLocaLure",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "VieLocaLure\\wwwroot",
       "Source": "VieLocaLure",
-      "ContentRoot": "C:\\Users\\ADMIN\\Desktop\\VieLocaLure\\VieLocaLure\\wwwroot\\",
+      "ContentRoot": "E:\\VieLocaLure\\VieLocaLure\\wwwroot\\",
       "BasePath": "_content/VieLocaLure",
       "Pattern": "**"
     }

@@ -22,7 +22,7 @@ namespace VieLocaLure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("VieLocaLure.Models.Accounts", b =>
+            modelBuilder.Entity("VieLocaLure.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,15 @@ namespace VieLocaLure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("gmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -43,6 +51,10 @@ namespace VieLocaLure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("phone_number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -437,6 +449,76 @@ namespace VieLocaLure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("InvoiceDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("amount")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("createdOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("payment_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceDetailId");
+
+                    b.ToTable("invoices");
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_adult")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_child")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count_infant")
+                        .HasColumnType("int");
+
+                    b.Property<string>("payment_method")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("invoiceDetails");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
@@ -808,6 +890,36 @@ namespace VieLocaLure.Migrations
                     b.Navigation("Destination");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.Invoice", b =>
+                {
+                    b.HasOne("VieLocaLure.Models.InvoiceDetail", "InvoiceDetail")
+                        .WithMany("Invoice")
+                        .HasForeignKey("InvoiceDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InvoiceDetail");
+                });
+
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.HasOne("VieLocaLure.Models.Account", "Account")
+                        .WithMany("InvoiceDetail")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VieLocaLure.Models.Tour", "Tour")
+                        .WithMany("InvoiceDetail")
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Tour");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Province", b =>
                 {
                     b.HasOne("VieLocaLure.Models.Area", "Area")
@@ -849,6 +961,11 @@ namespace VieLocaLure.Migrations
                     b.Navigation("Tour");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.Account", b =>
+                {
+                    b.Navigation("InvoiceDetail");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Area", b =>
                 {
                     b.Navigation("Province");
@@ -861,6 +978,11 @@ namespace VieLocaLure.Migrations
                     b.Navigation("TourDestination");
                 });
 
+            modelBuilder.Entity("VieLocaLure.Models.InvoiceDetail", b =>
+                {
+                    b.Navigation("Invoice");
+                });
+
             modelBuilder.Entity("VieLocaLure.Models.Province", b =>
                 {
                     b.Navigation("Destination");
@@ -868,6 +990,8 @@ namespace VieLocaLure.Migrations
 
             modelBuilder.Entity("VieLocaLure.Models.Tour", b =>
                 {
+                    b.Navigation("InvoiceDetail");
+
                     b.Navigation("TourDestination");
 
                     b.Navigation("TourDetail");
