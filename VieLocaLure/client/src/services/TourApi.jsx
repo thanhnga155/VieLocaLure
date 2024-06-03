@@ -22,6 +22,20 @@ export const GetTour = async ({ isFilter, filterKey, key, value } = {}) => {
     return data
 }
 
+export const GetTourFromPackage = async (tour, id) => {
+    let url = `${serverApi}/tour/url?=${tour}&detail=${id}`;
+    
+    const config = {
+        method: 'GET',
+        url: url,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        }
+    }
+    const { data } = await axios(config);
+    return data
+}
+
 export const SearchTour = async (params) => {
     let p = ""
     for (let key in params) {
@@ -33,7 +47,6 @@ export const SearchTour = async (params) => {
 
     p = p.substring(0, p.length - 1);
     
-    console.log(`/tour/search?${p}`)
     
     const config = {
         method: 'GET',
@@ -46,6 +59,16 @@ export const SearchTour = async (params) => {
     const { data } = await axios(config);
     return data
 }
+
+export const SearchTourByImage = async (data) => {
+    const { response } = await axios.post(`${serverApi}/tour/search/image`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response
+}
+
 
 export const GetTourDetailByUrl = async (url) => {
     const config = {
@@ -71,5 +94,10 @@ export const DeleteTour = async (id) => {
 
 export const UpdateTourById = async (id, data) => {
     const { response } = await axios.put(`${serverApi}/tour?id=${id}`, data);
+    return response
+}
+
+export const BookingTour = async (data) => {
+    const { response } = await axios.post(`${serverApi}/booking`, data);
     return response
 }

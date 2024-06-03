@@ -15,6 +15,19 @@ export const GetCustomer = async () => {
     return data
 }
 
+export const GetCustomerByUserName = async (username) => {
+    const config = {
+        method: 'GET',
+        url: `${serverApi}/account/customer/${username}`,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        }
+
+    }
+    const { data } = await axios(config);
+    return data
+}
+
 export const AddCustomer = async (data) => {
     const { response } = await axios.post(`${serverApi}/account/customer`, data, {
         headers: {

@@ -109,6 +109,12 @@ a {
     color: #fff !important;
 }
 
+.main-box-outline {
+    background-color: #fff !important;
+    border-color: var(--main-yellow) !important;
+    color: #000 !important;
+}
+
 .main-box-light {
     background-color: #fff !important;
     border-color: #aaa !important;

@@ -2,6 +2,7 @@
     "homepage": {
         "header": {
             "login": "Đăng nhập",
+            "logout": "Đăng xuất",
             "language": "English",
             "homepage": "Trang chủ",
             "destination": "Khu vực",
