@@ -13,12 +13,14 @@ const divStyle = {
     // background-color: rgba(101, 105, 108, 0.5);
 };
 
-const Banner = ({image, title, description, query, tourDetail}) => {
+const Banner = ({image, title, description, query, tourDetail, queryImage}) => {
     return (
         <div className='banner-page'>
             <div style={{ ...divStyle, 'backgroundImage': `url(${image})` }}>
                 <center className="visible banner-text-center" style={{marginTop: "4rem"}}>
-                    <h1 className="caption" style={{"fontSize": "5.5vw", "textShadow": "1px 0px 10px"}}> {title} </h1>
+                        <h1 className="caption" style={{"fontSize": "5.5vw", "textShadow": "1px 0px 10px"}}> 
+                        {title} 
+                        </h1>
                 </center>
 
                 {
@@ -27,6 +29,10 @@ const Banner = ({image, title, description, query, tourDetail}) => {
                         <Row>
                             <Col xs={12}>
                                 <h4>{query}</h4>
+                                {
+                                    queryImage && 
+                                    <img src={queryImage} alt="Uploaded" style={{ width: '70px', height: '70px' }} />
+                                }
                             </Col>
                         </Row>
                     </Container>

@@ -1,0 +1,144 @@
+.progress-wizard {
+    margin-top: 40px;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 0 30px 0;
+
+    & > .progress-wizard-step {
+        padding: 0;
+        position: relative;
+        margin-bottom: 40px;
+
+        &.active {
+            > .progress-wizard-dot {
+                border: 2px solid var(--main-yellow);
+            }
+        }
+
+        &.finish {
+            > .progress-wizard-dot {
+                background-color: var(--main-yellow);
+                color: #fff;
+            }
+        }
+
+        & .progress {
+            position: relative;
+            border-radius: 0px;
+            height: 2px;
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+        }
+
+        & > .progress-wizard-dot {
+            display: block;
+            background-color: #ffffff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            // border: 2px solid var(--main-yellow);
+            padding: 15px;
+            text-align: center;
+            max-width: 200px;
+            color: #222222;
+            text-decoration: none;
+        }
+    }
+}
+
+.progress-wizard > .progress-wizard-step:first-child > .progress {
+    left: 50%;
+    width: 50%;
+}
+
+.fixed-card {
+    position: fixed;
+    top: 150px;
+    z-index: 1;
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
+    width: 22.5rem;
+}
+
+.booking-page {
+    .title {
+        text-transform: uppercase;
+    }
+
+    .highlight-text li {
+        font-size: 13px;
+        font-style: italic;
+        list-style-type: disc;
+    }
+
+    .methods .method {
+        margin: 2px 0;
+    }
+
+    .payment-method:checked + .method-content .title {
+        background: #5cb85c;
+        color: white;
+    }
+
+    .method .title {
+        padding-right: 70px !important;
+    }
+    .method .title {
+        padding: 20px;
+        margin: 10px 0 ;
+        background-color: #F3EDED;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid #ccc;
+    }
+
+    .method .title .description {
+        font-size: 13px;
+    }
+
+    .payment-method:checked + .method-content > .content {
+        margin-bottom: 25px;
+    }
+    .payment-method:checked + .method-content > .content {
+        display: block;
+        float: left;
+        width: 100%;
+        border: 1px dashed #555;
+    }
+    .payment-method + .method-content .content {
+        display: none;
+    }
+    .method .content {
+        font-size: 14px;
+        padding: 10px 15px;
+        display: none;
+    }
+
+    .payment-method:checked + .method-content .title i.fa.fa-chevron-down {
+        display: none;
+    }
+    .payment-method + .method-content .title i.fa.fa-chevron-down {
+        display: block;
+    }
+
+    .payment-method:checked + .method-content .title i.fa-check {
+        display: inline-block;
+    }
+    .method .title i.fa-check {
+        top: 15%;
+        font-size: 55px;
+        display: none;
+    }
+    .method .title i {
+        position: absolute;
+        right: 10px;
+        top: 45%;
+    }
+
+    a {
+        color: var(--main-yellow);
+        text-decoration: none;
+    }
+}

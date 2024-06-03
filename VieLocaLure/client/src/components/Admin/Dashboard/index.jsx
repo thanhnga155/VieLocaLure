@@ -53,11 +53,11 @@ const profitSample = [
 
 const userSample = [
     {
-        avatar: { src: 'avatar1', status: 'success' }, // get random in [success, info, danger, warning]
+        avatar: { src: 'https://cdn.24h.com.vn/upload/4-2021/images/2021-10-27/lan-ngoc-5-1635317611-164-width660height642.jpg', status: 'success' }, // get random in [success, info, danger, warning]
         user: {
-            name: 'Yiorgos Avraamu',
+            name: 'Lan Ngoc',
             new: true, // new user or not
-            registered: 'Jan 1, 2024',
+            registered: 'Mar 4, 2024',
         },
         usage: {
             value: 50, // the percentage of bookings of a user per total bookings of all users // the 
@@ -67,9 +67,9 @@ const userSample = [
         activity: '10 sec ago', // last booking time
     },
     {
-        avatar: { src: 'avatar2', status: 'danger' },
+        avatar: { src: 'https://vaa.edu.vn/contents_vaaedu.vn/images/duybao1-1483942213804.jpg', status: 'danger' },
         user: {
-            name: 'Avram Tarasios',
+            name: 'Minh Triet',
             new: false,
             registered: 'Jan 1, 2023',
         },
@@ -81,9 +81,9 @@ const userSample = [
         activity: '5 minutes ago',
     },
     {
-        avatar: { src: 'avatar3', status: 'warning' },
+        avatar: { src: 'https://images.kienthuc.net.vn/zoom/800/Uploaded/hongnhat/2018_09_22/1/nb-2_WSZS.jpg', status: 'warning' },
         user: { 
-            name: 'Quintin Ed', 
+            name: 'Hoang Hai', 
             new: true, 
             registered: 'Jan 1, 2023' 
         },
@@ -95,9 +95,9 @@ const userSample = [
         activity: '1 hour ago',
     },
     {
-        avatar: { src: 'avatar4', status: 'secondary' },
+        avatar: { src: 'https://cdn.24h.com.vn/upload/4-2022/images/2022-11-18/Ngam-loat-anh-cua-trai-dep-do-xang-khien-dan-mang-trai-do-cang-1668753854-223-width645height646.jpg', status: 'secondary' },
         user: { 
-            name: 'Enéas Kwadwo', 
+            name: 'Lam Duc', 
             new: true, 
             registered: 'Jan 1, 2023' 
         },
@@ -109,9 +109,9 @@ const userSample = [
         activity: 'Last month',
     },
     {
-        avatar: { src: 'avatar5', status: 'success' },
+        avatar: { src: 'https://newsmd2fr.keeng.vn/tiin/archive/images/2016/12/05/144822_3.jpg', status: 'success' },
         user: {
-            name: 'Agapetus Tadeáš',
+            name: 'Hai Minh',
             new: true,
             registered: 'Jan 1, 2023',
         },

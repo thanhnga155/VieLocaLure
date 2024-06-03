@@ -4,6 +4,10 @@ import './styles.scss'
 import { useTranslation } from "react-i18next";
 import { GetArea } from "../../services/AreaApi";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { cilCamera } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
+import { SearchTourByImage } from "../../services/TourApi";
+import { useNavigate } from "react-router-dom";
 
 const sampleAreas = [
     {
@@ -26,9 +30,78 @@ const sampleAreas = [
     }
 ]
 
+const sampleResult = [
+    {
+        'title': 'Ho Chi Minh - Nhat Le beach - Phong Nha cave (3D2N)',
+        'image': 'https://vietskytourism.com.vn/wp-content/uploads/2018/03/nin-tho-truoc-2-bai-bien-dep-tua-thien-duong-chi-co-o-quang-binh1-e1691468011117.jpg',
+        'destination': 'Quang Binh',
+        'duration': '3 days 1 night',
+        'transport': 'Airplane and car',
+        'description': 'Quang Binh is one of wonderful tourist destinations in Central Vietnam, famous...',
+        'price': '$25',
+        'schedule': [
+            '09/07/2024',
+            '09/15/2024'
+        ]
+    },
+    {
+        "title": "Ho Chi Minh - Nhat Le - Dark Cave Adventure (5D4N)",
+        "image": "https://image.vietgoing.com/destination/2024/03/bien-Bao-Ninh-1920x1052.jpg",
+        "destination": "Quang Binh",
+        "duration": "5 days 4 nights",
+        "transport": "Airplane and car",
+        "description": "Dive into adventure with a thrilling visit to the Dark Cave, followed by...",
+        "price": "$40",
+        "schedule": [
+            "09/12/2024",
+            "09/20/2024"
+        ]
+    },
+    {
+        'title': 'Weekend Relax at Phu Quoc Island',
+        'image': 'https://letsflytravel.vn/assets/source/tour/phu-quoc/tour%20dao%20phu%20quoc%20(3).jpg',
+        'destination': 'Phu Quoc',
+        'duration': '2 days (Weekly Departure)',
+        'transport': 'Airplane and car',
+        'description': 'Discover the pristine beauty of Phu Quoc Island with this luxury...',
+        'price': '$250',
+        'schedule': [
+            '09/05/2024',
+            '09/15/2024'
+        ]
+    },
+    {
+        "title": "Weekend Getaway to Vung Tau (2D1N)",
+        "image": "https://chieutour.com.vn/kcfinder/upload/images/du-lich-vung-tau-2-12-2016.jpg",
+        "destination": "Vung Tau",
+        "duration": "2 days 1 night",
+        "transport": "Car or bus",
+        "description": "Take a short break and enjoy a relaxing weekend in Vung Tau. Visit...",
+        "price": "$100",
+        "schedule": [
+            "09/08/2024",
+            "09/22/2024"
+        ]
+    },
+    {
+        "title": "Tropical Paradise Retreat in Phu Quoc Island (5D4N)",
+        "image": "https://ik.imagekit.io/tvlk/blog/2023/01/du-lich-phu-quoc-thang-3-1.jpg?tr=dpr-2,w-675",
+        "destination": "Phu Quoc Island",
+        "duration": "5 days 4 nights",
+        "transport": "Airplane and private transfer",
+        "description": "Discover the pristine beauty of Phu Quoc Island with this tropical paradise retreat. Enjoy white sandy beaches, crystal-clear waters, and world-class resorts. Explore the island's rich culture, vibrant nightlife, and exquisite cuisine.",
+        "price": "$470",
+        "schedule": [
+            "09/05/2024",
+            "09/15/2024"
+        ]
+    }
+]
+
 const SearchBar = ({query}) => {
     const [areas, setAreas] = useState([]);
     const { language } = useLanguage();
+    const navigate = useNavigate()
 
     const [keywords, setKeywords] = useState('')
     const [fromDate, setFromDate] = useState('')
@@ -70,6 +143,47 @@ const SearchBar = ({query}) => {
     const handleFocusTo = () => setToDateType('date');
     const handleBlurTo = () => setToDateType('text');
 
+    const handleFileChange = async (e) => {
+        const selectedFile = e.target.files[0];
+
+        if (!selectedFile) {
+            return;
+        }
+
+        const imageUrl = URL.createObjectURL(selectedFile)
+
+        const url = imageUrl.split('/').pop()
+
+        navigate('/search/i/' + url, { state: { 
+            resultData : sampleResult,
+            imageUrl
+        } });
+
+
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        try {
+            const response = await SearchTourByImage(formData);
+            if (response.status === 200) {
+                const imageUrl = URL.createObjectURL(selectedFile)
+
+                const url = imageUrl.split('/').pop()
+
+                navigate('/search/i/' + url, { state: { 
+                    resultData : response.data,
+                    imageUrl
+                } });
+            } else {
+                console.log('Upload failed');
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+
+        
+    
+    }
 
     const { t } = useTranslation();
     return (
@@ -79,7 +193,7 @@ const SearchBar = ({query}) => {
                     <form id="searchFormKiritmWebTour" method="get" role="form" action="/search">
                         <Col xs={12}>
                             <Row>
-                                <Col md={4} sm={12}>
+                                <Col md={3} sm={12}>
                                     <div className="searchFilterQuery search-box-web-tour">
                                         <input onInput={(event) => setKeywords(event.target.value)} value={keywords} type="text" className="form-control" name="keywords" id="inputSearchWebTour" autocomplete="off" placeholder="Search a tour..."/>
                                         <div className="input-group-addon">
@@ -119,11 +233,19 @@ const SearchBar = ({query}) => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col md={2} sm={12}>
-                                    <button type="submit" className="main-box btn btn-block buttonCustomPrimary">
-                                        Search
-                                    </button>
+                                <Col md={3} sm={12} className="d-flex justify-content-between align-items-center">
+                                    <div style={{width: "70%"}}>
+                                        <button type="submit" className="main-box btn btn-block buttonCustomPrimary">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div className="file-upload-container">
+                                        <label htmlFor="file-upload" className="file-upload-label"> <CIcon icon={cilCamera} size="lg" /> </label>
+                                        <input type="file" id="file-upload" className="file-upload-input" accept="image/*" onChange={handleFileChange}/>
+                                    </div>
                                 </Col>
+                                {/* <Col md={1} sm={12}>
+                                </Col> */}
                             </Row>
                         </Col>
                     </form>

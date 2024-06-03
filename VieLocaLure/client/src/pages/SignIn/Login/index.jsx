@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
 
-    const { saveUser, changeUser } = useUser();
+    const { changeUser } = useUser();
 
     const updateUserName = (e) => {
         setUsername(e.target.value)
@@ -29,12 +29,8 @@ const Login = () => {
             const response = await LoginAPI(data);
             if (response) {
                 const data = response.data;
-                changeUser(data)
-                if (data.accesstoken) {
-                    saveUser(data);
-                }
-                
-
+                changeUser(data);
+                window.location = '/'
             }
         } catch (error) {
             const data = error.response.data

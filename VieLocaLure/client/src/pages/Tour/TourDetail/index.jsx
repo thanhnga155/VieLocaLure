@@ -81,7 +81,7 @@ const TourDetail = () => {
             {
                 tourDetail && tourDetail.images && tourDetail.images.length > 0 && (
                     <section className='tour-detail-page'>
-                        <Banner image={tourDetail.images[0]} tourDetail={tourDetail.tourName}/>
+                        <Banner image={"https://lp-cms-production.imgix.net/2021-01/shutterstockRF_718619590.jpg"} tourDetail={tourDetail.tourName}/>
                         <Container className='my-5'>
                             <Row className='basic-info my-4'>
                                 <Col md={6} sm={12}>
@@ -155,7 +155,7 @@ const TourDetail = () => {
                                                 <Col md={2} sm={12} xs={12} className="packageInfo d-flex d-md-block flex-direction-column">
                                                     <label className='d-block d-md-none pe-3'>Book tour online</label>
                                                     <div class="action-book">
-                                                        <a class="btn btn-buy-tour main-box" href="/booking/book-tour/pax-no/27542?type=buy">
+                                                        <a class="btn btn-buy-tour main-box" href={`/booking/book-tour/${id}/${tour.id}`}>
                                                             Booking
                                                         </a>
                                                     </div>
